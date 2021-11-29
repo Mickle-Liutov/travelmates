@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-travelmates-dev-200501-authRole",
+      "UnauthRoleArn": "arn:aws:iam::799285936968:role/amplify-travelmates-dev-200501-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::799285936968:role/amplify-travelmates-dev-200501-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-travelmates-dev-200501-deployment",
+      "UnauthRoleName": "amplify-travelmates-dev-200501-unauthRole",
+      "StackName": "amplify-travelmates-dev-200501",
+      "StackId": "arn:aws:cloudformation:us-east-2:799285936968:stack/amplify-travelmates-dev-200501/ca1ee0c0-3c0f-11ec-b213-069ad4785e56",
+      "AmplifyAppId": "dz60lr085yms5"
+    },
+    "categories": {
+      "auth": {
+        "travelmatesc5579aa4": {}
+      }
+    }
+  }
+}
