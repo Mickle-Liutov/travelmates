@@ -1,15 +1,21 @@
+import libs.AndroidCore.androidCore
+import libs.AndroidTest.androidTest
+import libs.Aws.aws
+import libs.Desugaring.desugaring
+import libs.UnitTest.unitTest
+
 plugins {
     id("com.android.application")
     id("kotlin-android")
 }
 
 android {
-    compileSdk = 31
+    compileSdk = Config.COMPILE_SDK
 
     defaultConfig {
         applicationId = "cz.cvut.fit.travelmates"
-        minSdk = 21
-        targetSdk = 31
+        minSdk = Config.MIN_SDK
+        targetSdk = Config.TARGET_SDK
         versionCode = 1
         versionName = "1.0"
 
@@ -18,7 +24,7 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -37,18 +43,10 @@ android {
 }
 
 dependencies {
-    implementation("androidx.core:core-ktx:1.7.0")
-    implementation("androidx.appcompat:appcompat:1.4.0")
-    implementation("com.google.android.material:material:1.4.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.2")
+    androidCore()
+    aws()
+    desugaring()
 
-    //AWS
-    implementation("com.amplifyframework:aws-auth-cognito:1.28.1")
-    implementation("com.amplifyframework:core-kotlin:0.12.1")
-
-    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.5")
-
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.3")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
+    androidTest()
+    unitTest()
 }

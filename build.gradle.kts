@@ -13,6 +13,6 @@ buildscript {
     }
 }
 
-tasks.getByName("clean", Delete::class) {
+tasks.register("clean",Delete::class){
     delete(rootProject.buildDir)
 }
