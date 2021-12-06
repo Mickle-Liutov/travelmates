@@ -2,11 +2,17 @@ import libs.AndroidCore.androidCore
 import libs.AndroidTest.androidTest
 import libs.Aws.aws
 import libs.Desugaring.desugaring
+import libs.Hilt.hilt
+import libs.Navigation.navigation
+import libs.Splash.splash
 import libs.UnitTest.unitTest
 
 plugins {
     id("com.android.application")
     id("kotlin-android")
+    id("kotlin-kapt")
+    id("dagger.hilt.android.plugin")
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -40,12 +46,19 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildFeatures {
+        dataBinding = true
+        viewBinding = true
+    }
 }
 
 dependencies {
     androidCore()
     aws()
     desugaring()
+    hilt()
+    splash()
+    navigation()
 
     androidTest()
     unitTest()
