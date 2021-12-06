@@ -1,4 +1,4 @@
-package cz.cvut.fit.travelmates.explore
+package cz.cvut.fit.travelmates.auth.welcome
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,22 +6,21 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
-import cz.cvut.fit.travelmates.databinding.FragmentExploreBinding
+import cz.cvut.fit.travelmates.auth.databinding.FragmentWelcomeBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ExploreFragment : Fragment() {
+class WelcomeFragment : Fragment() {
 
-    private lateinit var binding: FragmentExploreBinding
-    private val viewModel: ExploreViewModel by viewModels()
+    private val viewModel: WelcomeViewModel by viewModels()
+    private lateinit var binding: FragmentWelcomeBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentExploreBinding.inflate(inflater, container, false)
+        binding = FragmentWelcomeBinding.inflate(inflater, container, false)
         binding.vm = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
@@ -33,8 +32,6 @@ class ExploreFragment : Fragment() {
     }
 
     private fun setupObservers() {
-        viewModel.eventNavigateAuth.observe(viewLifecycleOwner) {
-            findNavController().navigate(ExploreFragmentDirections.actionToAuth())
-        }
+
     }
 }

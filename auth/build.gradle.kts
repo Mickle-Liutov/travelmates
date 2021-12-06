@@ -1,10 +1,16 @@
 import libs.AndroidCore.androidCore
 import libs.AndroidTest.androidTest
+import libs.Hilt.hilt
+import libs.Navigation.navigation
+import libs.Room.room
 import libs.UnitTest.unitTest
 
 plugins {
     id("com.android.library")
     id("kotlin-android")
+    id("kotlin-kapt")
+    id("dagger.hilt.android.plugin")
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -17,10 +23,20 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildFeatures {
+        dataBinding = true
+        viewBinding = true
+    }
 }
 
 dependencies {
+    implementation(project(":core"))
+    implementation(project(":authapi"))
+
     androidCore()
+    hilt()
+    room()
+    navigation()
 
     androidTest()
     unitTest()

@@ -53,6 +53,10 @@ android {
 }
 
 dependencies {
+    implementation(project(":authapi"))
+    implementation(project(":auth"))
+    implementation(project(":core"))
+
     androidCore()
     aws()
     desugaring()
