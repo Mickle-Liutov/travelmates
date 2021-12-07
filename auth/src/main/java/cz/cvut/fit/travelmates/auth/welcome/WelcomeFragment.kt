@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import cz.cvut.fit.travelmates.auth.databinding.FragmentWelcomeBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -32,6 +33,11 @@ class WelcomeFragment : Fragment() {
     }
 
     private fun setupObservers() {
-
+        viewModel.eventNavigateLogin.observe(viewLifecycleOwner) {
+            findNavController().navigate(WelcomeFragmentDirections.actionToLogin())
+        }
+        viewModel.eventNavigateRegister.observe(viewLifecycleOwner) {
+            findNavController().navigate(WelcomeFragmentDirections.actionToRegister())
+        }
     }
 }

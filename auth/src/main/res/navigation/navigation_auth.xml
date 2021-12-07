@@ -8,5 +8,20 @@
     <fragment
         android:id="@+id/navigation_welcome"
         android:name="cz.cvut.fit.travelmates.auth.welcome.WelcomeFragment"
-        tools:layout="@layout/fragment_welcome" />
+        tools:layout="@layout/fragment_welcome">
+        <action
+            android:id="@+id/action_to_login"
+            app:destination="@id/navigation_login" />
+        <action
+            android:id="@+id/action_to_register"
+            app:destination="@id/navigation_register" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_login"
+        android:name="cz.cvut.fit.travelmates.auth.login.LoginFragment"
+        tools:layout="@layout/fragment_login" />
+    <fragment
+        android:id="@+id/navigation_register"
+        android:name="cz.cvut.fit.travelmates.auth.register.RegisterFragment"
+        tools:layout="@layout/fragment_register" />
 </navigation>

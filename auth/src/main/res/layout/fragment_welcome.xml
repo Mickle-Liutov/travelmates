@@ -18,10 +18,35 @@
             android:layout_height="wrap_content"
             android:text="WELCOME"
             android:textSize="32sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/buttonWelcomeLogin"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonWelcomeLogin"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_base_x2"
+            android:layout_marginBottom="@dimen/margin_base"
+            android:onClick="@{()->vm.onLoginPressed()}"
+            android:text="@string/welcome_button_login"
+            app:layout_constraintBottom_toTopOf="@id/buttonWelcomeRegister"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonWelcomeRegister"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_base_x2"
+            android:layout_marginBottom="@dimen/margin_base_x4"
+            android:onClick="@{()->vm.onRegisterPressed()}"
+            android:text="@string/welcome_button_register"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

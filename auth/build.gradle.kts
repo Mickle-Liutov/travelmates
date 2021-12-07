@@ -16,6 +16,13 @@ plugins {
 android {
     compileSdk = Config.COMPILE_SDK
 
+    defaultConfig {
+        minSdk = Config.MIN_SDK
+        targetSdk = Config.TARGET_SDK
+
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
