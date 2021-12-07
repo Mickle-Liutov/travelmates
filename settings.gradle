@@ -8,3 +8,6 @@ dependencyResolutionManagement {
 }
 rootProject.name = "TravelMates"
 include ':app'
+include ':core'
+include ':authapi'
+include ':auth'
