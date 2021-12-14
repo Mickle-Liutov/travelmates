@@ -34,4 +34,8 @@ object AuthModule {
     @Reusable
     fun provideCredentialsDataSource(authCredentialsDao: AuthCredentialsDao): CredentialsDataSource =
         CredentialsDataSource(authCredentialsDao)
+
+    @Provides
+    @Reusable
+    fun provideAuthRepository(): AuthRepository = AuthRepository()
 }

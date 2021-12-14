@@ -1,5 +1,6 @@
 import libs.AndroidCore.androidCore
 import libs.AndroidTest.androidTest
+import libs.Aws.aws
 import libs.Hilt.hilt
 import libs.Navigation.navigation
 import libs.Room.room
@@ -44,6 +45,7 @@ dependencies {
     hilt()
     room()
     navigation()
+    aws()
 
     androidTest()
     unitTest()
