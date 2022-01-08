@@ -19,9 +19,25 @@
     <fragment
         android:id="@+id/navigation_login"
         android:name="cz.cvut.fit.travelmates.auth.login.LoginFragment"
-        tools:layout="@layout/fragment_login" />
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_to_start_recovery"
+            app:destination="@id/navigation_start_recovery" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_register"
         android:name="cz.cvut.fit.travelmates.auth.register.RegisterFragment"
         tools:layout="@layout/fragment_register" />
+    <fragment
+        android:id="@+id/navigation_start_recovery"
+        android:name="cz.cvut.fit.travelmates.auth.recovery.start.StartRecoveryFragment"
+        android:label="StartRecoveryFragment">
+        <action
+            android:id="@+id/action_to_confirm_recovery"
+            app:destination="@id/navigation_confirm_recovery" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_confirm_recovery"
+        android:name="cz.cvut.fit.travelmates.auth.recovery.confirm.ConfirmRecoveryFragment"
+        android:label="ConfirmRecoveryFragment" />
 </navigation>

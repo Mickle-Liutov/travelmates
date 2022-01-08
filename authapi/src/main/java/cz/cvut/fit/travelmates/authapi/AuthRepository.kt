@@ -5,6 +5,7 @@ import com.amplifyframework.auth.AuthUserAttributeKey
 import com.amplifyframework.auth.cognito.AWSCognitoAuthSession
 import com.amplifyframework.auth.options.AuthSignUpOptions
 import com.amplifyframework.kotlin.core.Amplify
+import timber.log.Timber
 
 class AuthRepository {
 
@@ -25,6 +26,17 @@ class AuthRepository {
         if (!result.isSignInComplete) {
             throw RuntimeException()
         }
+    }
+
+    suspend fun startPasswordRecovery(email: String) {
+        val result = Amplify.Auth.resetPassword(email)
+        if (!result.isPasswordReset) {
+            Timber.d("Password not reset")
+        }
+    }
+
+    suspend fun confirmPasswordRecovery(newPassword: String, securityCode: String) {
+        Amplify.Auth.confirmResetPassword(newPassword, securityCode)
     }
 
     suspend fun hasValidSession(): Boolean {
