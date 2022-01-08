@@ -1,15 +1,9 @@
 package cz.cvut.fit.travelmates
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import androidx.lifecycle.lifecycleScope
-import com.amazonaws.mobile.auth.core.signin.AuthException
-import com.amplifyframework.auth.cognito.AWSCognitoAuthSession
-import com.amplifyframework.kotlin.core.Amplify
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -17,19 +11,5 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         installSplashScreen()
         setContentView(R.layout.activity_main)
-
-//        lifecycleScope.launch {
-//            try {
-//                val session = Amplify.Auth.fetchAuthSession()  as? AWSCognitoAuthSession
-//                val result = Amplify.Auth.signIn("m.liutov.dev@gmail.com", "123Password")
-//                if (result.isSignInComplete) {
-//                    Log.i("AuthQuickstart", "Sign in succeeded")
-//                } else {
-//                    Log.e("AuthQuickstart", "Sign in not complete")
-//                }
-//            } catch (error: AuthException) {
-//                Log.e("AuthQuickstart", "Sign in failed", error)
-//            }
-//        }
     }
 }

@@ -1,6 +1,8 @@
 package cz.cvut.fit.travelmates.authapi
 
+import com.amazonaws.services.cognitoidentityprovider.model.UnauthorizedException
 import com.amplifyframework.auth.AuthUserAttributeKey
+import com.amplifyframework.auth.cognito.AWSCognitoAuthSession
 import com.amplifyframework.auth.options.AuthSignUpOptions
 import com.amplifyframework.kotlin.core.Amplify
 
@@ -16,6 +18,23 @@ class AuthRepository {
         if (!result.isSignUpComplete) {
             throw RuntimeException()
         }
+    }
+
+    suspend fun login(email: String, password: String) {
+        val result = Amplify.Auth.signIn(email, password)
+        if (!result.isSignInComplete) {
+            throw RuntimeException()
+        }
+    }
+
+    suspend fun hasValidSession(): Boolean {
+        val session = Amplify.Auth.fetchAuthSession()
+        return session.isSignedIn
+    }
+
+    suspend fun getIdToken(): String {
+        val session = Amplify.Auth.fetchAuthSession() as AWSCognitoAuthSession
+        return session.userPoolTokens.value?.idToken ?: throw UnauthorizedException("")
     }
 
 }
