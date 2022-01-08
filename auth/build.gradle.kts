@@ -4,6 +4,7 @@ import libs.Aws.aws
 import libs.Hilt.hilt
 import libs.Navigation.navigation
 import libs.Room.room
+import libs.Timber.timber
 import libs.UnitTest.unitTest
 
 plugins {
@@ -46,6 +47,7 @@ dependencies {
     room()
     navigation()
     aws()
+    timber()
 
     androidTest()
     unitTest()

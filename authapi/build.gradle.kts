@@ -3,6 +3,7 @@ import libs.AndroidTest.androidTest
 import libs.Aws.aws
 import libs.Hilt.hilt
 import libs.Room.room
+import libs.Timber.timber
 import libs.UnitTest.unitTest
 
 plugins {
@@ -38,6 +39,7 @@ dependencies {
     hilt()
     room()
     aws()
+    timber()
 
     androidTest()
     unitTest()
