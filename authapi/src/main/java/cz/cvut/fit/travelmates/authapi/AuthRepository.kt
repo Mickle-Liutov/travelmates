@@ -28,6 +28,10 @@ class AuthRepository {
         }
     }
 
+    suspend fun logout() {
+        Amplify.Auth.signOut()
+    }
+
     suspend fun startPasswordRecovery(email: String) {
         val result = Amplify.Auth.resetPassword(email)
         if (!result.isPasswordReset) {

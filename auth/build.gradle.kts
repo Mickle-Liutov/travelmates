@@ -3,6 +3,7 @@ import libs.AndroidTest.androidTest
 import libs.Aws.aws
 import libs.Hilt.hilt
 import libs.Navigation.navigation
+import libs.Networking.networking
 import libs.Room.room
 import libs.Timber.timber
 import libs.UnitTest.unitTest
@@ -41,6 +42,7 @@ android {
 dependencies {
     implementation(project(":core"))
     implementation(project(":authapi"))
+    implementation(project(":mainapi"))
 
     androidCore()
     hilt()
@@ -48,6 +50,7 @@ dependencies {
     navigation()
     aws()
     timber()
+    networking()
 
     androidTest()
     unitTest()
