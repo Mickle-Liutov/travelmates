@@ -15,6 +15,7 @@
             <option value="$PROJECT_DIR$/authapi" />
             <option value="$PROJECT_DIR$/buildSrc" />
             <option value="$PROJECT_DIR$/core" />
+            <option value="$PROJECT_DIR$/mainapi" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

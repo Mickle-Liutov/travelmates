@@ -1,5 +1,8 @@
 package cz.cvut.fit.travelmates.auth.shared
 
+import cz.cvut.fit.travelmates.auth.login.LoginUseCase
+import cz.cvut.fit.travelmates.authapi.AuthRepository
+import cz.cvut.fit.travelmates.mainapi.user.UserService
 import dagger.Module
 import dagger.Provides
 import dagger.Reusable
@@ -15,5 +18,11 @@ object AuthModule {
     @Provides
     @Reusable
     internal fun provideFormValidator(): FormValidator = FormValidator()
+
+    @Provides
+    internal fun provideLoginUseCase(
+        authRepository: AuthRepository,
+        userService: UserService
+    ): LoginUseCase = LoginUseCase(authRepository, userService)
 
 }

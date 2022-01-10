@@ -4,6 +4,7 @@ import libs.Aws.aws
 import libs.Desugaring.desugaring
 import libs.Hilt.hilt
 import libs.Navigation.navigation
+import libs.Networking.networking
 import libs.Splash.splash
 import libs.UnitTest.unitTest
 
@@ -56,6 +57,7 @@ dependencies {
     implementation(project(":authapi"))
     implementation(project(":auth"))
     implementation(project(":core"))
+    implementation(project(":mainapi"))
 
     androidCore()
     aws()
@@ -63,6 +65,7 @@ dependencies {
     hilt()
     splash()
     navigation()
+    networking()
 
     androidTest()
     unitTest()

@@ -5,7 +5,6 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.amplifyframework.auth.AuthException
 import cz.cvut.fit.travelmates.auth.R
-import cz.cvut.fit.travelmates.authapi.AuthRepository
 import cz.cvut.fit.travelmates.core.coroutines.launchCatching
 import cz.cvut.fit.travelmates.core.livedata.SingleLiveEvent
 import cz.cvut.fit.travelmates.core.livedata.immutable
@@ -17,7 +16,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
-    private val authRepository: AuthRepository,
+    private val loginUseCase: LoginUseCase,
     private val resourcesProvider: ResourcesProvider
 ) : ViewModel() {
 
@@ -44,7 +43,7 @@ class LoginViewModel @Inject constructor(
         val email = typedEmail.value
         val password = typedPassword.value
         viewModelScope.launchCatching(execute = {
-            authRepository.login(email, password)
+            loginUseCase.login(email, password)
             _eventNavigateMain.call()
         }, catch = {
             when (it) {
