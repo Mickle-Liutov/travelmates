@@ -4,13 +4,14 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import cz.cvut.fit.travelmates.core.coroutines.launchCatching
+import cz.cvut.fit.travelmates.core.livedata.SingleLiveEvent
+import cz.cvut.fit.travelmates.core.livedata.immutable
 import cz.cvut.fit.travelmates.core.views.ViewState
 import cz.cvut.fit.travelmates.mainapi.user.User
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
-import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -32,8 +33,6 @@ class ProfileViewModel @Inject constructor(
     val loadUserContentVisible = loadUserViewState.map {
         it == ViewState.CONTENT
     }.asLiveData()
-
-    //TODO Handle in UI
     val loadUserErrorVisible = loadUserViewState.map { it == ViewState.ERROR }.asLiveData()
 
     private val saveViewState = MutableStateFlow(ViewState.CONTENT)
@@ -41,6 +40,12 @@ class ProfileViewModel @Inject constructor(
     val saveButtonVisible = combine(screenState, saveViewState) { screenState, saveState ->
         screenState == ScreenState.EDIT && saveState == ViewState.CONTENT
     }.asLiveData()
+
+    private val _eventSaveError = SingleLiveEvent<Unit>()
+    val eventSaveError = _eventSaveError.immutable()
+
+    private val _eventNavigateBack = SingleLiveEvent<Unit>()
+    val eventNavigateBack = _eventNavigateBack.immutable()
 
     init {
         loadUser()
@@ -70,11 +75,18 @@ class ProfileViewModel @Inject constructor(
                 screenState.value = ScreenState.SHOW
                 saveViewState.value = ViewState.CONTENT
             }, catch = {
-                //TODO Handle
+                _eventSaveError.call()
                 saveViewState.value = ViewState.CONTENT
-                Timber.d(it)
             })
         }
+    }
+
+    fun onBackPressed() {
+        if (screenState.value == ScreenState.EDIT) {
+            onCancelPressed()
+            return
+        }
+        _eventNavigateBack.call()
     }
 
     private fun loadUser() {
@@ -85,9 +97,7 @@ class ProfileViewModel @Inject constructor(
             typedName.value = user.name
             loadUserViewState.value = ViewState.CONTENT
         }, catch = {
-            //TODO Handle
             loadUserViewState.value = ViewState.ERROR
-            Timber.d(it)
         })
     }
 
