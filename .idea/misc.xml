@@ -3,8 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/ic_cancel.xml" value="0.2359375" />
+        <entry key="app/src/main/res/drawable/ic_confirm.xml" value="0.2359375" />
+        <entry key="app/src/main/res/drawable/ic_edit.xml" value="0.2359375" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.21822916666666667" />
         <entry key="app/src/main/res/layout/fragment_explore.xml" value="0.21822916666666667" />
+        <entry key="app/src/main/res/layout/fragment_my_trips.xml" value="0.215625" />
+        <entry key="app/src/main/res/layout/fragment_posts.xml" value="0.215625" />
+        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.215625" />
+        <entry key="app/src/main/res/menu/main_bottom_nav.xml" value="0.215625" />
         <entry key="auth/src/main/res/drawable/ic_back.xml" value="0.23854166666666668" />
         <entry key="auth/src/main/res/layout/fragment_confirm_recovery.xml" value="0.21144024514811033" />
         <entry key="auth/src/main/res/layout/fragment_login.xml" value="0.21822916666666667" />
