@@ -14,5 +14,14 @@
             app:destination="@id/navigation_auth" />
     </fragment>
     <include app:graph="@navigation/navigation_auth" />
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="cz.cvut.fit.travelmates.profile.ProfileFragment" />
+    <fragment
+        android:id="@+id/navigation_my_trips"
+        android:name="cz.cvut.fit.travelmates.mytrips.MyTripsFragment" />
+    <fragment
+        android:id="@+id/navigation_posts"
+        android:name="cz.cvut.fit.travelmates.posts.PostsFragment" />
 
 </navigation>

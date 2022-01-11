@@ -6,6 +6,7 @@ import libs.Hilt.hilt
 import libs.Navigation.navigation
 import libs.Networking.networking
 import libs.Splash.splash
+import libs.Timber.timber
 import libs.UnitTest.unitTest
 
 plugins {
@@ -66,6 +67,7 @@ dependencies {
     splash()
     navigation()
     networking()
+    timber()
 
     androidTest()
     unitTest()

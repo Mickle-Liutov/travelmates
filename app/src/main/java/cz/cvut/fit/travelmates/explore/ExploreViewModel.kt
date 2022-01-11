@@ -6,7 +6,6 @@ import cz.cvut.fit.travelmates.authapi.AuthRepository
 import cz.cvut.fit.travelmates.core.livedata.SingleLiveEvent
 import cz.cvut.fit.travelmates.core.livedata.immutable
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -14,8 +13,6 @@ import javax.inject.Inject
 class ExploreViewModel @Inject constructor(
     private val authRepository: AuthRepository
 ) : ViewModel() {
-
-    val idToken = MutableStateFlow("")
 
     private val _eventNavigateAuth = SingleLiveEvent<Unit>()
     val eventNavigateAuth = _eventNavigateAuth.immutable()
@@ -31,8 +28,6 @@ class ExploreViewModel @Inject constructor(
                 _eventNavigateAuth.call()
                 return@launch
             }
-            val token = authRepository.getIdToken()
-            idToken.value = token
         }
     }
 
