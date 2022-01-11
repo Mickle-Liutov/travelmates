@@ -1,4 +1,4 @@
-package cz.cvut.fit.travelmates.profile
+package cz.cvut.fit.travelmates.mainapi.user
 
 data class User(
     val email: String,

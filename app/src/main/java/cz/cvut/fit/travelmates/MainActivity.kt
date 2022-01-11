@@ -7,6 +7,7 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import cz.cvut.fit.travelmates.databinding.ActivityMainBinding
+import cz.cvut.fit.travelmates.navlistener.BottomNavChangeListener
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -34,5 +35,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupBottomNav() {
         NavigationUI.setupWithNavController(binding.bottomNavMain, navController)
+        navController.addOnDestinationChangedListener(BottomNavChangeListener(binding.bottomNavMain))
     }
 }
