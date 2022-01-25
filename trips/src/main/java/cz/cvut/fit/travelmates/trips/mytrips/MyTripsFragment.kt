@@ -1,4 +1,4 @@
-package cz.cvut.fit.travelmates.mytrips
+package cz.cvut.fit.travelmates.trips.mytrips
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import cz.cvut.fit.travelmates.databinding.FragmentMyTripsBinding
+import androidx.recyclerview.widget.LinearLayoutManager
+import cz.cvut.fit.travelmates.trips.TripsAdapter
+import cz.cvut.fit.travelmates.trips.databinding.FragmentMyTripsBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -29,9 +31,21 @@ class MyTripsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupObservers()
+        setupList()
     }
 
     private fun setupObservers() {
         //TODO
+    }
+
+    private fun setupList() {
+        val tripsAdapter = TripsAdapter()
+        binding.recyclerMyTrips.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = tripsAdapter
+        }
+        viewModel.trips.observe(viewLifecycleOwner) {
+            tripsAdapter.submitList(it)
+        }
     }
 }

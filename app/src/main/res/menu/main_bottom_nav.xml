@@ -11,7 +11,7 @@
         android:title="@string/tab_explore" />
 
     <item
-        android:id="@id/navigation_my_trips"
+        android:id="@id/navigation_trips_graph"
         android:icon="@drawable/ic_my_trips"
         android:title="@string/tab_my_trips" />
 

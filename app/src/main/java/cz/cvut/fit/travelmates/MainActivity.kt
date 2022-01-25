@@ -22,6 +22,7 @@ class MainActivity : AppCompatActivity() {
         navHostFragment.navController
     }
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         installSplashScreen()
