@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import cz.cvut.fit.travelmates.trips.TripsAdapter
 import cz.cvut.fit.travelmates.trips.databinding.FragmentMyTripsBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -39,7 +38,7 @@ class MyTripsFragment : Fragment() {
     }
 
     private fun setupList() {
-        val tripsAdapter = TripsAdapter()
+        val tripsAdapter = MyTripsAdapter()
         binding.recyclerMyTrips.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = tripsAdapter
