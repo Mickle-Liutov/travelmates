@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_base_x2"
+        android:background="@color/design_default_color_surface"
+        android:elevation="@dimen/margin_base"
+        android:padding="@dimen/margin_base_x2">
+
+        <ImageView
+            android:id="@+id/imageExploreTripItem"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@color/cardview_dark_background"
+            app:layout_constraintDimensionRatio="H,1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.5" />
+
+        <ImageView
+            android:id="@+id/imageExploreTripItemProfile"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:src="@color/cardview_dark_background"
+            app:layout_constraintBottom_toTopOf="@id/textExploreTripItemOwner"
+            app:layout_constraintDimensionRatio="H,1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imageExploreTripItem"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textExploreTripItemOwner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/imageExploreTripItem"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imageExploreTripItem"
+            app:layout_constraintTop_toBottomOf="@id/imageExploreTripItemProfile" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textExploreTripItemTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_base_x2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imageExploreTripItem" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerExploreTripItemEquipment"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_base_x2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textExploreTripItemTitle"
+            tools:itemCount="1" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textExploreTripItemDescription"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_base_x2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/recyclerExploreTripItemEquipment" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

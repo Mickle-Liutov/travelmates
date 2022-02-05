@@ -12,6 +12,7 @@
         <entry key="app/src/main/res/layout/fragment_my_trips.xml" value="0.215625" />
         <entry key="app/src/main/res/layout/fragment_posts.xml" value="0.215625" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.215625" />
+        <entry key="app/src/main/res/layout/item_explore_trip.xml" value="0.24322916666666666" />
         <entry key="app/src/main/res/menu/main_bottom_nav.xml" value="0.215625" />
         <entry key="auth/src/main/res/drawable/ic_back.xml" value="0.23854166666666668" />
         <entry key="auth/src/main/res/layout/fragment_confirm_recovery.xml" value="0.21144024514811033" />
@@ -19,6 +20,7 @@
         <entry key="auth/src/main/res/layout/fragment_register.xml" value="0.21822916666666667" />
         <entry key="auth/src/main/res/layout/fragment_start_recovery.xml" value="0.21144024514811033" />
         <entry key="auth/src/main/res/layout/fragment_welcome.xml" value="0.21822916666666667" />
+        <entry key="trips/src/main/res/layout/fragment_explore.xml" value="0.24322916666666666" />
         <entry key="trips/src/main/res/layout/fragment_my_trips.xml" value="0.215625" />
         <entry key="trips/src/main/res/layout/item_my_trip.xml" value="0.24322916666666666" />
         <entry key="trips/src/main/res/layout/item_trip.xml" value="0.24322916666666666" />
