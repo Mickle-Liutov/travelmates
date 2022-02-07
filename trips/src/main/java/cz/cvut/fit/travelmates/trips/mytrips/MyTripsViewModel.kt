@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import cz.cvut.fit.travelmates.core.coroutines.launchCatching
+import cz.cvut.fit.travelmates.core.livedata.SingleLiveEvent
 import cz.cvut.fit.travelmates.core.livedata.immutable
 import cz.cvut.fit.travelmates.core.views.ViewState
 import cz.cvut.fit.travelmates.mainapi.trips.models.Trip
@@ -27,6 +28,9 @@ class MyTripsViewModel @Inject constructor(
     val loadingVisible = viewState.map { it == ViewState.LOADING }.asLiveData()
     val errorVisible = viewState.map { it == ViewState.ERROR }.asLiveData() //TODO Observe
 
+    private val _eventNavigateAdd = SingleLiveEvent<Unit>()
+    val eventNavigateAdd = _eventNavigateAdd.immutable()
+
     init {
         loadTrips()
     }
@@ -40,6 +44,10 @@ class MyTripsViewModel @Inject constructor(
         }, catch = {
             viewState.value = ViewState.ERROR
         })
+    }
+
+    fun onAddPressed() {
+        _eventNavigateAdd.call()
     }
 
 }

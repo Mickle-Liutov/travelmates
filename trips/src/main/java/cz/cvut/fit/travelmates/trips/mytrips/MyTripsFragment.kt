@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import cz.cvut.fit.travelmates.trips.databinding.FragmentMyTripsBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -34,7 +35,9 @@ class MyTripsFragment : Fragment() {
     }
 
     private fun setupObservers() {
-        //TODO
+        viewModel.eventNavigateAdd.observe(viewLifecycleOwner) {
+            findNavController().navigate(MyTripsFragmentDirections.actionToAddTrip())
+        }
     }
 
     private fun setupList() {
