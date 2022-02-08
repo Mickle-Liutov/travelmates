@@ -59,6 +59,7 @@ dependencies {
     implementation(project(":auth"))
     implementation(project(":core"))
     implementation(project(":mainapi"))
+    implementation(project(":trips"))
 
     androidCore()
     aws()

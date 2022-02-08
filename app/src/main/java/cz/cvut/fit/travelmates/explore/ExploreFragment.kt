@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import cz.cvut.fit.travelmates.databinding.FragmentExploreBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -24,17 +25,32 @@ class ExploreFragment : Fragment() {
         binding = FragmentExploreBinding.inflate(inflater, container, false)
         binding.vm = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
+
+        viewLifecycleOwner.lifecycle.addObserver(viewModel)
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupObservers()
+        setupList()
     }
 
     private fun setupObservers() {
         viewModel.eventNavigateAuth.observe(viewLifecycleOwner) {
             findNavController().navigate(ExploreFragmentDirections.actionToAuth())
+        }
+    }
+
+    private fun setupList() {
+        val tripsAdapter = ExploreTripsAdapter()
+        binding.recyclerExploreTrips.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = tripsAdapter
+        }
+        viewModel.exploreTrips.observe(viewLifecycleOwner) {
+            tripsAdapter.submitList(it)
         }
     }
 }

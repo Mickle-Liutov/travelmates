@@ -20,7 +20,7 @@ class FormValidator {
                     else -> validation.invoke(it)
                 }
             }
-            .onEach(errorAction)
+            .onEach { errorAction.invoke(it) }
             .launchIn(CoroutineScope(coroutineContext))
 
         return isFieldValid(inputFlow, validation)

@@ -35,6 +35,7 @@ android {
 dependencies {
     implementation(project(":core"))
     implementation(project(":authapi"))
+    implementation(project(":location"))
 
     androidCore()
     hilt()
