@@ -23,6 +23,9 @@ class ExploreViewModel @Inject constructor(
     private val _eventNavigateAuth = SingleLiveEvent<Unit>()
     val eventNavigateAuth = _eventNavigateAuth.immutable()
 
+    private val _eventNavigateTripDetails = SingleLiveEvent<Long>()
+    val eventNavigateTripDetails = _eventNavigateTripDetails.immutable()
+
     private val _exploreTrips = MutableStateFlow<List<Trip>>(emptyList())
     val exploreTrips = _exploreTrips.asLiveData()
 
@@ -56,6 +59,10 @@ class ExploreViewModel @Inject constructor(
         }, catch = {
             viewState.value = ViewState.ERROR
         })
+    }
+
+    fun onTripPressed(tripId: Long) {
+        _eventNavigateTripDetails.value = tripId
     }
 
 }

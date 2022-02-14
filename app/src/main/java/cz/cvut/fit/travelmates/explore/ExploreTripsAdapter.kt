@@ -12,6 +12,8 @@ import cz.cvut.fit.travelmates.trips.TripRequirementsAdapter
 
 class ExploreTripsAdapter : ListAdapter<Trip, ExploreTripsAdapter.ExploreTripViewHolder>(TripDiff) {
 
+    var onTripPressed: ((Long) -> Unit)? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExploreTripViewHolder {
         val binding =
             ItemExploreTripBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -40,6 +42,9 @@ class ExploreTripsAdapter : ListAdapter<Trip, ExploreTripsAdapter.ExploreTripVie
                 textExploreTripItemOwner.text = item.owner.name
                 textExploreTripItemDescription.text = item.description
                 //TODO Load pictures
+                root.setOnClickListener {
+                    onTripPressed?.invoke(item.id)
+                }
             }
             requirementsAdapter.submitList(item.requirements)
         }

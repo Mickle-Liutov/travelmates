@@ -17,6 +17,21 @@
         <argument
             android:name="tripId"
             app:argType="long" />
+        <action
+            android:id="@+id/action_to_join_trip"
+            app:destination="@id/navigation_join_trip" />
 
     </fragment>
+    <fragment
+        android:id="@+id/navigation_join_trip"
+        android:name="cz.cvut.fit.travelmates.trips.join.JoinTripFragment"
+        tools:layout="@layout/fragment_join_trip">
+
+        <argument
+            android:name="trip"
+            app:argType="cz.cvut.fit.travelmates.mainapi.trips.models.DetailedTrip" />
+
+    </fragment>
+
+
 </navigation>

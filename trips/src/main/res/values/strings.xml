@@ -3,4 +3,10 @@
     <string name="trip_details_title_equipment">Equipment</string>
     <string name="trip_details_title_description">Description</string>
     <string name="trip_details_button_join">Join</string>
+    <string name="join_trip_title">Join trip</string>
+    <string name="join_trip_title_equipment">How can you contribute?</string>
+    <string name="join_trip_title_contact">Provide a way to contact you</string>
+    <string name="join_trip_title_message">Introduce yourself</string>
+    <string name="join_trip_button_send">Send</string>
+    <string name="join_trip_message_sent">Request was sent.</string>
 </resources>

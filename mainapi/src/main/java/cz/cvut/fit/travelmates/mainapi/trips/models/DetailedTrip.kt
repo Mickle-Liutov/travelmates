@@ -1,9 +1,14 @@
 package cz.cvut.fit.travelmates.mainapi.trips.models
 
+import android.os.Parcelable
+import androidx.annotation.Keep
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import cz.cvut.fit.travelmates.location.Location
+import kotlinx.parcelize.Parcelize
 
+@Keep
+@Parcelize
 @JsonClass(generateAdapter = true)
 data class DetailedTrip(
     @Json(name = "id")
@@ -24,4 +29,4 @@ data class DetailedTrip(
     val owner: TripMember,
     @Json(name = "members")
     val members: List<TripMember>
-)
+) : Parcelable

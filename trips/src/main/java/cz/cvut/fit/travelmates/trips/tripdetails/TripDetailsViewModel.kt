@@ -50,7 +50,7 @@ class TripDetailsViewModel @Inject constructor(
     val loadingVisible = viewState.map { it == ViewState.LOADING }.asLiveData()
     val errorVisible = viewState.map { it == ViewState.ERROR }.asLiveData() //TODO Observe
 
-    private val _eventNavigateJoin = SingleLiveEvent<Long>()
+    private val _eventNavigateJoin = SingleLiveEvent<DetailedTrip>()
     val eventNavigateJoin = _eventNavigateJoin.immutable()
 
     init {
@@ -71,7 +71,8 @@ class TripDetailsViewModel @Inject constructor(
     }
 
     fun onJoinPressed() {
-        _eventNavigateJoin.call()
+        val trip = _detailedTripOptional.value ?: return
+        _eventNavigateJoin.value = trip
     }
 
 }

@@ -12,6 +12,13 @@
         <action
             android:id="@+id/action_to_auth"
             app:destination="@id/navigation_auth" />
+        <action
+            android:id="@+id/action_explore_to_details"
+            app:destination="@id/trip_details_graph">
+            <argument
+                android:name="tripId"
+                app:argType="long" />
+        </action>
     </fragment>
     <include app:graph="@navigation/navigation_auth" />
     <include app:graph="@navigation/navigation_trip_details" />
