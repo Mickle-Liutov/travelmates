@@ -4,7 +4,7 @@ import org.gradle.api.artifacts.dsl.DependencyHandler
 
 object Networking {
     private const val NETWORKING_VERSION = "2.9.0"
-    private const val MOSHI_VERSION = "1.12.0"
+    private const val MOSHI_VERSION = "1.13.0"
 
     private val dependencies = listOf(
         "com.squareup.retrofit2:converter-moshi:$NETWORKING_VERSION",

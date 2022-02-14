@@ -60,7 +60,14 @@ class AddTripViewModel @Inject constructor(
         val requirements = requirements.value.map { Requirement(it.name) }
         //TODO Add fields ownerContact, suggestedDate
         val newTrip =
-            NewTripDto(title, description, Location(0, 0), "Contact", requirements, "2021-02-07")
+            NewTripDto(
+                title,
+                description,
+                Location(0.0, 0.0),
+                "Contact",
+                requirements,
+                "2021-02-07"
+            )
         viewModelScope.launchCatching(execute = {
             tripsRepository.createTrip(newTrip)
             _eventShowTripCreated.call()

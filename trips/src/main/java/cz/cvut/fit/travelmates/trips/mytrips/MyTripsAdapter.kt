@@ -12,6 +12,8 @@ import cz.cvut.fit.travelmates.trips.databinding.ItemMyTripBinding
 
 class MyTripsAdapter : ListAdapter<Trip, MyTripsAdapter.TripViewHolder>(TripDiff) {
 
+    var onTripPressed: ((Trip) -> Unit)? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TripViewHolder {
         return TripViewHolder(
             ItemMyTripBinding.inflate(
@@ -45,6 +47,9 @@ class MyTripsAdapter : ListAdapter<Trip, MyTripsAdapter.TripViewHolder>(TripDiff
                 textMyTripItemOwner.text = item.owner.name
                 textMyTripItemDescription.text = item.description
                 textMyTripItemState.text = item.state
+                root.setOnClickListener {
+                    onTripPressed?.invoke(item)
+                }
                 //TODO Load pictures
             }
             requirementsAdapter.submitList(item.requirements)

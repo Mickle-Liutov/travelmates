@@ -12,6 +12,14 @@
         <action
             android:id="@+id/action_to_add_trip"
             app:destination="@id/navigation_add_trip" />
+
+        <action
+            android:id="@+id/action_to_trip_details"
+            app:destination="@id/trip_details_graph">
+            <argument
+                android:name="tripId"
+                app:argType="long" />
+        </action>
     </fragment>
     <fragment
         android:id="@+id/navigation_add_trip"

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="trip_details_title_equipment">Equipment</string>
+    <string name="trip_details_title_description">Description</string>
+    <string name="trip_details_button_join">Join</string>
+</resources>

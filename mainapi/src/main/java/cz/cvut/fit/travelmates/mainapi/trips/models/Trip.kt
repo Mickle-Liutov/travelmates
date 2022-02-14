@@ -11,7 +11,7 @@ data class Trip(
     @Json(name = "description")
     val description: String,
     @Json(name = "id")
-    val id: Int,
+    val id: Long,
     @Json(name = "location")
     val location: Location,
     @Json(name = "owner")

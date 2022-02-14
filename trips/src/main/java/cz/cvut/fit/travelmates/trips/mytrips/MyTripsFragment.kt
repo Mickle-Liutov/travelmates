@@ -38,10 +38,15 @@ class MyTripsFragment : Fragment() {
         viewModel.eventNavigateAdd.observe(viewLifecycleOwner) {
             findNavController().navigate(MyTripsFragmentDirections.actionToAddTrip())
         }
+        viewModel.eventNavigateDetails.observe(viewLifecycleOwner) {
+            findNavController().navigate(MyTripsFragmentDirections.actionToTripDetails(it))
+        }
     }
 
     private fun setupList() {
-        val tripsAdapter = MyTripsAdapter()
+        val tripsAdapter = MyTripsAdapter().apply {
+            onTripPressed = viewModel::onTripPressed
+        }
         binding.recyclerMyTrips.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = tripsAdapter
