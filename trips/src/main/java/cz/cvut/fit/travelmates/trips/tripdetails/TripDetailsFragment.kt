@@ -34,11 +34,18 @@ class TripDetailsFragment : Fragment() {
         setupObservers()
         setupMembers()
         setupEquipment()
+        setupRequests()
     }
 
     private fun setupObservers() {
         viewModel.eventNavigateJoin.observe(viewLifecycleOwner) {
             findNavController().navigate(TripDetailsFragmentDirections.actionToJoinTrip(it))
+        }
+        viewModel.eventNavigateRequest.observe(viewLifecycleOwner) {
+            findNavController().navigate(TripDetailsFragmentDirections.actionToRequest(it))
+        }
+        viewModel.eventNavigateBack.observe(viewLifecycleOwner) {
+            findNavController().popBackStack()
         }
     }
 
@@ -62,6 +69,19 @@ class TripDetailsFragment : Fragment() {
         }
         viewModel.equipment.observe(viewLifecycleOwner) {
             equipmentAdapter.submitList(it)
+        }
+    }
+
+    private fun setupRequests() {
+        val requestsAdapter = RequestsAdapter().apply {
+            onReviewPressed = viewModel::onReviewRequestPressed
+        }
+        binding.recyclerTripDetailsRequests.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = requestsAdapter
+        }
+        viewModel.requests.observe(viewLifecycleOwner) {
+            requestsAdapter.submitList(it)
         }
     }
 }

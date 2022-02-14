@@ -19,11 +19,47 @@
             android:layout_height="wrap_content">
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintTripDetailsToolbar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingVertical="@dimen/margin_base"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_base"
+                    android:background="?selectableItemBackground"
+                    android:contentDescription="@null"
+                    android:onClick="@{()->vm.onBackPressed()}"
+                    android:padding="@dimen/margin_base"
+                    android:src="@drawable/ic_back"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/trip_details_title"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintTripDetailsContent"
                 visible="@{vm.contentVisible}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toBottomOf="@id/constraintTripDetailsToolbar">
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/textTripDetailsTitle"
@@ -61,6 +97,15 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/textTripDetailsDate" />
 
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerTripDetailsRequests"
+                    visible="@{vm.isOwner()}"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/recyclerTripDetailsMembers" />
+
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/textTripDetailsEquipmentTitle"
                     android:layout_width="wrap_content"
@@ -69,7 +114,7 @@
                     android:textSize="20sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/recyclerTripDetailsMembers" />
+                    app:layout_constraintTop_toBottomOf="@id/recyclerTripDetailsRequests" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerTripDetailsEquipment"

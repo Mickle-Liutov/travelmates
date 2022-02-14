@@ -20,6 +20,9 @@
         <action
             android:id="@+id/action_to_join_trip"
             app:destination="@id/navigation_join_trip" />
+        <action
+            android:id="@+id/action_to_request"
+            app:destination="@id/navigation_request" />
 
     </fragment>
     <fragment
@@ -31,6 +34,14 @@
             android:name="trip"
             app:argType="cz.cvut.fit.travelmates.mainapi.trips.models.DetailedTrip" />
 
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_request"
+        android:name="cz.cvut.fit.travelmates.trips.request.RequestFragment"
+        tools:layout="@layout/fragment_request">
+        <argument
+            android:name="request"
+            app:argType="cz.cvut.fit.travelmates.mainapi.trips.models.Request" />
     </fragment>
 
 

@@ -28,5 +28,9 @@ data class DetailedTrip(
     @Json(name = "owner")
     val owner: TripMember,
     @Json(name = "members")
-    val members: List<TripMember>
+    val members: List<TripMember>,
+    @Json(name = "currentUserType")
+    val userType: UserType,
+    @Json(name = "requests")
+    val requests: List<Request>?
 ) : Parcelable

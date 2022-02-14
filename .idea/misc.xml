@@ -26,11 +26,13 @@
         <entry key="trips/src/main/res/layout/fragment_explore.xml" value="0.24322916666666666" />
         <entry key="trips/src/main/res/layout/fragment_join_trip.xml" value="0.24322916666666666" />
         <entry key="trips/src/main/res/layout/fragment_my_trips.xml" value="0.215625" />
+        <entry key="trips/src/main/res/layout/fragment_request.xml" value="0.24322916666666666" />
         <entry key="trips/src/main/res/layout/fragment_trip_details.xml" value="0.24322916666666666" />
         <entry key="trips/src/main/res/layout/item_add_new_requirement.xml" value="0.24322916666666666" />
         <entry key="trips/src/main/res/layout/item_my_trip.xml" value="0.24322916666666666" />
         <entry key="trips/src/main/res/layout/item_new_requirement.xml" value="0.24322916666666666" />
         <entry key="trips/src/main/res/layout/item_provided_requirement.xml" value="0.24322916666666666" />
+        <entry key="trips/src/main/res/layout/item_request.xml" value="0.24322916666666666" />
         <entry key="trips/src/main/res/layout/item_trip.xml" value="0.24322916666666666" />
         <entry key="trips/src/main/res/layout/item_trip_member.xml" value="0.24322916666666666" />
         <entry key="trips/src/main/res/layout/item_trip_requirement.xml" value="0.24322916666666666" />

@@ -9,6 +9,8 @@ import cz.cvut.fit.travelmates.core.livedata.SingleLiveEvent
 import cz.cvut.fit.travelmates.core.livedata.immutable
 import cz.cvut.fit.travelmates.core.views.ViewState
 import cz.cvut.fit.travelmates.mainapi.trips.models.DetailedTrip
+import cz.cvut.fit.travelmates.mainapi.trips.models.Request
+import cz.cvut.fit.travelmates.mainapi.trips.models.UserType
 import cz.cvut.fit.travelmates.trips.TripsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -41,8 +43,13 @@ class TripDetailsViewModel @Inject constructor(
         it.pendingRequirements
     }.asLiveData()
     val isGuest = _detailedTrip.map {
-        //TODO
-        true
+        it.userType == UserType.GUEST
+    }.asLiveData()
+    val isOwner = _detailedTrip.map {
+        it.userType == UserType.OWNER
+    }.asLiveData()
+    val requests = _detailedTrip.map {
+        it.requests.orEmpty()
     }.asLiveData()
 
     private val viewState = MutableStateFlow(ViewState.LOADING)
@@ -52,6 +59,12 @@ class TripDetailsViewModel @Inject constructor(
 
     private val _eventNavigateJoin = SingleLiveEvent<DetailedTrip>()
     val eventNavigateJoin = _eventNavigateJoin.immutable()
+
+    private val _eventNavigateRequest = SingleLiveEvent<Request>()
+    val eventNavigateRequest = _eventNavigateRequest.immutable()
+
+    private val _eventNavigateBack = SingleLiveEvent<Unit>()
+    val eventNavigateBack = _eventNavigateBack.immutable()
 
     init {
         loadDetails()
@@ -73,6 +86,14 @@ class TripDetailsViewModel @Inject constructor(
     fun onJoinPressed() {
         val trip = _detailedTripOptional.value ?: return
         _eventNavigateJoin.value = trip
+    }
+
+    fun onReviewRequestPressed(request: Request) {
+        _eventNavigateRequest.value = request
+    }
+
+    fun onBackPressed() {
+        _eventNavigateBack.call()
     }
 
 }
