@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/trip_details_graph"
+    app:startDestination="@id/navigation_detailed_trip">
+
+    <argument
+        android:name="tripId"
+        app:argType="long" />
+
+    <fragment
+        android:id="@+id/navigation_detailed_trip"
+        android:name="cz.cvut.fit.travelmates.trips.tripdetails.TripDetailsFragment"
+        tools:layout="@layout/fragment_trip_details">
+
+        <argument
+            android:name="tripId"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_to_join_trip"
+            app:destination="@id/navigation_join_trip" />
+        <action
+            android:id="@+id/action_to_request"
+            app:destination="@id/navigation_request" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_join_trip"
+        android:name="cz.cvut.fit.travelmates.trips.join.JoinTripFragment"
+        tools:layout="@layout/fragment_join_trip">
+
+        <argument
+            android:name="trip"
+            app:argType="cz.cvut.fit.travelmates.mainapi.trips.models.DetailedTrip" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_request"
+        android:name="cz.cvut.fit.travelmates.trips.request.RequestFragment"
+        tools:layout="@layout/fragment_request">
+        <argument
+            android:name="request"
+            app:argType="cz.cvut.fit.travelmates.mainapi.trips.models.Request" />
+    </fragment>
+
+
+</navigation>

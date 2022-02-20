@@ -2,6 +2,7 @@ package cz.cvut.fit.travelmates.mainapi
 
 import com.squareup.moshi.Moshi
 import cz.cvut.fit.travelmates.authapi.AuthRepository
+import cz.cvut.fit.travelmates.mainapi.requests.RequestsService
 import cz.cvut.fit.travelmates.mainapi.trips.TripsService
 import cz.cvut.fit.travelmates.mainapi.user.UserService
 import dagger.Module
@@ -57,5 +58,10 @@ object MainApiModule {
     @Singleton
     fun provideTripsService(retrofit: Retrofit): TripsService =
         retrofit.create(TripsService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideRequestsService(retrofit: Retrofit): RequestsService =
+        retrofit.create(RequestsService::class.java)
 
 }

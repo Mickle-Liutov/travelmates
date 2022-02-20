@@ -41,10 +41,15 @@ class ExploreFragment : Fragment() {
         viewModel.eventNavigateAuth.observe(viewLifecycleOwner) {
             findNavController().navigate(ExploreFragmentDirections.actionToAuth())
         }
+        viewModel.eventNavigateTripDetails.observe(viewLifecycleOwner) {
+            findNavController().navigate(ExploreFragmentDirections.actionExploreToDetails(it))
+        }
     }
 
     private fun setupList() {
-        val tripsAdapter = ExploreTripsAdapter()
+        val tripsAdapter = ExploreTripsAdapter().apply {
+            onTripPressed = viewModel::onTripPressed
+        }
         binding.recyclerExploreTrips.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = tripsAdapter

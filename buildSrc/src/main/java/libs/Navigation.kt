@@ -3,7 +3,7 @@ package libs
 import org.gradle.api.artifacts.dsl.DependencyHandler
 
 object Navigation {
-    private const val NAVIGATION_VERSION = "2.3.5"
+    private const val NAVIGATION_VERSION = "2.4.1"
 
     private val dependencies = listOf(
         "androidx.navigation:navigation-fragment-ktx:$NAVIGATION_VERSION",

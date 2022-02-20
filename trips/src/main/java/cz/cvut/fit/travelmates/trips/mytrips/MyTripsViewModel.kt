@@ -31,6 +31,9 @@ class MyTripsViewModel @Inject constructor(
     private val _eventNavigateAdd = SingleLiveEvent<Unit>()
     val eventNavigateAdd = _eventNavigateAdd.immutable()
 
+    private val _eventNavigateDetails = SingleLiveEvent<Long>()
+    val eventNavigateDetails = _eventNavigateDetails.immutable()
+
     init {
         loadTrips()
     }
@@ -48,6 +51,10 @@ class MyTripsViewModel @Inject constructor(
 
     fun onAddPressed() {
         _eventNavigateAdd.call()
+    }
+
+    fun onTripPressed(trip: Trip) {
+        _eventNavigateDetails.value = trip.id
     }
 
 }
