@@ -28,6 +28,9 @@
         <action
             android:id="@+id/action_to_add_requirement"
             app:destination="@id/navigation_add_requirement" />
+        <action
+            android:id="@+id/action_to_pick_location"
+            app:destination="@id/locations_graph" />
     </fragment>
     <dialog
         android:id="@+id/navigation_add_requirement"

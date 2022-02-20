@@ -29,5 +29,6 @@
         android:id="@+id/navigation_posts"
         android:name="cz.cvut.fit.travelmates.posts.PostsFragment" />
     <include app:graph="@navigation/navigation_trips_graph" />
+    <include app:graph="@navigation/navigation_locations" />
 
 </navigation>

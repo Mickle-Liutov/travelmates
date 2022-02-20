@@ -29,6 +29,9 @@ class AddTripViewModel @Inject constructor(
     private val _eventShowTripCreated = SingleLiveEvent<Unit>()
     val eventShowTripCreated = _eventShowTripCreated.immutable()
 
+    private val _eventNavigatePickLocation = SingleLiveEvent<Unit>()
+    val eventNavigatePickLocation = _eventNavigatePickLocation.immutable()
+
     private val _eventNavigateBack = SingleLiveEvent<Unit>()
     val eventNavigateBack = _eventNavigateBack.immutable()
 
@@ -41,6 +44,8 @@ class AddTripViewModel @Inject constructor(
     val requirementsUi = requirements.map {
         it + AddItem
     }.asLiveData()
+
+    private val _location = MutableStateFlow<Location?>(null)
 
     fun onAddRequirementPressed() {
         _eventNavigateAddRequirement.call()
@@ -58,12 +63,13 @@ class AddTripViewModel @Inject constructor(
         val title = typedTitle.value
         val description = typedDescription.value
         val requirements = requirements.value.map { Requirement(it.name) }
+        val location = _location.value ?: return
         //TODO Add fields ownerContact, suggestedDate
         val newTrip =
             NewTripDto(
                 title,
                 description,
-                Location(0.0, 0.0),
+                location,
                 "Contact",
                 requirements,
                 "2021-02-07"
@@ -76,6 +82,14 @@ class AddTripViewModel @Inject constructor(
             Timber.d(it)
             //TODO Handle
         })
+    }
+
+    fun onPickLocationPressed() {
+        _eventNavigatePickLocation.call()
+    }
+
+    fun onLocationPicked(location: Location) {
+        _location.value = location
     }
 
     fun onBackPressed() {

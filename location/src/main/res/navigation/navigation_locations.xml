@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/locations_graph"
+    app:startDestination="@id/navigation_pick_location">
+
+    <fragment
+        android:id="@+id/navigation_pick_location"
+        android:name="cz.cvut.fit.travelmates.location.PickLocationFragment"
+        tools:layout="@layout/fragment_pick_location" />
+</navigation>

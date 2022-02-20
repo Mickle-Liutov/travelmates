@@ -3,6 +3,7 @@ import libs.AndroidTest.androidTest
 import libs.Aws.aws
 import libs.Desugaring.desugaring
 import libs.Hilt.hilt
+import libs.Maps.maps
 import libs.Navigation.navigation
 import libs.Networking.networking
 import libs.Splash.splash
@@ -60,6 +61,7 @@ dependencies {
     implementation(project(":core"))
     implementation(project(":mainapi"))
     implementation(project(":trips"))
+    implementation(project(":location"))
 
     androidCore()
     aws()
@@ -69,6 +71,7 @@ dependencies {
     navigation()
     networking()
     timber()
+    maps()
 
     androidTest()
     unitTest()
