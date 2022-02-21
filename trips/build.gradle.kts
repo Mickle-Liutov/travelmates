@@ -41,6 +41,7 @@ dependencies {
     implementation(project(":location"))
     implementation(project(":mainapi"))
     implementation(project(":core"))
+    implementation(project(":location"))
 
     androidCore()
     networking()

@@ -9,10 +9,15 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import cz.cvut.fit.travelmates.core.fragment.getNavigationResult
+import cz.cvut.fit.travelmates.location.Location
+import cz.cvut.fit.travelmates.location.PickLocationFragment
 import cz.cvut.fit.travelmates.trips.addtrip.requirements.AddRequirementsAdapter
 import cz.cvut.fit.travelmates.trips.databinding.FragmentAddTripBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
+@ExperimentalCoroutinesApi
 @AndroidEntryPoint
 class AddTripFragment : Fragment() {
 
@@ -43,6 +48,9 @@ class AddTripFragment : Fragment() {
         viewModel.eventShowTripCreated.observe(viewLifecycleOwner) {
             Toast.makeText(requireContext(), "Trip was created", Toast.LENGTH_SHORT).show()
         }
+        viewModel.eventNavigatePickLocation.observe(viewLifecycleOwner) {
+            findNavController().navigate(AddTripFragmentDirections.actionToPickLocation())
+        }
         viewModel.eventNavigateBack.observe(viewLifecycleOwner) {
             findNavController().popBackStack()
         }
@@ -51,6 +59,7 @@ class AddTripFragment : Fragment() {
         )?.observe(viewLifecycleOwner) { newRequirement ->
             viewModel.onRequirementAdded(newRequirement)
         }
+
     }
 
     private fun setupRequirements() {
@@ -65,6 +74,11 @@ class AddTripFragment : Fragment() {
         }
         viewModel.requirementsUi.observe(viewLifecycleOwner) {
             requirementsAdapter.submitList(it)
+        }
+        getNavigationResult<Location>(PickLocationFragment.KEY_PICK_LOCATION)?.observe(
+            viewLifecycleOwner
+        ) {
+            viewModel.onLocationPicked(it)
         }
     }
 

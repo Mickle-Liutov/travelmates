@@ -1,5 +1,8 @@
 import libs.AndroidCore.androidCore
 import libs.AndroidTest.androidTest
+import libs.Hilt.hilt
+import libs.Maps.maps
+import libs.Navigation.navigation
 import libs.Networking.networking
 import libs.UnitTest.unitTest
 
@@ -8,6 +11,8 @@ plugins {
     id("kotlin-android")
     id("kotlin-kapt")
     id("kotlin-parcelize")
+    id("dagger.hilt.android.plugin")
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -38,6 +43,9 @@ dependencies {
 
     androidCore()
     networking()
+    hilt()
+    navigation()
+    maps()
 
     androidTest()
     unitTest()

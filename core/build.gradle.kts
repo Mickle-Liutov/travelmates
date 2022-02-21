@@ -1,5 +1,6 @@
 import libs.AndroidCore.androidCore
 import libs.AndroidTest.androidTest
+import libs.Navigation.navigation
 import libs.Networking.networking
 import libs.UnitTest.unitTest
 
@@ -35,6 +36,7 @@ android {
 dependencies {
     androidCore()
     networking()
+    navigation()
 
     androidTest()
     unitTest()
