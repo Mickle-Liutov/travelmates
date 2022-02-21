@@ -91,12 +91,25 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/margin_base_x2"
-            android:src="@drawable/ic_my_profile"
+            app:imageRef="@{vm.userImage}"
             app:layout_constraintDimensionRatio="H, 1:1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/constraintProfileToolbar"
             app:layout_constraintWidth_percent="0.3" />
+
+        <ImageButton
+            android:id="@+id/buttonProfilePickIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?selectableItemBackgroundBorderless"
+            android:onClick="@{()->vm.onPickImagePressed()}"
+            android:src="@drawable/ic_camera"
+            app:layout_constraintBottom_toBottomOf="@id/imageProfileIcon"
+            app:layout_constraintEnd_toEndOf="@id/imageProfileIcon"
+            app:layout_constraintStart_toStartOf="@id/imageProfileIcon"
+            app:layout_constraintTop_toTopOf="@id/imageProfileIcon"
+            app:visible="@{vm.isEditMode()}" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputProfileEmail"

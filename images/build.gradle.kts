@@ -1,8 +1,7 @@
 import libs.AndroidCore.androidCore
 import libs.AndroidTest.androidTest
-import libs.Coil.coil
 import libs.Firebase.firebase
-import libs.Navigation.navigation
+import libs.Hilt.hilt
 import libs.Networking.networking
 import libs.UnitTest.unitTest
 
@@ -10,6 +9,7 @@ plugins {
     id("com.android.library")
     id("kotlin-android")
     id("kotlin-kapt")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -36,11 +36,12 @@ android {
 }
 
 dependencies {
+    implementation(project(":core"))
+
     androidCore()
     networking()
-    navigation()
+    hilt()
     firebase()
-    coil()
 
     androidTest()
     unitTest()

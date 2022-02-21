@@ -1,8 +1,11 @@
 import libs.AndroidCore.androidCore
 import libs.AndroidTest.androidTest
 import libs.Aws.aws
+import libs.Coil.coil
 import libs.Desugaring.desugaring
+import libs.Firebase.firebase
 import libs.Hilt.hilt
+import libs.ImagePicker.imagePicker
 import libs.Maps.maps
 import libs.Navigation.navigation
 import libs.Networking.networking
@@ -16,6 +19,7 @@ plugins {
     id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
     id("androidx.navigation.safeargs.kotlin")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -62,6 +66,7 @@ dependencies {
     implementation(project(":mainapi"))
     implementation(project(":trips"))
     implementation(project(":location"))
+    implementation(project(":images"))
 
     androidCore()
     aws()
@@ -72,6 +77,9 @@ dependencies {
     networking()
     timber()
     maps()
+    firebase()
+    imagePicker()
+    coil()
 
     androidTest()
     unitTest()
