@@ -11,8 +11,8 @@ class BottomNavChangeListener(
     private val bottomNavigationView: BottomNavigationView
 ) : NavController.OnDestinationChangedListener {
 
-    val destinationsWithBottomNav = listOf(
-        R.id.navigation_posts,
+    private val destinationsWithBottomNav = listOf(
+        R.id.navigation_posts_list,
         R.id.navigation_explore,
         R.id.navigation_my_trips,
         R.id.navigation_profile,

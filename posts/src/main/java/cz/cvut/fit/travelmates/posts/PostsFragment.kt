@@ -6,7 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import cz.cvut.fit.travelmates.databinding.FragmentPostsBinding
+import androidx.recyclerview.widget.LinearLayoutManager
+import cz.cvut.fit.travelmates.posts.databinding.FragmentPostsBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -29,9 +30,21 @@ class PostsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupObservers()
+        setupPostsList()
     }
 
     private fun setupObservers() {
         //TODO
+    }
+
+    private fun setupPostsList() {
+        val postsAdapter = PostsAdapter()
+        binding.recyclerPosts.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = postsAdapter
+        }
+        viewModel.posts.observe(viewLifecycleOwner) {
+            postsAdapter.submitList(it)
+        }
     }
 }

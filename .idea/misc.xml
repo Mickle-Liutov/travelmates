@@ -24,6 +24,8 @@
         <entry key="auth/src/main/res/layout/fragment_welcome.xml" value="0.21822916666666667" />
         <entry key="core/src/main/res/drawable/ic_back.xml" value="0.1755" />
         <entry key="location/src/main/res/layout/fragment_pick_location.xml" value="0.24322916666666666" />
+        <entry key="posts/src/main/res/layout/fragment_posts.xml" value="0.24322916666666666" />
+        <entry key="posts/src/main/res/layout/item_post.xml" value="0.24322916666666666" />
         <entry key="trips/src/main/res/layout/dialog_add_requirement.xml" value="0.24322916666666666" />
         <entry key="trips/src/main/res/layout/fragment_add_trip.xml" value="0.24322916666666666" />
         <entry key="trips/src/main/res/layout/fragment_explore.xml" value="0.24322916666666666" />

@@ -67,6 +67,7 @@ dependencies {
     implementation(project(":trips"))
     implementation(project(":location"))
     implementation(project(":images"))
+    implementation(project(":posts"))
 
     androidCore()
     aws()

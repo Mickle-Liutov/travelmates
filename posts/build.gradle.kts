@@ -1,5 +1,7 @@
 import libs.AndroidCore.androidCore
 import libs.AndroidTest.androidTest
+import libs.Coil.coil
+import libs.Firebase.firebase
 import libs.Hilt.hilt
 import libs.Navigation.navigation
 import libs.Networking.networking
@@ -47,6 +49,8 @@ dependencies {
     hilt()
     navigation()
     timber()
+    firebase()
+    coil()
 
     androidTest()
     unitTest()
