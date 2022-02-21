@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "414537460432",
+    "project_id": "travelmates-f5fd8",
+    "storage_bucket": "travelmates-f5fd8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:414537460432:android:fd20c3d63c1cd0fe7c0cd5",
+        "android_client_info": {
+          "package_name": "cz.cvut.fit.travelmates"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "414537460432-u5leg4n968hjtpnht8jtgmktpv72rod0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxlCVHAkFS3Gl1DhnjAz1ux6eNGhmmy5Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "414537460432-u5leg4n968hjtpnht8jtgmktpv72rod0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
