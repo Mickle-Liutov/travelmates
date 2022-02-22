@@ -7,7 +7,7 @@
 
         <variable
             name="formatter"
-            type="cz.cvut.fit.travelmates.posts.PostsFormatter" />
+            type="cz.cvut.fit.travelmates.posts.list.PostsFormatter" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

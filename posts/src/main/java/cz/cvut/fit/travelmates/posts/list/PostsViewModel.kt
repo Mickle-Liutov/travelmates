@@ -1,13 +1,15 @@
-package cz.cvut.fit.travelmates.posts
+package cz.cvut.fit.travelmates.posts.list
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import cz.cvut.fit.travelmates.core.coroutines.launchCatching
+import cz.cvut.fit.travelmates.core.livedata.SingleLiveEvent
 import cz.cvut.fit.travelmates.core.livedata.immutable
 import cz.cvut.fit.travelmates.core.views.ViewState
 import cz.cvut.fit.travelmates.mainapi.posts.Post
+import cz.cvut.fit.travelmates.posts.PostsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.map
@@ -27,6 +29,9 @@ class PostsViewModel @Inject constructor(
     private val _posts = MutableLiveData<List<Post>>()
     val posts = _posts.immutable()
 
+    private val _eventNavigateAddPost = SingleLiveEvent<Unit>()
+    val eventNavigateAddPost = _eventNavigateAddPost.immutable()
+
     init {
         loadPosts()
     }
@@ -43,6 +48,10 @@ class PostsViewModel @Inject constructor(
             Timber.d(it)
             viewState.value = ViewState.ERROR
         })
+    }
+
+    fun onAddPressed() {
+        _eventNavigateAddPost.call()
     }
 
 }

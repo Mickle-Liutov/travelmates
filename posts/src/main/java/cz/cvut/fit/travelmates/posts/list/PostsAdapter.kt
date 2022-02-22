@@ -1,4 +1,4 @@
-package cz.cvut.fit.travelmates.posts
+package cz.cvut.fit.travelmates.posts.list
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

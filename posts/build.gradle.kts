@@ -3,6 +3,7 @@ import libs.AndroidTest.androidTest
 import libs.Coil.coil
 import libs.Firebase.firebase
 import libs.Hilt.hilt
+import libs.ImagePicker.imagePicker
 import libs.Navigation.navigation
 import libs.Networking.networking
 import libs.Timber.timber
@@ -43,6 +44,7 @@ dependencies {
     implementation(project(":location"))
     implementation(project(":mainapi"))
     implementation(project(":core"))
+    implementation(project(":images"))
 
     androidCore()
     networking()
@@ -51,6 +53,7 @@ dependencies {
     timber()
     firebase()
     coil()
+    imagePicker()
 
     androidTest()
     unitTest()

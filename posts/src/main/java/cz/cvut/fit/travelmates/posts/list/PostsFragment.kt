@@ -1,4 +1,4 @@
-package cz.cvut.fit.travelmates.posts
+package cz.cvut.fit.travelmates.posts.list
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import cz.cvut.fit.travelmates.posts.databinding.FragmentPostsBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -34,7 +35,9 @@ class PostsFragment : Fragment() {
     }
 
     private fun setupObservers() {
-        //TODO
+        viewModel.eventNavigateAddPost.observe(viewLifecycleOwner) {
+            findNavController().navigate(PostsFragmentDirections.actionToAddPost())
+        }
     }
 
     private fun setupPostsList() {

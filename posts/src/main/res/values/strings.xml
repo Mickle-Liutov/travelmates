@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="posts_title">Posts</string>
+
+    <string name="add_post_title">New post</string>
+    <string name="add_post_button_post">Post</string>
+    <string name="add_post_button_set_location">Set location</string>
+    <string name="add_post_button_set_image">Upload image</string>
+    <string name="add_post_hint_description">Description</string>
 </resources>
