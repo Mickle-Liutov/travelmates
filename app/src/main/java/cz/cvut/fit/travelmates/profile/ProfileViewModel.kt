@@ -45,7 +45,7 @@ class ProfileViewModel @Inject constructor(
 
     private val saveViewState = MutableStateFlow(ViewState.CONTENT)
     val saveLoadingVisible = saveViewState.map { it == ViewState.LOADING }.asLiveData()
-    val saveButtonVisible = combine(screenState, saveViewState) { screenState, saveState ->
+    val saveButtonsVisible = combine(screenState, saveViewState) { screenState, saveState ->
         screenState == ScreenState.EDIT && saveState == ViewState.CONTENT
     }.asLiveData()
 
