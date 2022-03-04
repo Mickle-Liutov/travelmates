@@ -9,9 +9,11 @@ import cz.cvut.fit.travelmates.core.coroutines.launchCatching
 import cz.cvut.fit.travelmates.core.livedata.SingleLiveEvent
 import cz.cvut.fit.travelmates.core.livedata.immutable
 import cz.cvut.fit.travelmates.core.resources.ResourcesProvider
+import cz.cvut.fit.travelmates.core.views.ViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 @HiltViewModel
@@ -39,10 +41,15 @@ class LoginViewModel @Inject constructor(
         email.isNotBlank() && password.isNotBlank()
     }.asLiveData()
 
+    private val viewState = MutableStateFlow(ViewState.CONTENT)
+    val contentVisible = viewState.map { it == ViewState.CONTENT }.asLiveData()
+    val loadingVisible = viewState.map { it == ViewState.LOADING }.asLiveData()
+
     fun onLoginPressed() {
         val email = typedEmail.value
         val password = typedPassword.value
         viewModelScope.launchCatching(execute = {
+            viewState.value = ViewState.LOADING
             loginUseCase.login(email, password)
             _eventNavigateMain.call()
         }, catch = {
@@ -51,7 +58,9 @@ class LoginViewModel @Inject constructor(
                 else -> _eventError.value =
                     resourcesProvider.getString(R.string.login_error_login_failed)
             }
-        })
+        }).invokeOnCompletion {
+            viewState.value = ViewState.CONTENT
+        }
     }
 
     fun onPasswordRecoveryPressed() {

@@ -38,5 +38,8 @@
         <item name="textAppearanceSubtitle2">@style/TextAppearance.AppTheme.Subtitle2</item>
         <item name="textAppearanceButton">@style/TextAppearance.AppTheme.Button</item>
 
+        <item name="textInputStyle">@style/Widget.AppTheme.TextInputLayout</item>
+        <item name="materialButtonStyle">@style/Widget.AppTheme.Button</item>
+
     </style>
 </resources>

@@ -7,6 +7,7 @@ import cz.cvut.fit.travelmates.authapi.AuthRepository
 import cz.cvut.fit.travelmates.core.coroutines.launchCatching
 import cz.cvut.fit.travelmates.core.livedata.SingleLiveEvent
 import cz.cvut.fit.travelmates.core.livedata.immutable
+import cz.cvut.fit.travelmates.core.views.ViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.map
@@ -30,14 +31,21 @@ class StartRecoveryViewModel @Inject constructor(
         it.isNotBlank()
     }.asLiveData()
 
+    private val viewState = MutableStateFlow(ViewState.CONTENT)
+    val contentVisible = viewState.map { it == ViewState.CONTENT }.asLiveData()
+    val loadingVisible = viewState.map { it == ViewState.LOADING }.asLiveData()
+
     fun onContinuePressed() {
         val email = typedEmail.value
         viewModelScope.launchCatching(execute = {
+            viewState.value = ViewState.LOADING
             authRepository.startPasswordRecovery(email)
             _eventNavigateConfirm.call()
         }, catch = {
             Timber.d("Start recovery failed")
-        })
+        }).invokeOnCompletion {
+            viewState.value = ViewState.CONTENT
+        }
     }
 
     fun onBackPressed() {
