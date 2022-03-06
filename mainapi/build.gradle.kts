@@ -1,5 +1,6 @@
 import libs.AndroidCore.androidCore
 import libs.AndroidTest.androidTest
+import libs.Desugaring.desugaring
 import libs.Hilt.hilt
 import libs.Networking.networking
 import libs.Room.room
@@ -25,6 +26,8 @@ android {
     }
 
     compileOptions {
+        isCoreLibraryDesugaringEnabled = true
+
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
@@ -43,6 +46,7 @@ dependencies {
     room()
     timber()
     networking()
+    desugaring()
     implementation("com.squareup.okhttp3:logging-interceptor:4.5.0")
 
     androidTest()

@@ -18,21 +18,22 @@
     <string name="register_error_registration_failed">Couldn\'t register. Please, check your internet connection</string>
     <string name="register_registered">Registered. Please, verify your email now</string>
 
-    <string name="login_title">Login</string>
+    <string name="login_title">Log In</string>
     <string name="login_button_login">Login</string>
-    <string name="login_button_recover_pass">Forgot password?</string>
+    <string name="login_button_recover_pass">Forgot password</string>
     <string name="login_hint_email">Email</string>
     <string name="login_hint_password">Password</string>
     <string name="login_error_login_failed">Couldn\'t login. Please, check your internet connection</string>
 
     <string name="start_recovery_title">Password recovery</string>
     <string name="start_recovery_instructions">Enter your email, and we’ll send you a verification code to recover your password.</string>
+    <string name="start_recovery_button_send">Send</string>
 
     <string name="confirm_recovery_title">Set a new password</string>
     <string name="confirm_recovery_instructions">Enter the code we’ve sent you, and your new password.</string>
     <string name="confirm_recovery_hint_code">Security code</string>
     <string name="confirm_recovery_hint_password">Password</string>
     <string name="confirm_recovery_hint_confirm_password">Confirm password</string>
-    <string name="confirm_recovery_button_reset">Set new password</string>
+    <string name="confirm_recovery_button_reset">Reset</string>
     <string name="confirm_recovery_message_pass_reset">Your password was changed successfully.</string>
 </resources>

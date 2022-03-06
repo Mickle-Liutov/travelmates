@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="Theme.TravelMates" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryVariant">@color/colorPrimary</item>
+        <item name="colorOnPrimary">@color/colorOnPrimary</item>
+
+        <item name="colorSecondary">@color/colorSecondary</item>
+        <item name="colorSecondaryVariant">@color/colorSecondary</item>
+        <item name="colorOnSecondary">@color/colorOnSecondary</item>
+
+        <item name="colorSurface">@color/colorSurface</item>
+        <item name="colorOnSurface">@color/colorOnSurface</item>
+        <item name="android:colorBackground">@color/colorBackground</item>
+
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">@color/black</item>
+
+        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.AppTheme.SmallComponent
+        </item>
+        <item name="shapeAppearanceMediumComponent">
+            @style/ShapeAppearance.AppTheme.MediumComponent
+        </item>
+        <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.AppTheme.LargeComponent
+        </item>
+
+        <item name="textAppearanceHeadline1">@style/TextAppearance.AppTheme.Headline1</item>
+        <item name="textAppearanceHeadline2">@style/TextAppearance.AppTheme.Headline2</item>
+        <item name="textAppearanceHeadline3">@style/TextAppearance.AppTheme.Headline3</item>
+        <item name="textAppearanceHeadline4">@style/TextAppearance.AppTheme.Headline4</item>
+        <item name="textAppearanceHeadline5">@style/TextAppearance.AppTheme.Headline5</item>
+        <item name="textAppearanceHeadline6">@style/TextAppearance.AppTheme.Headline6</item>
+
+        <item name="textAppearanceBody1">@style/TextAppearance.AppTheme.Body1</item>
+        <item name="textAppearanceBody2">@style/TextAppearance.AppTheme.Body2</item>
+        <item name="textAppearanceSubtitle1">@style/TextAppearance.AppTheme.Subtitle1</item>
+        <item name="textAppearanceSubtitle2">@style/TextAppearance.AppTheme.Subtitle2</item>
+        <item name="textAppearanceButton">@style/TextAppearance.AppTheme.Button</item>
+
+        <item name="textInputStyle">@style/Widget.AppTheme.TextInputLayout</item>
+        <item name="materialButtonStyle">@style/Widget.AppTheme.Button</item>
+
+    </style>
+</resources>

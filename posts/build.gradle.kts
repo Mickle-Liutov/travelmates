@@ -1,6 +1,7 @@
 import libs.AndroidCore.androidCore
 import libs.AndroidTest.androidTest
 import libs.Coil.coil
+import libs.Desugaring.desugaring
 import libs.Firebase.firebase
 import libs.Hilt.hilt
 import libs.ImagePicker.imagePicker
@@ -28,6 +29,8 @@ android {
     }
 
     compileOptions {
+        isCoreLibraryDesugaringEnabled = true
+
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
@@ -54,6 +57,7 @@ dependencies {
     firebase()
     coil()
     imagePicker()
+    desugaring()
 
     androidTest()
     unitTest()

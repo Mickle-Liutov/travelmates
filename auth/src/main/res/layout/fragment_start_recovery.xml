@@ -13,62 +13,54 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintStartRecoveryToolbar"
+
+        <ImageButton
+            android:id="@+id/buttonStartRecoveryBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_base"
+            android:layout_marginTop="@dimen/margin_base"
+            android:background="?selectableItemBackgroundBorderless"
+            android:contentDescription="@null"
+            android:onClick="@{()->vm.onBackPressed()}"
+            android:padding="@dimen/margin_base"
+            android:src="@drawable/ic_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textStartRecoveryTitle"
+            style="?textAppearanceHeadline4"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:paddingVertical="@dimen/margin_base"
+            android:layout_marginHorizontal="@dimen/margin_base_x2"
+            android:layout_marginTop="@dimen/margin_base_x2"
+            android:text="@string/start_recovery_title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_base"
-                android:background="?selectableItemBackground"
-                android:contentDescription="@null"
-                android:onClick="@{()->vm.onBackPressed()}"
-                android:padding="@dimen/margin_base"
-                android:src="@drawable/ic_back"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <com.google.android.material.textview.MaterialTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/start_recovery_title"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            app:layout_constraintTop_toBottomOf="@id/buttonStartRecoveryBack" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textStartRecoveryInstruction"
+            style="?textAppearanceSubtitle1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_base_x2"
+            android:layout_marginTop="@dimen/margin_base_x4"
             android:text="@string/start_recovery_instructions"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toTopOf="@id/textInputStartRecoveryEmail"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/constraintStartRecoveryToolbar"
-            app:layout_constraintWidth_percent="0.7" />
+            app:layout_constraintTop_toBottomOf="@id/textStartRecoveryTitle" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputStartRecoveryEmail"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@id/buttonStartRecoveryContinue"
+            android:layout_marginHorizontal="@dimen/margin_base_x2"
+            android:layout_marginTop="@dimen/margin_base_x4"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textStartRecoveryInstruction"
-            app:layout_constraintWidth_percent="0.7">
+            app:layout_constraintTop_toBottomOf="@id/textStartRecoveryInstruction">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -83,15 +75,23 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/margin_base_x2"
-            android:layout_marginBottom="@dimen/margin_base_x2"
+            android:layout_marginBottom="@dimen/margin_base_x4"
             android:enabled="@{vm.isContinueActive()}"
             android:onClick="@{()->vm.onContinuePressed()}"
-            android:text="@string/login_button_login"
+            android:text="@string/start_recovery_button_send"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textInputStartRecoveryEmail" />
+            app:visibleOrInvisible="@{vm.contentVisible}" />
 
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/buttonStartRecoveryContinue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/buttonStartRecoveryContinue"
+            app:visible="@{vm.loadingVisible}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

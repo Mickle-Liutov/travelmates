@@ -4,6 +4,7 @@ import android.graphics.Bitmap
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
+import cz.cvut.fit.travelmates.authapi.AuthRepository
 import cz.cvut.fit.travelmates.core.coroutines.launchCatching
 import cz.cvut.fit.travelmates.core.livedata.SingleLiveEvent
 import cz.cvut.fit.travelmates.core.livedata.immutable
@@ -21,7 +22,8 @@ import javax.inject.Inject
 @HiltViewModel
 class ProfileViewModel @Inject constructor(
     private val userRepository: UserRepository,
-    private val imagesRepository: ImagesRepository
+    private val imagesRepository: ImagesRepository,
+    private val authRepository: AuthRepository
 ) : ViewModel() {
 
     private val screenState = MutableStateFlow(ScreenState.SHOW)
@@ -43,8 +45,11 @@ class ProfileViewModel @Inject constructor(
 
     private val saveViewState = MutableStateFlow(ViewState.CONTENT)
     val saveLoadingVisible = saveViewState.map { it == ViewState.LOADING }.asLiveData()
-    val saveButtonVisible = combine(screenState, saveViewState) { screenState, saveState ->
+    val saveButtonsVisible = combine(screenState, saveViewState) { screenState, saveState ->
         screenState == ScreenState.EDIT && saveState == ViewState.CONTENT
+    }.asLiveData()
+    val editVisible = combine(screenState, loadUserViewState) { screenState, loadState ->
+        screenState == ScreenState.SHOW && loadState == ViewState.CONTENT
     }.asLiveData()
 
     private val _eventSaveError = SingleLiveEvent<Unit>()
@@ -55,6 +60,9 @@ class ProfileViewModel @Inject constructor(
 
     private val _eventPickImage = SingleLiveEvent<Unit>()
     val eventPickImage = _eventPickImage.immutable()
+
+    private val _eventNavigateMain = SingleLiveEvent<Unit>()
+    val eventNavigateMain = _eventNavigateMain.immutable()
 
     init {
         loadUser()
@@ -107,6 +115,15 @@ class ProfileViewModel @Inject constructor(
             }
         }
 
+    }
+
+    fun onLogoutPressed() {
+        viewModelScope.launchCatching(execute = {
+            authRepository.logout()
+            _eventNavigateMain.call()
+        }, catch = {
+            //TODO Handle
+        })
     }
 
     fun onBackPressed() {

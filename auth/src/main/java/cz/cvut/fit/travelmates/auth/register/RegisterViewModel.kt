@@ -14,9 +14,11 @@ import cz.cvut.fit.travelmates.core.coroutines.launchCatching
 import cz.cvut.fit.travelmates.core.livedata.SingleLiveEvent
 import cz.cvut.fit.travelmates.core.livedata.immutable
 import cz.cvut.fit.travelmates.core.resources.ResourcesProvider
+import cz.cvut.fit.travelmates.core.views.ViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -55,6 +57,10 @@ class RegisterViewModel @Inject constructor(
     private val _isContinueActive = MutableStateFlow(false)
     val isContinueActive = _isContinueActive.asLiveData()
 
+    private val viewState = MutableStateFlow(ViewState.CONTENT)
+    val contentVisible = viewState.map { it == ViewState.CONTENT }.asLiveData()
+    val loadingVisible = viewState.map { it == ViewState.LOADING }.asLiveData()
+
     init {
         setupValidations()
     }
@@ -69,6 +75,7 @@ class RegisterViewModel @Inject constructor(
             return
         }
         viewModelScope.launchCatching(execute = {
+            viewState.value = ViewState.LOADING
             authRepository.register(email, password, name)
             _eventRegistered.call()
             _eventNavigateBack.call()
@@ -77,7 +84,9 @@ class RegisterViewModel @Inject constructor(
                 is AuthException -> it.localizedMessage
                 else -> resourcesProvider.getString(R.string.register_error_registration_failed)
             }
-        })
+        }).invokeOnCompletion {
+            viewState.value = ViewState.CONTENT
+        }
     }
 
     fun onBackPressed() {

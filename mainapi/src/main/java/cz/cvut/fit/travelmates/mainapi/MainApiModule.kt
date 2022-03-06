@@ -2,6 +2,7 @@ package cz.cvut.fit.travelmates.mainapi
 
 import com.squareup.moshi.Moshi
 import cz.cvut.fit.travelmates.authapi.AuthRepository
+import cz.cvut.fit.travelmates.mainapi.moshi.LocalDateTimeAdapter
 import cz.cvut.fit.travelmates.mainapi.posts.PostsService
 import cz.cvut.fit.travelmates.mainapi.requests.RequestsService
 import cz.cvut.fit.travelmates.mainapi.trips.TripsService
@@ -24,6 +25,7 @@ object MainApiModule {
     @Singleton
     fun provideMoshi(): Moshi =
         Moshi.Builder()
+            .add(LocalDateTimeAdapter)
             .build()
 
     @Provides

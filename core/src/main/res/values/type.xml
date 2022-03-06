@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="TextAppearance.AppTheme.Headline1" parent="TextAppearance.MaterialComponents.Headline1">
+        <item name="fontFamily">@font/roboto</item>
+        <item name="android:textSize">@dimen/text_size_headline1</item>
+        <item name="android:textColor">?colorOnSurface</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextAppearance.AppTheme.Headline2" parent="TextAppearance.MaterialComponents.Headline2">
+        <item name="fontFamily">@font/roboto</item>
+        <item name="android:textSize">@dimen/text_size_headline2</item>
+        <item name="android:textColor">?colorOnSurface</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextAppearance.AppTheme.Headline3" parent="TextAppearance.MaterialComponents.Headline3">
+        <item name="fontFamily">@font/roboto</item>
+        <item name="android:textSize">@dimen/text_size_headline3</item>
+        <item name="android:textColor">?colorOnSurface</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextAppearance.AppTheme.Headline4" parent="TextAppearance.MaterialComponents.Headline4">
+        <item name="fontFamily">@font/roboto</item>
+        <item name="android:textSize">@dimen/text_size_headline4</item>
+        <item name="android:textColor">?colorOnSurface</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextAppearance.AppTheme.Headline5" parent="TextAppearance.MaterialComponents.Headline5">
+        <item name="fontFamily">@font/roboto</item>
+        <item name="android:textSize">@dimen/text_size_headline5</item>
+        <item name="android:textColor">?colorOnSurface</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextAppearance.AppTheme.Headline6" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="fontFamily">@font/roboto</item>
+        <item name="android:textSize">@dimen/text_size_headline6</item>
+        <item name="android:textColor">?colorOnSurface</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextAppearance.AppTheme.Headline6.Gray">
+        <item name="android:textColor">@color/gray</item>
+    </style>
+
+    <style name="TextAppearance.AppTheme.Body1" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="fontFamily">@font/roboto</item>
+        <item name="android:textSize">@dimen/text_size_body1</item>
+        <item name="android:textColor">?colorPrimary</item>
+    </style>
+
+    <style name="TextAppearance.AppTheme.Body2" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="fontFamily">@font/roboto</item>
+        <item name="android:textSize">@dimen/text_size_body2</item>
+        <item name="android:textColor">?colorPrimary</item>
+    </style>
+
+    <style name="TextAppearance.AppTheme.Body2.Black" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="android:textColor">?colorOnSurface</item>
+    </style>
+
+    <style name="TextAppearance.AppTheme.Subtitle1" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="fontFamily">@font/roboto</item>
+        <item name="android:textSize">@dimen/text_size_subtitle1</item>
+        <item name="android:textColor">@color/gray</item>
+    </style>
+
+    <style name="TextAppearance.AppTheme.Subtitle2" parent="TextAppearance.MaterialComponents.Subtitle2">
+        <item name="fontFamily">@font/roboto</item>
+        <item name="android:textSize">@dimen/text_size_subtitle2</item>
+        <item name="android:textColor">@color/gray</item>
+    </style>
+
+    <style name="TextAppearance.AppTheme.Subtitle2.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextAppearance.AppTheme.Button" parent="TextAppearance.MaterialComponents.Button">
+        <item name="fontFamily">@font/roboto</item>
+        <item name="android:textSize">@dimen/text_size_button</item>
+        <item name="android:textColor">?colorOnSurface</item>
+    </style>
+
+</resources>

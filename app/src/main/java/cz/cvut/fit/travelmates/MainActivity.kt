@@ -38,4 +38,8 @@ class MainActivity : AppCompatActivity() {
         NavigationUI.setupWithNavController(binding.bottomNavMain, navController)
         navController.addOnDestinationChangedListener(BottomNavChangeListener(binding.bottomNavMain))
     }
+
+    override fun onSupportNavigateUp(): Boolean {
+        return navController.navigateUp() || super.onSupportNavigateUp()
+    }
 }

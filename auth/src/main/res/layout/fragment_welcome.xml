@@ -25,7 +25,6 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonWelcomeLogin"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/margin_base_x2"
@@ -38,7 +37,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonWelcomeRegister"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            style="@style/Widget.AppTheme.Button.Outline"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/margin_base_x2"

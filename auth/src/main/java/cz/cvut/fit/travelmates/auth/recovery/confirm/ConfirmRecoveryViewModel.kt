@@ -10,9 +10,11 @@ import cz.cvut.fit.travelmates.authapi.AuthRepository
 import cz.cvut.fit.travelmates.core.coroutines.launchCatching
 import cz.cvut.fit.travelmates.core.livedata.SingleLiveEvent
 import cz.cvut.fit.travelmates.core.livedata.immutable
+import cz.cvut.fit.travelmates.core.views.ViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
@@ -46,6 +48,10 @@ class ConfirmRecoveryViewModel @Inject constructor(
     private val _isContinueActive = MutableStateFlow(false)
     val isContinueActive = _isContinueActive.asLiveData()
 
+    private val viewState = MutableStateFlow(ViewState.CONTENT)
+    val contentVisible = viewState.map { it == ViewState.CONTENT }.asLiveData()
+    val loadingVisible = viewState.map { it == ViewState.LOADING }.asLiveData()
+
     init {
         setupValidations()
     }
@@ -59,13 +65,16 @@ class ConfirmRecoveryViewModel @Inject constructor(
             return
         }
         viewModelScope.launchCatching(execute = {
+            viewState.value = ViewState.LOADING
             authRepository.confirmPasswordRecovery(password, code)
             _eventShowResetSuccess.call()
             _eventNavigateLogin.call()
         }, catch = {
             //TODO Handle
             Timber.d("Reset failed")
-        })
+        }).invokeOnCompletion {
+            viewState.value = ViewState.CONTENT
+        }
     }
 
     fun onBackPressed() {

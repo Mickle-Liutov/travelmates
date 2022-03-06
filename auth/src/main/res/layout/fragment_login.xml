@@ -13,49 +13,40 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLoginToolbar"
-            android:layout_width="0dp"
+        <ImageButton
+            android:id="@+id/buttonLoginBack"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingVertical="@dimen/margin_base"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="@dimen/margin_base"
+            android:layout_marginTop="@dimen/margin_base"
+            android:background="?selectableItemBackgroundBorderless"
+            android:contentDescription="@null"
+            android:onClick="@{()->vm.onBackPressed()}"
+            android:padding="@dimen/margin_base"
+            android:src="@drawable/ic_back"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_base"
-                android:background="?selectableItemBackground"
-                android:contentDescription="@null"
-                android:onClick="@{()->vm.onBackPressed()}"
-                android:padding="@dimen/margin_base"
-                android:src="@drawable/ic_back"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <com.google.android.material.textview.MaterialTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/login_title"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textLoginTitle"
+            style="?textAppearanceHeadline4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_base_x2"
+            android:layout_marginTop="@dimen/margin_base_x2"
+            android:text="@string/login_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/buttonLoginBack" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLoginEmail"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_base_x2"
+            android:layout_marginTop="@dimen/margin_base_x4"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/constraintLoginToolbar"
-            app:layout_constraintWidth_percent="0.7">
+            app:layout_constraintTop_toBottomOf="@id/textLoginTitle">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -69,11 +60,11 @@
             android:id="@+id/textInputLoginPassword"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_base"
+            android:layout_marginHorizontal="@dimen/margin_base_x2"
+            android:layout_marginTop="@dimen/margin_base_x2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textInputLoginEmail"
-            app:layout_constraintWidth_percent="0.7">
+            app:layout_constraintTop_toBottomOf="@id/textInputLoginEmail">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -83,29 +74,41 @@
                 android:text="@={vm.typedPassword}" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/TextAppearance.AppTheme.Subtitle2.Bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_base_x2"
+            android:background="?selectableItemBackgroundBorderless"
+            android:onClick="@{()->vm.onPasswordRecoveryPressed()}"
+            android:paddingHorizontal="@dimen/margin_base_x2"
+            android:paddingVertical="@dimen/margin_base"
+            android:text="@string/login_button_recover_pass"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textInputLoginPassword" />
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonLoginLogin"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/margin_base_x2"
-            android:layout_marginBottom="@dimen/margin_base_x2"
+            android:layout_marginBottom="@dimen/margin_base_x4"
             android:enabled="@{vm.isContinueActive()}"
             android:onClick="@{()->vm.onLoginPressed()}"
             android:text="@string/login_button_login"
-            app:layout_constraintBottom_toTopOf="@id/buttonLoginRecoverPass"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/buttonLoginRecoverPass"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/margin_base_x2"
-            android:layout_marginBottom="@dimen/margin_base_x4"
-            android:onClick="@{()->vm.onPasswordRecoveryPressed()}"
-            android:text="@string/login_button_recover_pass"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:visibleOrInvisible="@{vm.contentVisible}" />
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/buttonLoginLogin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/buttonLoginLogin"
+            app:visible="@{vm.loadingVisible}" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

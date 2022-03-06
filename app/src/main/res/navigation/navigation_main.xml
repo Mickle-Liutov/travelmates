@@ -3,15 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_main"
-    app:startDestination="@id/navigation_explore">
+    app:startDestination="@id/navigation_home">
 
     <fragment
         android:id="@+id/navigation_explore"
         android:name="cz.cvut.fit.travelmates.explore.ExploreFragment"
         tools:layout="@layout/fragment_explore">
-        <action
-            android:id="@+id/action_to_auth"
-            app:destination="@id/navigation_auth" />
         <action
             android:id="@+id/action_explore_to_details"
             app:destination="@id/trip_details_graph">
@@ -24,9 +21,35 @@
     <include app:graph="@navigation/navigation_trip_details" />
     <fragment
         android:id="@+id/navigation_profile"
-        android:name="cz.cvut.fit.travelmates.profile.ProfileFragment" />
+        android:name="cz.cvut.fit.travelmates.profile.ProfileFragment"
+        tools:layout="@layout/fragment_profile" />
     <include app:graph="@navigation/navigation_trips_graph" />
     <include app:graph="@navigation/navigation_locations" />
     <include app:graph="@navigation/navigation_posts" />
+    <include app:graph="@navigation/add_trip_navigation" />
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="cz.cvut.fit.travelmates.home.HomeFragment"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_to_auth"
+            app:destination="@id/navigation_auth" />
+        <action
+            android:id="@+id/action_home_to_details"
+            app:destination="@id/trip_details_graph">
+            <argument
+                android:name="tripId"
+                app:argType="long" />
+        </action>
+        <action
+            android:id="@+id/action_to_posts"
+            app:destination="@id/navigation_posts_graph" />
+        <action
+            android:id="@+id/action_to_explore"
+            app:destination="@id/navigation_explore" />
+        <action
+            android:id="@+id/action_home_to_add_trip"
+            app:destination="@id/add_trip_graph" />
+    </fragment>
 
 </navigation>
