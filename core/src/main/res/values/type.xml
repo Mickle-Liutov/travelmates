@@ -55,16 +55,20 @@
         <item name="android:textColor">?colorPrimary</item>
     </style>
 
+    <style name="TextAppearance.AppTheme.Body2.Black" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="android:textColor">?colorOnSurface</item>
+    </style>
+
     <style name="TextAppearance.AppTheme.Subtitle1" parent="TextAppearance.MaterialComponents.Subtitle1">
         <item name="fontFamily">@font/roboto</item>
         <item name="android:textSize">@dimen/text_size_subtitle1</item>
-        <item name="android:textColor">?colorPrimary</item>
+        <item name="android:textColor">@color/gray</item>
     </style>
 
     <style name="TextAppearance.AppTheme.Subtitle2" parent="TextAppearance.MaterialComponents.Subtitle2">
         <item name="fontFamily">@font/roboto</item>
         <item name="android:textSize">@dimen/text_size_subtitle2</item>
-        <item name="android:textColor">?colorPrimary</item>
+        <item name="android:textColor">@color/gray</item>
     </style>
 
     <style name="TextAppearance.AppTheme.Subtitle2.Bold">

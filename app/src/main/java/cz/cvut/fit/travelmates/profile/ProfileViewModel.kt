@@ -48,6 +48,9 @@ class ProfileViewModel @Inject constructor(
     val saveButtonsVisible = combine(screenState, saveViewState) { screenState, saveState ->
         screenState == ScreenState.EDIT && saveState == ViewState.CONTENT
     }.asLiveData()
+    val editVisible = combine(screenState, loadUserViewState) { screenState, loadState ->
+        screenState == ScreenState.SHOW && loadState == ViewState.CONTENT
+    }.asLiveData()
 
     private val _eventSaveError = SingleLiveEvent<Unit>()
     val eventSaveError = _eventSaveError.immutable()

@@ -4,12 +4,13 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import cz.cvut.fit.travelmates.location.Location
 import cz.cvut.fit.travelmates.mainapi.user.PublicUser
+import java.time.LocalDateTime
 
 
 @JsonClass(generateAdapter = true)
 data class Post(
     @Json(name = "createdAt")
-    val createdAt: String,
+    val createdAt: LocalDateTime,
     @Json(name = "creator")
     val creator: PublicUser,
     @Json(name = "description")

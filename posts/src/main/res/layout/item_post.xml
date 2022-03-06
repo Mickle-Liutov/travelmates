@@ -21,11 +21,14 @@
             android:layout_marginStart="@dimen/margin_base_x2"
             android:layout_marginTop="@dimen/margin_base_x2"
             app:imageRef="@{formatter.creatorIcon}"
+            app:imageTransform="@{@string/transform_circle_crop}"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:placeholder="@{@drawable/ic_my_profile}" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textPostItemCreatorName"
+            style="@style/TextAppearance.AppTheme.Body2.Black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_base"
@@ -47,6 +50,7 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textPostItemDescription"
+            style="?textAppearanceSubtitle1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/margin_base_x2"
@@ -54,7 +58,8 @@
             android:text="@{formatter.description}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/imagePostItemCreatorIcon" />
+            app:layout_constraintTop_toBottomOf="@id/imagePostItemCreatorIcon"
+            tools:text="Lorem ipsum" />
 
         <ImageView
             android:layout_width="0dp"
