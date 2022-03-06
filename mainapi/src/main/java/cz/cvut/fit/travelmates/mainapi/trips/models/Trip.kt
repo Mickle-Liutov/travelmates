@@ -1,5 +1,6 @@
 package cz.cvut.fit.travelmates.mainapi.trips.models
 
+import androidx.recyclerview.widget.DiffUtil
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import cz.cvut.fit.travelmates.location.Location
@@ -25,5 +26,15 @@ data class Trip(
     @Json(name = "title")
     val title: String
 )
+
+object TripDiff : DiffUtil.ItemCallback<Trip>() {
+    override fun areItemsTheSame(oldItem: Trip, newItem: Trip): Boolean {
+        return oldItem.id == newItem.id
+    }
+
+    override fun areContentsTheSame(oldItem: Trip, newItem: Trip): Boolean {
+        return oldItem == newItem
+    }
+}
 
 

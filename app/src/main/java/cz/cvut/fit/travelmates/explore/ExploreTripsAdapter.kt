@@ -2,12 +2,12 @@ package cz.cvut.fit.travelmates.explore
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import cz.cvut.fit.travelmates.databinding.ItemExploreTripBinding
 import cz.cvut.fit.travelmates.mainapi.trips.models.Trip
+import cz.cvut.fit.travelmates.mainapi.trips.models.TripDiff
 import cz.cvut.fit.travelmates.trips.TripRequirementsAdapter
 
 class ExploreTripsAdapter : ListAdapter<Trip, ExploreTripsAdapter.ExploreTripViewHolder>(TripDiff) {
@@ -47,16 +47,6 @@ class ExploreTripsAdapter : ListAdapter<Trip, ExploreTripsAdapter.ExploreTripVie
                 }
             }
             requirementsAdapter.submitList(item.requirements)
-        }
-    }
-
-    object TripDiff : DiffUtil.ItemCallback<Trip>() {
-        override fun areItemsTheSame(oldItem: Trip, newItem: Trip): Boolean {
-            return oldItem.id == newItem.id
-        }
-
-        override fun areContentsTheSame(oldItem: Trip, newItem: Trip): Boolean {
-            return oldItem == newItem
         }
     }
 }

@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="cz.cvut.fit.travelmates.home.HomeViewModel" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textHomeTitle"
+                style="?textAppearanceHeadline4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_base_x2"
+                android:layout_marginTop="@dimen/margin_base_x2"
+                android:text="@string/home_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textHomeTripsTitle"
+                style="?textAppearanceHeadline5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_base_x2"
+                android:layout_marginTop="@dimen/margin_base_x2"
+                android:text="@string/home_title_trips"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textHomeTitle" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textHomeTripsAllButton"
+                style="?textAppearanceSubtitle1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?selectableItemBackgroundBorderless"
+                android:onClick="@{()->vm.onSeeAllTripsPressed()}"
+                android:paddingHorizontal="@dimen/margin_base_x2"
+                android:paddingVertical="@dimen/margin_base"
+                android:text="@string/home_button_see_all"
+                app:layout_constraintBottom_toBottomOf="@id/textHomeTripsTitle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/textHomeTripsTitle" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerHomeTrips"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_base_x2"
+                android:clipToPadding="false"
+                android:paddingHorizontal="@dimen/margin_base"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textHomeTripsTitle" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textHomePostsTitle"
+                style="?textAppearanceHeadline5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_base_x2"
+                android:layout_marginTop="@dimen/margin_base_x2"
+                android:text="@string/home_title_posts"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/recyclerHomeTrips" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textHomePostsAllButton"
+                style="?textAppearanceSubtitle1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?selectableItemBackgroundBorderless"
+                android:onClick="@{()->vm.onSeeAllPostsPressed()}"
+                android:paddingHorizontal="@dimen/margin_base_x2"
+                android:paddingVertical="@dimen/margin_base"
+                android:text="@string/home_button_see_all"
+                app:layout_constraintBottom_toBottomOf="@id/textHomePostsTitle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/textHomePostsTitle" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerHomePosts"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_base_x2"
+                android:clipToPadding="false"
+                android:paddingHorizontal="@dimen/margin_base_x2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textHomePostsTitle" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textHomeOrganizeTitle"
+                style="?textAppearanceHeadline5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_base_x2"
+                android:layout_marginTop="@dimen/margin_base_x2"
+                android:text="@string/home_title_organize"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/recyclerHomePosts" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintHomeOrganize"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_base"
+                android:background="?selectableItemBackgroundBorderless"
+                android:onClick="@{()->vm.onOrganizePressed()}"
+                android:paddingHorizontal="@dimen/margin_base"
+                android:paddingVertical="@dimen/margin_base"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textHomeOrganizeTitle">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textHomeOrganize"
+                    style="@style/TextAppearance.AppTheme.Headline6.Gray"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/home_button_organize"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/imageHomeOrganizeArrow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_base"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/ic_right_arrow"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/textHomeOrganize"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/groupHomeContent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:constraint_referenced_ids="textHomeTripsTitle,textHomeTripsAllButton,recyclerHomeTrips,textHomePostsTitle,textHomePostsAllButton,recyclerHomePosts,textHomeOrganizeTitle,constraintHomeOrganize"
+                app:visible="@{vm.contentVisible}" />
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textHomeTitle"
+                app:visible="@{vm.loadingVisible}" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textHomeTitle"
+                app:visible="@{vm.errorVisible}"
+                tools:visibility="gone">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textError"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/error_generic"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_percent="0.7" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_base_x2"
+                    android:onClick="@{()->vm.onRetryPressed()}"
+                    android:text="@string/error_generic_retry"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textError"
+                    app:layout_constraintWidth_percent="0.7" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

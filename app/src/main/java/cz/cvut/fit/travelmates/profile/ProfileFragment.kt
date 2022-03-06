@@ -82,7 +82,7 @@ class ProfileFragment : Fragment() {
             pickImage()
         }
         viewModel.eventNavigateMain.observe(viewLifecycleOwner) {
-            findNavController().popBackStack(R.id.navigation_explore, false)
+            findNavController().popBackStack(R.id.navigation_home, false)
         }
     }
 

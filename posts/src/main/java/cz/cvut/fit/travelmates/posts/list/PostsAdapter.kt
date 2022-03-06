@@ -2,10 +2,10 @@ package cz.cvut.fit.travelmates.posts.list
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import cz.cvut.fit.travelmates.mainapi.posts.Post
+import cz.cvut.fit.travelmates.mainapi.posts.PostDiff
 import cz.cvut.fit.travelmates.posts.databinding.ItemPostBinding
 
 class PostsAdapter : ListAdapter<Post, PostsAdapter.PostViewHolder>(PostDiff) {
@@ -28,13 +28,5 @@ class PostsAdapter : ListAdapter<Post, PostsAdapter.PostViewHolder>(PostDiff) {
         }
     }
 
-    object PostDiff : DiffUtil.ItemCallback<Post>() {
-        override fun areItemsTheSame(oldItem: Post, newItem: Post): Boolean {
-            return oldItem.id == newItem.id
-        }
 
-        override fun areContentsTheSame(oldItem: Post, newItem: Post): Boolean {
-            return oldItem == newItem
-        }
-    }
 }

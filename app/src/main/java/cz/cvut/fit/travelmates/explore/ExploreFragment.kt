@@ -25,9 +25,6 @@ class ExploreFragment : Fragment() {
         binding = FragmentExploreBinding.inflate(inflater, container, false)
         binding.vm = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
-
-        viewLifecycleOwner.lifecycle.addObserver(viewModel)
-
         return binding.root
     }
 
@@ -38,9 +35,6 @@ class ExploreFragment : Fragment() {
     }
 
     private fun setupObservers() {
-        viewModel.eventNavigateAuth.observe(viewLifecycleOwner) {
-            findNavController().navigate(ExploreFragmentDirections.actionToAuth())
-        }
         viewModel.eventNavigateTripDetails.observe(viewLifecycleOwner) {
             findNavController().navigate(ExploreFragmentDirections.actionExploreToDetails(it))
         }

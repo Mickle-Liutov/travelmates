@@ -21,20 +21,6 @@
                 app:argType="long" />
         </action>
     </fragment>
-    <fragment
-        android:id="@+id/navigation_add_trip"
-        android:name="cz.cvut.fit.travelmates.trips.addtrip.AddTripFragment"
-        tools:layout="@layout/fragment_add_trip">
-        <action
-            android:id="@+id/action_to_add_requirement"
-            app:destination="@id/navigation_add_requirement" />
-        <action
-            android:id="@+id/action_to_pick_location"
-            app:destination="@id/locations_graph" />
-    </fragment>
-    <dialog
-        android:id="@+id/navigation_add_requirement"
-        android:name="cz.cvut.fit.travelmates.trips.addtrip.requirements.AddRequirementDialog"
-        tools:layout="@layout/dialog_add_requirement" />
+
 
 </navigation>

@@ -43,6 +43,10 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="TextAppearance.AppTheme.Headline6.Gray">
+        <item name="android:textColor">@color/gray</item>
+    </style>
+
     <style name="TextAppearance.AppTheme.Body1" parent="TextAppearance.MaterialComponents.Body1">
         <item name="fontFamily">@font/roboto</item>
         <item name="android:textSize">@dimen/text_size_body1</item>
