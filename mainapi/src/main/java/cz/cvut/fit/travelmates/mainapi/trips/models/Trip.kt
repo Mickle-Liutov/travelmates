@@ -5,6 +5,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import cz.cvut.fit.travelmates.location.Location
 import cz.cvut.fit.travelmates.mainapi.user.PublicUser
+import java.time.LocalDate
 
 
 @JsonClass(generateAdapter = true)
@@ -22,7 +23,7 @@ data class Trip(
     @Json(name = "state")
     val state: String,
     @Json(name = "suggestedTime")
-    val suggestedTime: String,
+    val suggestedTime: LocalDate,
     @Json(name = "title")
     val title: String
 )

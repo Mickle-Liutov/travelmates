@@ -14,7 +14,8 @@ class BottomNavChangeListener(
     private val destinationsWithBottomNav = listOf(
         R.id.navigation_my_trips,
         R.id.navigation_profile,
-        R.id.navigation_home
+        R.id.navigation_home,
+        R.id.navigation_posts_list
     )
 
     override fun onDestinationChanged(

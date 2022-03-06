@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="my_trips_title">My trips</string>
+    <string name="my_trips_subtitle_owner">Organized by Me</string>
+    <string name="my_trips_subtitle_request">Pending Join Requests</string>
+    <string name="my_trips_subtitle_member">Joined by Me</string>
+
     <string name="trip_details_title">Trip details</string>
     <string name="trip_details_title_equipment">Equipment</string>
     <string name="trip_details_title_description">Description</string>
