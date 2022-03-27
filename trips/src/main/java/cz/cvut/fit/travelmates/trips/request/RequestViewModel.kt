@@ -40,8 +40,8 @@ class RequestViewModel @Inject constructor(
 
     fun onRejectPressed() {
         viewModelScope.launchCatching(execute = {
-            requestsRepository.rejectRequest(args.request.id)
-            _eventAccepted.call()
+            requestsRepository.rejectRequest(args.request.id, "TODO reason", true) /*TODO Add*/
+            _eventRejected.call()
             _eventNavigateBack.call()
         }, catch = {
             Timber.e(it)
