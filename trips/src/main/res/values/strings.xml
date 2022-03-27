@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="my_trips_title">My trips</string>
+    <string name="my_trips_subtitle_owner">Organized by Me</string>
+    <string name="my_trips_subtitle_request">Pending Join Requests</string>
+    <string name="my_trips_subtitle_member">Joined by Me</string>
+
     <string name="trip_details_title">Trip details</string>
     <string name="trip_details_title_equipment">Equipment</string>
     <string name="trip_details_title_description">Description</string>
+    <string name="trip_details_title_requests">Pending requests</string>
     <string name="trip_details_button_join">Join</string>
     <string name="trip_details_button_review">Review</string>
+    <string name="trip_details_request_sent">Join request sent</string>
+    <string name="trip_details_request_rejected_format">Unfortunately, your request was rejected. The reason is:\n%1$s</string>
 
     <string name="join_trip_title">Join trip</string>
     <string name="join_trip_title_equipment">How can you contribute?</string>

@@ -11,7 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import cz.cvut.fit.travelmates.core.fragment.getNavigationResult
 import cz.cvut.fit.travelmates.location.Location
-import cz.cvut.fit.travelmates.location.PickLocationFragment
+import cz.cvut.fit.travelmates.location.pick.PickLocationFragment
 import cz.cvut.fit.travelmates.trips.addtrip.requirements.AddRequirementsAdapter
 import cz.cvut.fit.travelmates.trips.databinding.FragmentAddTripBinding
 import dagger.hilt.android.AndroidEntryPoint

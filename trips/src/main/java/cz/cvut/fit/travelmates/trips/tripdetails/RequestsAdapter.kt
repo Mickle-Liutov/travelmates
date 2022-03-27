@@ -2,10 +2,13 @@ package cz.cvut.fit.travelmates.trips.tripdetails
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import cz.cvut.fit.travelmates.core.bindings.setImageRef
 import cz.cvut.fit.travelmates.mainapi.trips.models.Request
+import cz.cvut.fit.travelmates.trips.R
 import cz.cvut.fit.travelmates.trips.databinding.ItemRequestBinding
 
 class RequestsAdapter : ListAdapter<Request, RequestsAdapter.RequestViewHolder>(RequestDiff) {
@@ -27,6 +30,11 @@ class RequestsAdapter : ListAdapter<Request, RequestsAdapter.RequestViewHolder>(
             val item = getItem(adapterPosition)
             binding.apply {
                 textItemRequestName.text = item.user.name
+                imageItemRequest.setImageRef(
+                    item.user.picture,
+                    ContextCompat.getDrawable(root.context, R.drawable.ic_my_profile),
+                    root.context.getString(R.string.transform_circle_crop)
+                )
                 buttonItemRequestReview.setOnClickListener {
                     onReviewPressed?.invoke(item)
                 }

@@ -16,7 +16,7 @@ import androidx.navigation.fragment.findNavController
 import com.github.dhaval2404.imagepicker.ImagePicker
 import cz.cvut.fit.travelmates.core.fragment.getNavigationResult
 import cz.cvut.fit.travelmates.location.Location
-import cz.cvut.fit.travelmates.location.PickLocationFragment
+import cz.cvut.fit.travelmates.location.pick.PickLocationFragment
 import cz.cvut.fit.travelmates.posts.databinding.FragmentAddPostBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi

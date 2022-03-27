@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="transform_circle_crop">circleCrop</string>
+
+    <string name="error_generic">Something went wrong…</string>
+    <string name="error_generic_retry">Retry</string>
 </resources>

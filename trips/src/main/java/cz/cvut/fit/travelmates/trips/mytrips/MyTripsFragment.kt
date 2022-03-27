@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import cz.cvut.fit.travelmates.trips.databinding.FragmentMyTripsBinding
+import cz.cvut.fit.travelmates.trips.mytrips.list.MyTripsAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

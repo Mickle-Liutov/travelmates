@@ -2,7 +2,6 @@ package cz.cvut.fit.travelmates.trips
 
 import cz.cvut.fit.travelmates.core.networking.toBody
 import cz.cvut.fit.travelmates.mainapi.trips.TripsService
-import cz.cvut.fit.travelmates.mainapi.trips.models.DetailedTrip
 import cz.cvut.fit.travelmates.mainapi.trips.models.NewJoinRequestDto
 import cz.cvut.fit.travelmates.mainapi.trips.models.NewTripDto
 import cz.cvut.fit.travelmates.mainapi.trips.models.Trip
@@ -23,7 +22,7 @@ class TripsRepository(
         return tripsService.createTrip(newTrip).toBody()
     }
 
-    suspend fun getTripDetails(tripId: Long): DetailedTrip {
+    suspend fun getTripDetails(tripId: Long): Trip {
         return tripsService.getTripDetails(tripId).toBody()
     }
 

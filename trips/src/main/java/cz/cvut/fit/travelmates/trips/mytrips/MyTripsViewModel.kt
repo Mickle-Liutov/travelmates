@@ -8,8 +8,8 @@ import cz.cvut.fit.travelmates.core.coroutines.launchCatching
 import cz.cvut.fit.travelmates.core.livedata.SingleLiveEvent
 import cz.cvut.fit.travelmates.core.livedata.immutable
 import cz.cvut.fit.travelmates.core.views.ViewState
-import cz.cvut.fit.travelmates.mainapi.trips.models.Trip
-import cz.cvut.fit.travelmates.trips.TripsRepository
+import cz.cvut.fit.travelmates.trips.mytrips.list.MyTrip
+import cz.cvut.fit.travelmates.trips.mytrips.list.MyTripsItem
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.map
@@ -17,16 +17,16 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MyTripsViewModel @Inject constructor(
-    private val tripsRepository: TripsRepository
+    private val composeMyTripsUseCase: ComposeMyTripsUseCase
 ) : ViewModel() {
 
-    private val _trips = MutableLiveData<List<Trip>>()
+    private val _trips = MutableLiveData<List<MyTripsItem>>()
     val trips = _trips.immutable()
 
     private val viewState = MutableStateFlow(ViewState.LOADING)
     val contentVisible = viewState.map { it == ViewState.CONTENT }.asLiveData()
     val loadingVisible = viewState.map { it == ViewState.LOADING }.asLiveData()
-    val errorVisible = viewState.map { it == ViewState.ERROR }.asLiveData() //TODO Observe
+    val errorVisible = viewState.map { it == ViewState.ERROR }.asLiveData()
 
     private val _eventNavigateAdd = SingleLiveEvent<Unit>()
     val eventNavigateAdd = _eventNavigateAdd.immutable()
@@ -38,10 +38,12 @@ class MyTripsViewModel @Inject constructor(
         loadTrips()
     }
 
+    fun onRetryPressed() = loadTrips()
+
     private fun loadTrips() {
         viewState.value = ViewState.LOADING
         viewModelScope.launchCatching(execute = {
-            val loadedTrips = tripsRepository.getMyTrips()
+            val loadedTrips = composeMyTripsUseCase.composeMyTrips()
             _trips.value = loadedTrips
             viewState.value = ViewState.CONTENT
         }, catch = {
@@ -53,7 +55,7 @@ class MyTripsViewModel @Inject constructor(
         _eventNavigateAdd.call()
     }
 
-    fun onTripPressed(trip: Trip) {
+    fun onTripPressed(trip: MyTrip) {
         _eventNavigateDetails.value = trip.id
     }
 

@@ -8,12 +8,12 @@ import cz.cvut.fit.travelmates.core.coroutines.launchCatching
 import cz.cvut.fit.travelmates.core.livedata.SingleLiveEvent
 import cz.cvut.fit.travelmates.core.livedata.immutable
 import cz.cvut.fit.travelmates.core.views.ViewState
-import cz.cvut.fit.travelmates.mainapi.trips.models.DetailedTrip
 import cz.cvut.fit.travelmates.mainapi.trips.models.Request
-import cz.cvut.fit.travelmates.mainapi.trips.models.UserType
+import cz.cvut.fit.travelmates.mainapi.trips.models.Trip
 import cz.cvut.fit.travelmates.trips.TripsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.map
 import timber.log.Timber
@@ -22,34 +22,42 @@ import javax.inject.Inject
 @HiltViewModel
 class TripDetailsViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
-    private val tripsRepository: TripsRepository
+    private val tripsRepository: TripsRepository,
+    private val tripDetailsStateMapper: TripDetailsStateMapper
 ) : ViewModel() {
 
     private val args = TripDetailsFragmentArgs.fromSavedStateHandle(savedStateHandle)
     private val tripId = args.tripId
 
-    private val _detailedTripOptional = MutableStateFlow<DetailedTrip?>(null)
+    private val _detailedTripOptional = MutableStateFlow<Trip?>(null)
     private val _detailedTrip = _detailedTripOptional.filterNotNull()
     val detailedTrip = _detailedTrip.asLiveData()
 
+    private val screenStateFlow = _detailedTrip.map {
+        tripDetailsStateMapper.getTripState(it)
+    }
+    val screenState = screenStateFlow.asLiveData()
+
     val location = _detailedTrip.map {
-        val location = it.location
-        "Location: ${location.lat}; ${location.lon}"
+        it.location
     }.asLiveData()
     val members = _detailedTrip.map {
         listOf(it.owner) + it.members
     }.asLiveData()
     val equipment = _detailedTrip.map {
-        it.pendingRequirements
+        it.requirements
     }.asLiveData()
-    val isGuest = _detailedTrip.map {
-        it.userType == UserType.GUEST
-    }.asLiveData()
-    val isOwner = _detailedTrip.map {
-        it.userType == UserType.OWNER
-    }.asLiveData()
-    val requests = _detailedTrip.map {
+
+    private val requestsFlow = _detailedTrip.map {
         it.requests.orEmpty()
+    }
+    val requests = requestsFlow.asLiveData()
+
+    val rejectedReason = _detailedTrip.map {
+        it.currentUserRequest?.rejectionReason.orEmpty()
+    }.asLiveData()
+    val requestsTitleVisible = combine(screenStateFlow, requestsFlow) { state, requests ->
+        state.joinRequestsVisible && requests.isNotEmpty()
     }.asLiveData()
 
     private val viewState = MutableStateFlow(ViewState.LOADING)
@@ -57,7 +65,7 @@ class TripDetailsViewModel @Inject constructor(
     val loadingVisible = viewState.map { it == ViewState.LOADING }.asLiveData()
     val errorVisible = viewState.map { it == ViewState.ERROR }.asLiveData() //TODO Observe
 
-    private val _eventNavigateJoin = SingleLiveEvent<DetailedTrip>()
+    private val _eventNavigateJoin = SingleLiveEvent<Trip>()
     val eventNavigateJoin = _eventNavigateJoin.immutable()
 
     private val _eventNavigateRequest = SingleLiveEvent<Request>()

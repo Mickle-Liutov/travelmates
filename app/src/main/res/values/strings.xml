@@ -16,7 +16,4 @@
     <string name="home_title_organize">Get Proactive</string>
     <string name="home_button_see_all">See all ></string>
     <string name="home_button_organize">Organize a Trip</string>
-
-    <string name="error_generic">Something went wrong…</string>
-    <string name="error_generic_retry">Retry</string>
 </resources>

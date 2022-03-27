@@ -46,7 +46,7 @@ class ExploreTripsAdapter : ListAdapter<Trip, ExploreTripsAdapter.ExploreTripVie
                     onTripPressed?.invoke(item.id)
                 }
             }
-            requirementsAdapter.submitList(item.requirements)
+            requirementsAdapter.submitList(item.requirements.filter { !it.isFulfilled })
         }
     }
 }

@@ -32,7 +32,7 @@
 
         <argument
             android:name="trip"
-            app:argType="cz.cvut.fit.travelmates.mainapi.trips.models.DetailedTrip" />
+            app:argType="cz.cvut.fit.travelmates.mainapi.trips.models.Trip" />
 
     </fragment>
     <fragment

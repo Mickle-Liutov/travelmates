@@ -2,4 +2,6 @@
 <resources>
     <string name="pick_location_title">Pick location</string>
     <string name="pick_location_button_select">Pick</string>
+
+    <string name="location_unknown">Unknown</string>
 </resources>
