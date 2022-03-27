@@ -1,6 +1,5 @@
 package cz.cvut.fit.travelmates.mainapi.trips
 
-import cz.cvut.fit.travelmates.mainapi.trips.models.DetailedTrip
 import cz.cvut.fit.travelmates.mainapi.trips.models.NewJoinRequestDto
 import cz.cvut.fit.travelmates.mainapi.trips.models.NewTripDto
 import cz.cvut.fit.travelmates.mainapi.trips.models.Trip
@@ -16,7 +15,7 @@ interface TripsService {
     suspend fun createTrip(@Body body: NewTripDto): Response<Unit>
 
     @GET("$PATH_TRIPS/{$PATH_TRIP_ID}")
-    suspend fun getTripDetails(@Path(PATH_TRIP_ID) tripId: Long): Response<DetailedTrip>
+    suspend fun getTripDetails(@Path(PATH_TRIP_ID) tripId: Long): Response<Trip>
 
     @POST("${PATH_TRIPS}/{${PATH_TRIP_ID}}/join")
     suspend fun sendJoinRequest(

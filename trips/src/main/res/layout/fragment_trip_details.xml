@@ -84,7 +84,7 @@
                     android:id="@+id/textTripDetailsDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{vm.detailedTrip.suggestedDate}"
+                    android:text="@{vm.detailedTrip.suggestedDate.toString()}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/textTripDetailsLocation" />
@@ -99,12 +99,12 @@
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerTripDetailsRequests"
-                    visible="@{vm.isOwner()}"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/recyclerTripDetailsMembers" />
+                    app:layout_constraintTop_toBottomOf="@id/recyclerTripDetailsMembers"
+                    app:visible="@{vm.screenState.joinRequestsVisible}" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/textTripDetailsEquipmentTitle"
@@ -144,7 +144,6 @@
                     app:layout_constraintTop_toBottomOf="@id/textTripDetailsDescriptionTitle" />
 
                 <com.google.android.material.button.MaterialButton
-                    visible="@{vm.isGuest}"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:onClick="@{()->vm.onJoinPressed()}"
@@ -152,7 +151,10 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/textTripDetailsDescription"
-                    app:layout_constraintWidth_percent="0.7" />
+                    app:layout_constraintWidth_percent="0.7"
+                    app:visible="@{vm.screenState.requestToJoinVisible}" />
+
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <ProgressBar

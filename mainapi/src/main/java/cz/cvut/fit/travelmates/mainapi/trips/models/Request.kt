@@ -20,5 +20,21 @@ data class Request(
     @Json(name = "contact")
     val contact: String,
     @Json(name = "message")
-    val message: String
+    val message: String,
+    @Json(name = "state")
+    val state: RequestState,
+    @Json(name = "rejectionReason")
+    val rejectionReason: String?
 ) : Parcelable
+
+enum class RequestState {
+    @Json(name = "PENDING")
+    PENDING,
+
+    @Json(name = "REJECTED_ALLOW_RESEND")
+    REJECTED_ALLOW_RESEND,
+
+    @Json(name = "REJECTED_NO_RESEND")
+    REJECTED_NO_RESEND
+}
+

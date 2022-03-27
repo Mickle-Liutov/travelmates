@@ -22,7 +22,7 @@ class JoinTripViewModel @Inject constructor(
 
     private val args = JoinTripFragmentArgs.fromSavedStateHandle(savedStateHandle)
 
-    private val _equipment = MutableStateFlow(args.trip.pendingRequirements.map {
+    private val _equipment = MutableStateFlow(args.trip.requirements.map {
         ProvidedRequirement(it.id, it.name, false)
     })
     val equipment = _equipment.asLiveData()

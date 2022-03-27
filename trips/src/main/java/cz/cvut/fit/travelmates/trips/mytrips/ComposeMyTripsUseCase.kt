@@ -1,7 +1,6 @@
 package cz.cvut.fit.travelmates.trips.mytrips
 
 import cz.cvut.fit.travelmates.core.networking.toBody
-import cz.cvut.fit.travelmates.mainapi.trips.models.Trip
 import cz.cvut.fit.travelmates.mainapi.user.UserService
 import cz.cvut.fit.travelmates.trips.TripsRepository
 import cz.cvut.fit.travelmates.trips.mytrips.list.MyTrip
@@ -17,9 +16,9 @@ class ComposeMyTripsUseCase(
     suspend fun composeMyTrips(): List<MyTripsItem> {
         val trips = tripsRepository.getMyTrips()
         val user = userService.getUser().toBody()
-        val ownerTrips = trips.filter { it.owner.name == user.name } /*TODO Change to email*/
-        val requestTrips = emptyList<Trip>()
-        val memberTrips = trips - ownerTrips /*TODO Change*/
+        val ownerTrips = trips.filter { it.owner.email == user.email }
+        val requestTrips = trips.filter { it.currentUserRequest != null }
+        val memberTrips = trips.filter { it.members.any { it.email == user.email } }
         val subLists = listOf(
             MyTripsSubtitleType.OWNER to ownerTrips,
             MyTripsSubtitleType.REQUEST to requestTrips,
@@ -38,7 +37,7 @@ class ComposeMyTripsUseCase(
                         it.owner,
                         it.requirements,
                         it.state,
-                        it.suggestedTime,
+                        it.suggestedDate,
                         it.title
                     )
                 })

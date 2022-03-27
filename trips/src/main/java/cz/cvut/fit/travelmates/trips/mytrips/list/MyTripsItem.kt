@@ -1,8 +1,9 @@
 package cz.cvut.fit.travelmates.trips.mytrips.list
 
 import cz.cvut.fit.travelmates.location.Location
+import cz.cvut.fit.travelmates.mainapi.trips.models.TripMember
 import cz.cvut.fit.travelmates.mainapi.trips.models.TripRequirement
-import cz.cvut.fit.travelmates.mainapi.user.PublicUser
+import cz.cvut.fit.travelmates.mainapi.trips.models.TripState
 import java.time.LocalDate
 
 sealed class MyTripsItem {
@@ -20,9 +21,9 @@ data class MyTrip(
     val description: String,
     val id: Long,
     val location: Location,
-    val owner: PublicUser,
+    val owner: TripMember,
     val requirements: List<TripRequirement>,
-    val state: String,
+    val state: TripState,
     val suggestedTime: LocalDate,
     val title: String
 ) : MyTripsItem() {

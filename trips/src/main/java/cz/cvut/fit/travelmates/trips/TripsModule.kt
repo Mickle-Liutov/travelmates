@@ -5,6 +5,7 @@ import cz.cvut.fit.travelmates.mainapi.trips.TripsService
 import cz.cvut.fit.travelmates.mainapi.user.UserService
 import cz.cvut.fit.travelmates.trips.mytrips.ComposeMyTripsUseCase
 import cz.cvut.fit.travelmates.trips.request.RequestsRepository
+import cz.cvut.fit.travelmates.trips.tripdetails.TripDetailsStateMapper
 import dagger.Module
 import dagger.Provides
 import dagger.Reusable
@@ -31,5 +32,8 @@ object TripsModule {
         userService: UserService
     ): ComposeMyTripsUseCase =
         ComposeMyTripsUseCase(tripsRepository, userService)
+
+    @Provides
+    fun provideTripDetailsStateMapper(): TripDetailsStateMapper = TripDetailsStateMapper()
 
 }
