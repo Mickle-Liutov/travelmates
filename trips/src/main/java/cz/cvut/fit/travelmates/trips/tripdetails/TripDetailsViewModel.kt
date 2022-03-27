@@ -13,6 +13,7 @@ import cz.cvut.fit.travelmates.mainapi.trips.models.Trip
 import cz.cvut.fit.travelmates.trips.TripsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.map
 import timber.log.Timber
@@ -32,12 +33,13 @@ class TripDetailsViewModel @Inject constructor(
     private val _detailedTrip = _detailedTripOptional.filterNotNull()
     val detailedTrip = _detailedTrip.asLiveData()
 
-    val screenState = _detailedTrip.map {
+    private val screenStateFlow = _detailedTrip.map {
         tripDetailsStateMapper.getTripState(it)
-    }.asLiveData()
+    }
+    val screenState = screenStateFlow.asLiveData()
+
     val location = _detailedTrip.map {
-        val location = it.location
-        "Location: ${location.lat}; ${location.lon}"
+        it.location
     }.asLiveData()
     val members = _detailedTrip.map {
         listOf(it.owner) + it.members
@@ -45,8 +47,17 @@ class TripDetailsViewModel @Inject constructor(
     val equipment = _detailedTrip.map {
         it.requirements
     }.asLiveData()
-    val requests = _detailedTrip.map {
+
+    private val requestsFlow = _detailedTrip.map {
         it.requests.orEmpty()
+    }
+    val requests = requestsFlow.asLiveData()
+
+    val rejectedReason = _detailedTrip.map {
+        it.currentUserRequest?.rejectionReason.orEmpty()
+    }.asLiveData()
+    val requestsTitleVisible = combine(screenStateFlow, requestsFlow) { state, requests ->
+        state.joinRequestsVisible && requests.isNotEmpty()
     }.asLiveData()
 
     private val viewState = MutableStateFlow(ViewState.LOADING)

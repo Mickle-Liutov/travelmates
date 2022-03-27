@@ -1,5 +1,6 @@
 import libs.AndroidCore.androidCore
 import libs.AndroidTest.androidTest
+import libs.Coil.coil
 import libs.Desugaring.desugaring
 import libs.Hilt.hilt
 import libs.Navigation.navigation
@@ -51,6 +52,7 @@ dependencies {
     navigation()
     timber()
     desugaring()
+    coil()
 
     androidTest()
     unitTest()

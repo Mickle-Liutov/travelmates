@@ -1,4 +1,4 @@
-package cz.cvut.fit.travelmates.location
+package cz.cvut.fit.travelmates.location.pick
 
 import android.os.Bundle
 import android.view.LayoutInflater

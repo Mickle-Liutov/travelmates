@@ -7,6 +7,7 @@
     <dimen name="margin_base_x4">32dp</dimen>
 
     <dimen name="rounded_corners_medium">16dp</dimen>
+    <dimen name="rounded_corners_big">32dp</dimen>
 
     <dimen name="text_size_headline1">96sp</dimen>
     <dimen name="text_size_headline2">60sp</dimen>

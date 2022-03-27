@@ -1,9 +1,10 @@
-package cz.cvut.fit.travelmates.location
+package cz.cvut.fit.travelmates.location.pick
 
 import androidx.lifecycle.ViewModel
 import com.google.android.gms.maps.model.LatLng
 import cz.cvut.fit.travelmates.core.livedata.SingleLiveEvent
 import cz.cvut.fit.travelmates.core.livedata.immutable
+import cz.cvut.fit.travelmates.location.Location
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

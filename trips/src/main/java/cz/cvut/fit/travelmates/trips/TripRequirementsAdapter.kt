@@ -1,7 +1,9 @@
 package cz.cvut.fit.travelmates.trips
 
+import android.graphics.Typeface
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -27,8 +29,16 @@ class TripRequirementsAdapter :
         RecyclerView.ViewHolder(binding.root) {
         fun bind() {
             val item = getItem(adapterPosition)
-            binding.textItemTripRequirement.text = item.name
-            //TODO Set is fulfilled state
+            binding.apply {
+                textItemTripRequirement.text = item.name
+                val (typeface, alpha) = if (item.isFulfilled)
+                    Typeface.NORMAL to ALPHA_FULFILLED
+                else
+                    Typeface.BOLD to ALPHA_UNFULFILLED
+                textItemTripRequirement.setTypeface(textItemTripRequirement.typeface, typeface)
+                textItemTripRequirement.alpha = alpha
+                imageItemTripRequirementProvided.isVisible = item.isFulfilled
+            }
         }
     }
 
@@ -43,5 +53,10 @@ class TripRequirementsAdapter :
         ): Boolean {
             return oldItem == newItem
         }
+    }
+
+    companion object {
+        private const val ALPHA_FULFILLED = 0.7F
+        private const val ALPHA_UNFULFILLED = 1F
     }
 }

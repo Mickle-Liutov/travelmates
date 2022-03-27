@@ -7,6 +7,6 @@
 
     <fragment
         android:id="@+id/navigation_pick_location"
-        android:name="cz.cvut.fit.travelmates.location.PickLocationFragment"
+        android:name="cz.cvut.fit.travelmates.location.pick.PickLocationFragment"
         tools:layout="@layout/fragment_pick_location" />
 </navigation>
