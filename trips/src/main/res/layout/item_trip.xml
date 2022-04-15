@@ -11,7 +11,7 @@
         android:padding="@dimen/margin_base_x2">
 
         <ImageView
-            android:id="@+id/imageMyTripItem"
+            android:id="@+id/imageTripItem"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:src="@color/gray"
@@ -23,39 +23,41 @@
             app:layout_constraintWidth_percent="0.5" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/textMyTripItemTitle"
+            android:id="@+id/textTripItemTitle"
+            style="@style/TextAppearance.AppTheme.Subtitle2.Black.Bold"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_base"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/imageMyTripItem"
-            app:layout_constraintTop_toTopOf="@id/imageMyTripItem"
+            app:layout_constraintStart_toEndOf="@id/imageTripItem"
+            app:layout_constraintTop_toTopOf="@id/imageTripItem"
             tools:text="Hiking in Sicily" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/textMyTripsItemDateLocation"
+            android:id="@+id/textTripsItemDateLocation"
             style="?textAppearanceSubtitle1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_base"
+            android:layout_marginTop="@dimen/margin_base_half"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/imageMyTripItem"
-            app:layout_constraintTop_toBottomOf="@id/textMyTripItemTitle"
+            app:layout_constraintStart_toEndOf="@id/imageTripItem"
+            app:layout_constraintTop_toBottomOf="@id/textTripItemTitle"
             tools:text="Sep 24 ● Italy" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerMyTripItemEquipment"
+            android:id="@+id/recyclerTripItemEquipment"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_base"
             android:layout_marginTop="@dimen/margin_base"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/imageMyTripItem"
-            app:layout_constraintTop_toBottomOf="@id/textMyTripsItemDateLocation"
+            app:layout_constraintStart_toEndOf="@id/imageTripItem"
+            app:layout_constraintTop_toBottomOf="@id/textTripsItemDateLocation"
             tools:itemCount="1" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/textMyTripItemDescription"
+            android:id="@+id/textTripItemDescription"
             style="?textAppearanceSubtitle2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -64,8 +66,8 @@
             android:ellipsize="end"
             android:maxLines="2"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/imageMyTripItem"
-            app:layout_constraintTop_toBottomOf="@id/recyclerMyTripItemEquipment"
+            app:layout_constraintStart_toEndOf="@id/imageTripItem"
+            app:layout_constraintTop_toBottomOf="@id/recyclerTripItemEquipment"
             tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tempor felis interdum" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

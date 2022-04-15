@@ -3,6 +3,7 @@ package cz.cvut.fit.travelmates.trips
 import cz.cvut.fit.travelmates.mainapi.requests.RequestsService
 import cz.cvut.fit.travelmates.mainapi.trips.TripsService
 import cz.cvut.fit.travelmates.mainapi.user.UserService
+import cz.cvut.fit.travelmates.trips.explore.SearchTripsUseCase
 import cz.cvut.fit.travelmates.trips.mytrips.ComposeMyTripsUseCase
 import cz.cvut.fit.travelmates.trips.request.RequestsRepository
 import cz.cvut.fit.travelmates.trips.tripdetails.TripDetailsStateMapper
@@ -36,4 +37,6 @@ object TripsModule {
     @Provides
     fun provideTripDetailsStateMapper(): TripDetailsStateMapper = TripDetailsStateMapper()
 
+    @Provides
+    fun provideSearchTripsUseCase(): SearchTripsUseCase = SearchTripsUseCase()
 }

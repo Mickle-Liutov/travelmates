@@ -1,4 +1,4 @@
-package cz.cvut.fit.travelmates.explore
+package cz.cvut.fit.travelmates.trips.explore
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
@@ -11,19 +11,24 @@ import cz.cvut.fit.travelmates.mainapi.trips.models.Trip
 import cz.cvut.fit.travelmates.trips.TripsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 @HiltViewModel
 class ExploreViewModel @Inject constructor(
-    private val tripsRepository: TripsRepository
+    private val tripsRepository: TripsRepository,
+    private val searchTrips: SearchTripsUseCase
 ) : ViewModel() {
 
     private val _eventNavigateTripDetails = SingleLiveEvent<Long>()
     val eventNavigateTripDetails = _eventNavigateTripDetails.immutable()
 
-    private val _exploreTrips = MutableStateFlow<List<Trip>>(emptyList())
-    val exploreTrips = _exploreTrips.asLiveData()
+    private val exploreTrips = MutableStateFlow<List<Trip>>(emptyList())
+    val searchTerm = MutableStateFlow("")
+    val filteredTrips = combine(exploreTrips, searchTerm) { trips, term ->
+        searchTrips.invoke(trips, term)
+    }.asLiveData()
 
     private val viewState = MutableStateFlow(ViewState.LOADING)
     val contentVisible = viewState.map { it == ViewState.CONTENT }.asLiveData()
@@ -37,8 +42,8 @@ class ExploreViewModel @Inject constructor(
     private fun loadTrips() {
         viewState.value = ViewState.LOADING
         viewModelScope.launchCatching(execute = {
-            val exploreTrips = tripsRepository.getExploreTrips()
-            _exploreTrips.value = exploreTrips
+            val trips = tripsRepository.getExploreTrips()
+            exploreTrips.value = trips
             viewState.value = ViewState.CONTENT
         }, catch = {
             viewState.value = ViewState.ERROR

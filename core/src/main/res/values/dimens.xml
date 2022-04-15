@@ -6,6 +6,7 @@
     <dimen name="margin_base_x3">24dp</dimen>
     <dimen name="margin_base_x4">32dp</dimen>
 
+    <dimen name="rounded_corners_small">12dp</dimen>
     <dimen name="rounded_corners_medium">16dp</dimen>
     <dimen name="rounded_corners_big">32dp</dimen>
 

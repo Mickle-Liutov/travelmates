@@ -11,13 +11,17 @@ class AuthInterceptor(
 
     override fun intercept(chain: Interceptor.Chain): Response = runBlocking {
         if (authRepository.hasValidSession()) {
-            val authHeader = authRepository.getIdToken()
-            val newRequest = chain.request().newBuilder()
-                .addHeader(
-                    AUTH_HEADER, BEARER_FORMAT.format(authHeader)
-                )
-                .build()
-            return@runBlocking chain.proceed(newRequest)
+            try {
+                val authHeader = authRepository.getIdToken()
+                val newRequest = chain.request().newBuilder()
+                    .addHeader(
+                        AUTH_HEADER, BEARER_FORMAT.format(authHeader)
+                    )
+                    .build()
+                return@runBlocking chain.proceed(newRequest)
+            } catch (e: Exception) {
+                return@runBlocking chain.proceed(chain.request())
+            }
         }
         return@runBlocking chain.proceed(chain.request())
     }

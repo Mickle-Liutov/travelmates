@@ -26,4 +26,7 @@
     <string name="request_button_reject">Reject</string>
     <string name="request_message_accepted">Request was accepted.</string>
     <string name="request_message_rejected">Request was rejected.</string>
+
+    <string name="explore_title">Discover trips</string>
+    <string name="explore_hint_search">Search</string>
 </resources>

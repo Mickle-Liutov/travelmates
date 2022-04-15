@@ -1,4 +1,4 @@
-package cz.cvut.fit.travelmates.explore
+package cz.cvut.fit.travelmates.trips.explore
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,7 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import cz.cvut.fit.travelmates.databinding.FragmentExploreBinding
+import cz.cvut.fit.travelmates.trips.databinding.FragmentExploreBinding
+import cz.cvut.fit.travelmates.trips.explore.list.ExploreTripsAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -48,7 +49,7 @@ class ExploreFragment : Fragment() {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = tripsAdapter
         }
-        viewModel.exploreTrips.observe(viewLifecycleOwner) {
+        viewModel.filteredTrips.observe(viewLifecycleOwner) {
             tripsAdapter.submitList(it)
         }
     }

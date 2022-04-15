@@ -5,18 +5,6 @@
     android:id="@+id/navigation_main"
     app:startDestination="@id/navigation_home">
 
-    <fragment
-        android:id="@+id/navigation_explore"
-        android:name="cz.cvut.fit.travelmates.explore.ExploreFragment"
-        tools:layout="@layout/fragment_explore">
-        <action
-            android:id="@+id/action_explore_to_details"
-            app:destination="@id/trip_details_graph">
-            <argument
-                android:name="tripId"
-                app:argType="long" />
-        </action>
-    </fragment>
     <include app:graph="@navigation/navigation_auth" />
     <include app:graph="@navigation/navigation_trip_details" />
     <fragment
@@ -27,6 +15,7 @@
     <include app:graph="@navigation/navigation_locations" />
     <include app:graph="@navigation/navigation_posts" />
     <include app:graph="@navigation/add_trip_navigation" />
+    <include app:graph="@navigation/explore_navigation" />
     <fragment
         android:id="@+id/navigation_home"
         android:name="cz.cvut.fit.travelmates.home.HomeFragment"
@@ -46,7 +35,7 @@
             app:destination="@id/navigation_posts_graph" />
         <action
             android:id="@+id/action_to_explore"
-            app:destination="@id/navigation_explore" />
+            app:destination="@id/explore_graph" />
         <action
             android:id="@+id/action_home_to_add_trip"
             app:destination="@id/add_trip_graph" />

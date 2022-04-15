@@ -1,14 +1,15 @@
-package cz.cvut.fit.travelmates.explore
+package cz.cvut.fit.travelmates.trips.explore.list
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import cz.cvut.fit.travelmates.databinding.ItemExploreTripBinding
 import cz.cvut.fit.travelmates.mainapi.trips.models.Trip
 import cz.cvut.fit.travelmates.mainapi.trips.models.TripDiff
 import cz.cvut.fit.travelmates.trips.TripRequirementsAdapter
+import cz.cvut.fit.travelmates.trips.databinding.ItemTripBinding
+import java.time.format.DateTimeFormatter
 
 class ExploreTripsAdapter : ListAdapter<Trip, ExploreTripsAdapter.ExploreTripViewHolder>(TripDiff) {
 
@@ -16,7 +17,7 @@ class ExploreTripsAdapter : ListAdapter<Trip, ExploreTripsAdapter.ExploreTripVie
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExploreTripViewHolder {
         val binding =
-            ItemExploreTripBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            ItemTripBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ExploreTripViewHolder(binding)
     }
 
@@ -24,12 +25,12 @@ class ExploreTripsAdapter : ListAdapter<Trip, ExploreTripsAdapter.ExploreTripVie
         holder.bind()
     }
 
-    inner class ExploreTripViewHolder(private val binding: ItemExploreTripBinding) :
+    inner class ExploreTripViewHolder(private val binding: ItemTripBinding) :
         RecyclerView.ViewHolder(binding.root) {
         private val requirementsAdapter = TripRequirementsAdapter()
 
         init {
-            binding.recyclerExploreTripItemEquipment.apply {
+            binding.recyclerTripItemEquipment.apply {
                 layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
                 adapter = requirementsAdapter
             }
@@ -38,15 +39,22 @@ class ExploreTripsAdapter : ListAdapter<Trip, ExploreTripsAdapter.ExploreTripVie
         fun bind() {
             val item = getItem(adapterPosition)
             binding.apply {
-                textExploreTripItemTitle.text = item.title
-                textExploreTripItemOwner.text = item.owner.name
-                textExploreTripItemDescription.text = item.description
-                //TODO Load pictures
+                textTripItemTitle.text = item.title
+                textTripItemDescription.text = item.description
+                val date = DATE_FORMAT.format(item.suggestedDate)
+                textTripsItemDateLocation.text = date
                 root.setOnClickListener {
                     onTripPressed?.invoke(item.id)
                 }
+                //TODO Load pictures
             }
-            requirementsAdapter.submitList(item.requirements.filter { !it.isFulfilled })
+            requirementsAdapter.submitList(item.requirements.filter {
+                !it.isFulfilled
+            })
         }
+    }
+
+    companion object {
+        private val DATE_FORMAT = DateTimeFormatter.ofPattern("MMM d")
     }
 }

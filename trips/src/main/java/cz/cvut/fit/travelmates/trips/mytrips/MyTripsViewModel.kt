@@ -17,7 +17,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MyTripsViewModel @Inject constructor(
-    private val composeMyTripsUseCase: ComposeMyTripsUseCase
+    private val composeMyTrips: ComposeMyTripsUseCase
 ) : ViewModel() {
 
     private val _trips = MutableLiveData<List<MyTripsItem>>()
@@ -43,7 +43,7 @@ class MyTripsViewModel @Inject constructor(
     private fun loadTrips() {
         viewState.value = ViewState.LOADING
         viewModelScope.launchCatching(execute = {
-            val loadedTrips = composeMyTripsUseCase.composeMyTrips()
+            val loadedTrips = composeMyTrips.invoke()
             _trips.value = loadedTrips
             viewState.value = ViewState.CONTENT
         }, catch = {
