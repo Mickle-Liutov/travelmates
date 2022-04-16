@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import cz.cvut.fit.travelmates.location.setLocationPreview
 import cz.cvut.fit.travelmates.mainapi.trips.models.Trip
 import cz.cvut.fit.travelmates.mainapi.trips.models.TripDiff
 import cz.cvut.fit.travelmates.trips.TripRequirementsAdapter
@@ -46,7 +47,7 @@ class ExploreTripsAdapter : ListAdapter<Trip, ExploreTripsAdapter.ExploreTripVie
                 root.setOnClickListener {
                     onTripPressed?.invoke(item.id)
                 }
-                //TODO Load pictures
+                imageTripItem.setLocationPreview(item.location)
             }
             requirementsAdapter.submitList(item.requirements.filter {
                 !it.isFulfilled

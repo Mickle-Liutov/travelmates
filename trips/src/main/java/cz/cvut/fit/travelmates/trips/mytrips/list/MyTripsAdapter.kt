@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import cz.cvut.fit.travelmates.location.setLocationPreview
 import cz.cvut.fit.travelmates.trips.TripRequirementsAdapter
 import cz.cvut.fit.travelmates.trips.databinding.ItemMyTripSubtitleBinding
 import cz.cvut.fit.travelmates.trips.databinding.ItemTripBinding
@@ -71,7 +72,7 @@ class MyTripsAdapter :
                 root.setOnClickListener {
                     onTripPressed?.invoke(item)
                 }
-                //TODO Load pictures
+                imageTripItem.setLocationPreview(item.location)
             }
             requirementsAdapter.submitList(item.requirements.filter {
                 !it.isFulfilled
