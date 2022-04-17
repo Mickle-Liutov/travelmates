@@ -44,6 +44,13 @@ class JoinTripFragment : Fragment() {
                 Toast.LENGTH_SHORT
             ).show()
         }
+        viewModel.eventError.observe(viewLifecycleOwner) {
+            Toast.makeText(
+                requireContext(),
+                getString(R.string.join_trip_error),
+                Toast.LENGTH_SHORT
+            ).show()
+        }
         viewModel.eventNavigateBack.observe(viewLifecycleOwner) {
             findNavController().popBackStack()
         }
