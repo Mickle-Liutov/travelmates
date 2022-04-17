@@ -27,6 +27,13 @@
     <string name="request_message_accepted">Request was accepted.</string>
     <string name="request_message_rejected">Request was rejected.</string>
 
+    <string name="reject_title">Reject request</string>
+    <string name="reject_hint_reason">Reason</string>
+    <string name="reject_block_resend">Block resending request</string>
+    <string name="reject_button_cancel">Cancel</string>
+    <string name="reject_button_reject">Reject</string>
+    <string name="reject_error">Couldn\'t reject the request, please try again</string>
+
     <string name="explore_title">Discover trips</string>
     <string name="explore_hint_search">Search</string>
 
