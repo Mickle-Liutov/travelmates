@@ -37,6 +37,7 @@
         <entry key="trips/src/main/res/drawable/bg_search.xml" value="0.187" />
         <entry key="trips/src/main/res/layout/dialog_add_requirement.xml" value="0.24322916666666666" />
         <entry key="trips/src/main/res/layout/fragment_add_trip.xml" value="0.24322916666666666" />
+        <entry key="trips/src/main/res/layout/fragment_contact.xml" value="0.24322916666666666" />
         <entry key="trips/src/main/res/layout/fragment_explore.xml" value="0.24322916666666666" />
         <entry key="trips/src/main/res/layout/fragment_join_trip.xml" value="0.24322916666666666" />
         <entry key="trips/src/main/res/layout/fragment_my_trips.xml" value="0.215625" />

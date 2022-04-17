@@ -1,10 +1,10 @@
 package cz.cvut.fit.travelmates.trips.addtrip
 
+import android.app.DatePickerDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -12,10 +12,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import cz.cvut.fit.travelmates.core.fragment.getNavigationResult
 import cz.cvut.fit.travelmates.location.Location
 import cz.cvut.fit.travelmates.location.pick.PickLocationFragment
+import cz.cvut.fit.travelmates.trips.R
 import cz.cvut.fit.travelmates.trips.addtrip.requirements.AddRequirementsAdapter
 import cz.cvut.fit.travelmates.trips.databinding.FragmentAddTripBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import java.time.LocalDate
 
 @ExperimentalCoroutinesApi
 @AndroidEntryPoint
@@ -45,8 +47,8 @@ class AddTripFragment : Fragment() {
         viewModel.eventNavigateAddRequirement.observe(viewLifecycleOwner) {
             findNavController().navigate(AddTripFragmentDirections.actionToAddRequirement())
         }
-        viewModel.eventShowTripCreated.observe(viewLifecycleOwner) {
-            Toast.makeText(requireContext(), "Trip was created", Toast.LENGTH_SHORT).show()
+        viewModel.eventNavigateContactStep.observe(viewLifecycleOwner) {
+            findNavController().navigate(AddTripFragmentDirections.actionToContact(it))
         }
         viewModel.eventNavigatePickLocation.observe(viewLifecycleOwner) {
             findNavController().navigate(AddTripFragmentDirections.actionToPickLocation())
@@ -54,10 +56,12 @@ class AddTripFragment : Fragment() {
         viewModel.eventNavigateBack.observe(viewLifecycleOwner) {
             findNavController().popBackStack()
         }
-        findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<String>(
+        val backstackEntry = findNavController().getBackStackEntry(R.id.navigation_add_trip)
+        backstackEntry.savedStateHandle.getLiveData<String>(
             KEY_NEW_REQUIREMENT
-        )?.observe(viewLifecycleOwner) { newRequirement ->
+        ).observe(viewLifecycleOwner) { newRequirement ->
             viewModel.onRequirementAdded(newRequirement)
+            backstackEntry.savedStateHandle.remove<String>(KEY_NEW_REQUIREMENT)
         }
 
     }
@@ -74,6 +78,15 @@ class AddTripFragment : Fragment() {
         }
         viewModel.requirementsUi.observe(viewLifecycleOwner) {
             requirementsAdapter.submitList(it)
+        }
+        viewModel.eventPickDate.observe(viewLifecycleOwner) {
+            DatePickerDialog(
+                requireContext(),
+                { _, year, month, dayOfMonth ->
+                    val localDateMonth = month + 1
+                    viewModel.onDateSet(LocalDate.of(year, localDateMonth, dayOfMonth))
+                }, it.year, it.month.ordinal, it.dayOfMonth
+            ).show()
         }
         getNavigationResult<Location>(PickLocationFragment.KEY_PICK_LOCATION)?.observe(
             viewLifecycleOwner

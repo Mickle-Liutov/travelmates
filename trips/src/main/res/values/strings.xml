@@ -29,4 +29,24 @@
 
     <string name="explore_title">Discover trips</string>
     <string name="explore_hint_search">Search</string>
+
+    <string name="add_trip_title">Create trip</string>
+    <string name="add_trip_button_set_location">Set location</string>
+    <string name="add_trip_hint_title">Title</string>
+    <string name="add_trip_hint_description">Description</string>
+    <string name="add_trip_button_create">Next</string>
+    <string name="add_trip_button_add_new_requirement">Add</string>
+    <string name="add_trip_title_add_requirement">Add requirement</string>
+    <string name="add_trip_hint_requirement_name">Name</string>
+    <string name="add_trip_button_add_requirement">Add</string>
+    <string name="add_trip_title_requirements">Trip requirements</string>
+    <string name="add_trip_suggested_date_format">Suggested date: %1$s</string>
+    <string name="add_trip_button_change_date">Change</string>
+
+    <string name="contact_title">Create trip</string>
+    <string name="contact_message_created">Trip was created</string>
+    <string name="contact_instructions">Almost there, one more thing you need to provide is a way for trip members to contact you (e.g. social media, email). This info is only shared with people who you accept into your trip.</string>
+    <string name="contact_button_create">Create</string>
+    <string name="contact_hint_contact">Contact</string>
+    <string name="contact_error">Couldn\'t create a trip, please, try again</string>
 </resources>

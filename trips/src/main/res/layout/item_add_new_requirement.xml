@@ -7,9 +7,10 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonAddNewRequirement"
+            style="@style/Widget.AppTheme.Button.Outline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add new"
+            android:text="@string/add_trip_button_add_new_requirement"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
