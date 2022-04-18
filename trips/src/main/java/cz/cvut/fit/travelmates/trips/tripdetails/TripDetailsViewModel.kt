@@ -1,5 +1,6 @@
 package cz.cvut.fit.travelmates.trips.tripdetails
 
+import android.graphics.Bitmap
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
@@ -11,19 +12,22 @@ import cz.cvut.fit.travelmates.core.views.ViewState
 import cz.cvut.fit.travelmates.mainapi.trips.models.Request
 import cz.cvut.fit.travelmates.mainapi.trips.models.Trip
 import cz.cvut.fit.travelmates.trips.TripsRepository
+import cz.cvut.fit.travelmates.trips.tripdetails.images.AddImageItem
+import cz.cvut.fit.travelmates.trips.tripdetails.images.Image
+import cz.cvut.fit.travelmates.trips.tripdetails.images.UploadImageUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.map
-import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
 class TripDetailsViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
     private val tripsRepository: TripsRepository,
-    private val tripDetailsStateMapper: TripDetailsStateMapper
+    private val tripDetailsStateMapper: TripDetailsStateMapper,
+    private val uploadImage: UploadImageUseCase
 ) : ViewModel() {
 
     private val args = TripDetailsFragmentArgs.fromSavedStateHandle(savedStateHandle)
@@ -60,6 +64,10 @@ class TripDetailsViewModel @Inject constructor(
         state.joinRequestsVisible && requests.isNotEmpty()
     }.asLiveData()
 
+    val images = _detailedTrip.map {
+        it.images.map { Image(it) } + AddImageItem
+    }.asLiveData()
+
     private val viewState = MutableStateFlow(ViewState.LOADING)
     val contentVisible = viewState.map { it == ViewState.CONTENT }.asLiveData()
     val loadingVisible = viewState.map { it == ViewState.LOADING }.asLiveData()
@@ -71,22 +79,23 @@ class TripDetailsViewModel @Inject constructor(
     private val _eventNavigateRequest = SingleLiveEvent<Request>()
     val eventNavigateRequest = _eventNavigateRequest.immutable()
 
+    private val _eventPickImage = SingleLiveEvent<Request>()
+    val eventPickImage = _eventPickImage.immutable()
+
     private val _eventNavigateBack = SingleLiveEvent<Unit>()
     val eventNavigateBack = _eventNavigateBack.immutable()
 
     init {
-        loadDetails()
+        loadTrip()
     }
 
-    private fun loadDetails() {
+    private fun loadTrip() {
         viewModelScope.launchCatching(execute = {
             viewState.value = ViewState.LOADING
             val detailedTrip = tripsRepository.getTripDetails(tripId)
             _detailedTripOptional.value = detailedTrip
             viewState.value = ViewState.CONTENT
         }, catch = {
-            //TODO Handle
-            Timber.e(it)
             viewState.value = ViewState.ERROR
         })
     }
@@ -98,6 +107,40 @@ class TripDetailsViewModel @Inject constructor(
 
     fun onReviewRequestPressed(request: Request) {
         _eventNavigateRequest.value = request
+    }
+
+    fun onStopGatheringPressed() {
+        viewModelScope.launchCatching(execute = {
+            val trip = _detailedTripOptional.value ?: return@launchCatching
+            tripsRepository.stopGatheringTrip(trip.id)
+            loadTrip()
+        }, catch = {
+            //TODO
+        })
+    }
+
+    fun onFinishTripPressed() {
+        viewModelScope.launchCatching(execute = {
+            val trip = _detailedTripOptional.value ?: return@launchCatching
+            tripsRepository.finishTrip(trip.id)
+            loadTrip()
+        }, catch = {
+            //TODO
+        })
+    }
+
+    fun onUploadImagePressed() {
+        _eventPickImage.call()
+    }
+
+    fun onImagePicked(image: Bitmap) {
+        viewModelScope.launchCatching(execute = {
+            val trip = _detailedTripOptional.value ?: return@launchCatching
+            uploadImage.invoke(image, trip.id)
+            loadTrip()
+        }, catch = {
+            //TODO
+        })
     }
 
     fun onBackPressed() {

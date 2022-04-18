@@ -7,7 +7,7 @@ sealed class TripDetailsState() {
     open val finishGatheringVisible = false
     open val finishTripVisible = false
     open val joinRequestsVisible = false
-    open val picturesSectionVisible = false
+    open val imagesSectionVisible = false
     open val canOpenMemberDetails = false
     open val requestToJoinVisible = false
     open val requestSentVisible = false
@@ -41,7 +41,7 @@ sealed class TripDetailsState() {
     }
 
     object Finished : TripDetailsState() {
-        override val picturesSectionVisible = true
+        override val imagesSectionVisible = true
         override val canOpenMemberDetails = true
     }
 

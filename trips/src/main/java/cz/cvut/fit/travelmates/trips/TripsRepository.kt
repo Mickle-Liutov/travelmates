@@ -5,6 +5,7 @@ import cz.cvut.fit.travelmates.mainapi.trips.TripsService
 import cz.cvut.fit.travelmates.mainapi.trips.models.NewJoinRequestDto
 import cz.cvut.fit.travelmates.mainapi.trips.models.NewTripDto
 import cz.cvut.fit.travelmates.mainapi.trips.models.Trip
+import cz.cvut.fit.travelmates.mainapi.trips.models.UploadImageDto
 
 class TripsRepository(
     private val tripsService: TripsService
@@ -28,6 +29,18 @@ class TripsRepository(
 
     suspend fun sendJoinRequest(tripId: Long, newJoinRequestDto: NewJoinRequestDto) {
         tripsService.sendJoinRequest(tripId, newJoinRequestDto)
+    }
+
+    suspend fun stopGatheringTrip(tripId: Long) {
+        tripsService.stopGatheringTrip(tripId)
+    }
+
+    suspend fun finishTrip(tripId: Long) {
+        tripsService.finishTrip(tripId)
+    }
+
+    suspend fun uploadTripImage(tripId: Long, imageRef: String) {
+        tripsService.uploadTripImage(tripId, UploadImageDto(imageRef))
     }
 
 }

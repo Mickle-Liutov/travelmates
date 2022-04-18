@@ -3,6 +3,7 @@ import libs.AndroidTest.androidTest
 import libs.Coil.coil
 import libs.Desugaring.desugaring
 import libs.Hilt.hilt
+import libs.ImagePicker.imagePicker
 import libs.Navigation.navigation
 import libs.Networking.networking
 import libs.Timber.timber
@@ -55,6 +56,7 @@ dependencies {
     timber()
     desugaring()
     coil()
+    imagePicker()
 
     androidTest()
     unitTest()

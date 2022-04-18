@@ -36,7 +36,9 @@ data class Trip(
     @Json(name = "requests")
     val requests: List<Request>?,
     @Json(name = "currentUserRequest")
-    val currentUserRequest: Request?
+    val currentUserRequest: Request?,
+    @Json(name = "images")
+    val images: List<String>
 ) : Parcelable
 
 object TripDiff : DiffUtil.ItemCallback<Trip>() {

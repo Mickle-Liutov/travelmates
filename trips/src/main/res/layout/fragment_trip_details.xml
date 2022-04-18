@@ -22,6 +22,7 @@
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:contentDescription="@null"
                 android:scaleType="centerCrop"
                 android:src="@color/gray"
                 app:layout_constraintBottom_toTopOf="@id/viewTripDetailsGuide"
@@ -134,6 +135,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/margin_base_x2"
+                        android:nestedScrollingEnabled="false"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/textTripDetailsDate"
@@ -213,6 +215,34 @@
                         app:layout_constraintTop_toBottomOf="@id/textTripDetailsDescriptionTitle" />
 
                     <com.google.android.material.button.MaterialButton
+                        android:id="@+id/buttonTripDetailsStopGathering"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/margin_base_x2"
+                        android:layout_marginVertical="@dimen/margin_base_x2"
+                        android:onClick="@{()->vm.onStopGatheringPressed()}"
+                        android:text="@string/trip_details_button_stop_gathering"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/textTripDetailsDescription"
+                        app:visible="@{vm.screenState.finishGatheringVisible}" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/buttonTripDetailsFinish"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/margin_base_x2"
+                        android:layout_marginVertical="@dimen/margin_base_x2"
+                        android:onClick="@{()->vm.onFinishTripPressed()}"
+                        android:text="@string/trip_details_button_finish"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/textTripDetailsDescription"
+                        app:visible="@{vm.screenState.finishTripVisible}" />
+
+                    <com.google.android.material.button.MaterialButton
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/margin_base_x3"
@@ -223,6 +253,32 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/textTripDetailsRejected"
                         app:visible="@{vm.screenState.requestToJoinVisible}" />
+
+                    <TextView
+                        android:id="@+id/textTripDetailsImages"
+                        style="?textAppearanceHeadline6"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/margin_base_x3"
+                        android:layout_marginTop="@dimen/margin_base_x2"
+                        android:text="@string/trip_details_title_images"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/textTripDetailsRejected"
+                        app:visible="@{vm.screenState.imagesSectionVisible}" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerTripDetailsImages"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="@dimen/margin_base"
+                        android:clipToPadding="false"
+                        android:paddingHorizontal="@dimen/margin_base_x2"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/textTripDetailsImages"
+                        app:visible="@{vm.screenState.imagesSectionVisible}" />
 
                     <TextView
                         android:id="@+id/textTripDetailsRequestSent"

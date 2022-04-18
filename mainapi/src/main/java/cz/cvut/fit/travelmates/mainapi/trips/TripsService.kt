@@ -3,6 +3,7 @@ package cz.cvut.fit.travelmates.mainapi.trips
 import cz.cvut.fit.travelmates.mainapi.trips.models.NewJoinRequestDto
 import cz.cvut.fit.travelmates.mainapi.trips.models.NewTripDto
 import cz.cvut.fit.travelmates.mainapi.trips.models.Trip
+import cz.cvut.fit.travelmates.mainapi.trips.models.UploadImageDto
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -21,6 +22,18 @@ interface TripsService {
     suspend fun sendJoinRequest(
         @Path(PATH_TRIP_ID) tripId: Long,
         @Body body: NewJoinRequestDto
+    ): Response<Unit>
+
+    @PATCH("$PATH_TRIPS/{${PATH_TRIP_ID}}/stopGathering")
+    suspend fun stopGatheringTrip(@Path(PATH_TRIP_ID) tripId: Long): Response<Unit>
+
+    @PATCH("$PATH_TRIPS/{${PATH_TRIP_ID}}/finish")
+    suspend fun finishTrip(@Path(PATH_TRIP_ID) tripId: Long): Response<Unit>
+
+    @POST("$PATH_TRIPS/{${PATH_TRIP_ID}}/images")
+    suspend fun uploadTripImage(
+        @Path(PATH_TRIP_ID) tripId: Long,
+        @Body uploadImageDto: UploadImageDto
     ): Response<Unit>
 
     companion object {
