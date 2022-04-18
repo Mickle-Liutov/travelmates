@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="cz.cvut.fit.travelmates.trips.addtrip.contact.ContactViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_base"
+            android:background="?selectableItemBackground"
+            android:contentDescription="@null"
+            android:onClick="@{()->vm.onBackPressed()}"
+            android:padding="@dimen/margin_base"
+            android:src="@drawable/ic_back"
+            app:layout_constraintBottom_toBottomOf="@id/textContactTitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/textContactTitle" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textContactTitle"
+            style="?textAppearanceHeadline5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_base_x2"
+            android:text="@string/contact_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textContactInstruction"
+            style="?textAppearanceBody2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_base_x2"
+            android:text="@string/contact_instructions"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toTopOf="@id/textInputContactTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textContactTitle" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputContactTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_base_x2"
+            android:layout_marginTop="@dimen/margin_base"
+            app:layout_constraintBottom_toTopOf="@id/buttonContactCreate"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textContactInstruction">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/contact_hint_contact"
+                android:inputType="textCapSentences"
+                android:text="@={vm.typedContact}" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonContactCreate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_base_x2"
+            android:enabled="@{vm.isCreateEnabled()}"
+            android:onClick="@{()->vm.onCreatePressed()}"
+            android:text="@string/contact_button_create"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textInputContactTitle"
+            app:visibleOrInvisible="@{vm.contentVisible}" />
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/buttonContactCreate"
+            app:layout_constraintEnd_toEndOf="@id/buttonContactCreate"
+            app:layout_constraintStart_toStartOf="@id/buttonContactCreate"
+            app:layout_constraintTop_toTopOf="@id/buttonContactCreate"
+            app:visible="@{vm.loadingVisible}" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

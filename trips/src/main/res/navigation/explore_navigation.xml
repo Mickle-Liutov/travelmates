@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/explore_graph"
+    app:startDestination="@id/navigation_explore">
+
+    <fragment
+        android:id="@+id/navigation_explore"
+        android:name="cz.cvut.fit.travelmates.trips.explore.ExploreFragment"
+        tools:layout="@layout/fragment_explore">
+        <action
+            android:id="@+id/action_explore_to_details"
+            app:destination="@id/trip_details_graph">
+            <argument
+                android:name="tripId"
+                app:argType="long" />
+        </action>
+    </fragment>
+
+</navigation>

@@ -7,9 +7,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import cz.cvut.fit.travelmates.location.setLocationPreview
 import cz.cvut.fit.travelmates.trips.TripRequirementsAdapter
-import cz.cvut.fit.travelmates.trips.databinding.ItemMyTripBinding
 import cz.cvut.fit.travelmates.trips.databinding.ItemMyTripSubtitleBinding
+import cz.cvut.fit.travelmates.trips.databinding.ItemTripBinding
 import java.time.format.DateTimeFormatter
 
 class MyTripsAdapter :
@@ -20,7 +21,7 @@ class MyTripsAdapter :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyTripItemViewHolder {
         return when (viewType) {
             MyTripsItem.TYPE_ITEM -> TripViewHolder(
-                ItemMyTripBinding.inflate(
+                ItemTripBinding.inflate(
                     LayoutInflater.from(parent.context),
                     parent,
                     false
@@ -49,13 +50,13 @@ class MyTripsAdapter :
         abstract fun bind()
     }
 
-    inner class TripViewHolder(private val binding: ItemMyTripBinding) :
+    inner class TripViewHolder(private val binding: ItemTripBinding) :
         MyTripItemViewHolder(binding.root) {
 
         private val requirementsAdapter = TripRequirementsAdapter()
 
         init {
-            binding.recyclerMyTripItemEquipment.apply {
+            binding.recyclerTripItemEquipment.apply {
                 layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
                 adapter = requirementsAdapter
             }
@@ -64,14 +65,14 @@ class MyTripsAdapter :
         override fun bind() {
             val item = getItem(adapterPosition) as MyTrip
             binding.apply {
-                textMyTripItemTitle.text = item.title
-                textMyTripItemDescription.text = item.description
+                textTripItemTitle.text = item.title
+                textTripItemDescription.text = item.description
                 val date = DATE_FORMAT.format(item.suggestedTime)
-                textMyTripsItemDateLocation.text = date
+                textTripsItemDateLocation.text = date
                 root.setOnClickListener {
                     onTripPressed?.invoke(item)
                 }
-                //TODO Load pictures
+                imageTripItem.setLocationPreview(item.location)
             }
             requirementsAdapter.submitList(item.requirements.filter {
                 !it.isFulfilled

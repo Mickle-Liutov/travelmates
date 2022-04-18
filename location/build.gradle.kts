@@ -1,5 +1,6 @@
 import libs.AndroidCore.androidCore
 import libs.AndroidTest.androidTest
+import libs.Coil.coil
 import libs.Hilt.hilt
 import libs.Maps.maps
 import libs.Navigation.navigation
@@ -46,6 +47,7 @@ dependencies {
     hilt()
     navigation()
     maps()
+    coil()
 
     androidTest()
     unitTest()

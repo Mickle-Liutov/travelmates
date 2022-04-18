@@ -8,7 +8,11 @@ class LocationFormatter(private val location: Location, private val context: Con
     private val geoCoder = Geocoder(context)
 
     fun formatLocationName(): String {
-        val locations = geoCoder.getFromLocation(location.lat, location.lon, 1)
+        val locations = try {
+            geoCoder.getFromLocation(location.lat, location.lon, 1)
+        } catch (e: Exception) {
+            emptyList()
+        }
         return locations.firstOrNull()?.countryName ?: context.getString(R.string.location_unknown)
     }
 

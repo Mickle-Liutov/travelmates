@@ -12,6 +12,7 @@ plugins {
     id("com.android.library")
     id("kotlin-android")
     id("kotlin-kapt")
+    id("kotlin-parcelize")
     id("dagger.hilt.android.plugin")
     id("androidx.navigation.safeargs.kotlin")
 }
@@ -45,6 +46,7 @@ dependencies {
     implementation(project(":location"))
     implementation(project(":mainapi"))
     implementation(project(":core"))
+    implementation(project(":images"))
 
     androidCore()
     networking()

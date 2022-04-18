@@ -10,7 +10,9 @@ import androidx.navigation.fragment.findNavController
 import cz.cvut.fit.travelmates.trips.addtrip.AddTripFragment
 import cz.cvut.fit.travelmates.trips.databinding.DialogAddRequirementBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
+@ExperimentalCoroutinesApi
 @AndroidEntryPoint
 class AddRequirementDialog : DialogFragment() {
 

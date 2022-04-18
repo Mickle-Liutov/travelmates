@@ -12,9 +12,9 @@ sealed class AddRequirementItem {
     }
 }
 
-data class RequirementItem(val name: String) : AddRequirementItem() {
+data class RequirementItem(val id: String, val name: String) : AddRequirementItem() {
     override fun isItemSame(other: AddRequirementItem): Boolean {
-        return this == other
+        return other is RequirementItem && id == other.id
     }
 
     override fun areContentsSame(other: AddRequirementItem): Boolean {

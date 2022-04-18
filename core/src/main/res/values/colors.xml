@@ -17,6 +17,7 @@
     <color name="gray">#828282</color>
     <color name="meteorite">#2F1970</color>
     <color name="danube">#647CD3</color>
+    <color name="concrete">#F2F2F2</color>
     <color name="black">#000000</color>
     <color name="white">#ffffff</color>
 </resources>

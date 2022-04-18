@@ -13,7 +13,7 @@ class ComposeMyTripsUseCase(
     private val userService: UserService
 ) {
 
-    suspend fun composeMyTrips(): List<MyTripsItem> {
+    suspend fun invoke(): List<MyTripsItem> {
         val trips = tripsRepository.getMyTrips()
         val user = userService.getUser().toBody()
         val ownerTrips = trips.filter { it.owner.email == user.email }

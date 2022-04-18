@@ -37,12 +37,23 @@
     </fragment>
     <fragment
         android:id="@+id/navigation_request"
-        android:name="cz.cvut.fit.travelmates.trips.request.RequestFragment"
+        android:name="cz.cvut.fit.travelmates.trips.request.review.RequestFragment"
         tools:layout="@layout/fragment_request">
         <argument
             android:name="request"
             app:argType="cz.cvut.fit.travelmates.mainapi.trips.models.Request" />
+        <action
+            android:id="@+id/action_to_reject"
+            app:destination="@id/navigation_reject" />
     </fragment>
+    <dialog
+        android:id="@+id/navigation_reject"
+        android:name="cz.cvut.fit.travelmates.trips.request.reject.RejectDialogFragment"
+        tools:layout="@layout/dialog_reject">
+        <argument
+            android:name="requestId"
+            app:argType="long" />
+    </dialog>
 
 
 </navigation>

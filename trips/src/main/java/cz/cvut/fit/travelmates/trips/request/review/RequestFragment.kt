@@ -1,4 +1,4 @@
-package cz.cvut.fit.travelmates.trips.request
+package cz.cvut.fit.travelmates.trips.request.review
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -42,12 +42,8 @@ class RequestFragment : Fragment() {
                 Toast.LENGTH_SHORT
             ).show()
         }
-        viewModel.eventRejected.observe(viewLifecycleOwner) {
-            Toast.makeText(
-                requireContext(),
-                getString(R.string.request_message_rejected),
-                Toast.LENGTH_SHORT
-            ).show()
+        viewModel.eventNavigateReject.observe(viewLifecycleOwner) {
+            findNavController().navigate(RequestFragmentDirections.actionToReject(it))
         }
         viewModel.eventNavigateBack.observe(viewLifecycleOwner) {
             findNavController().popBackStack()
