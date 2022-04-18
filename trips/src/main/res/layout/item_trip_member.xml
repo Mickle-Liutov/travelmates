@@ -13,10 +13,24 @@
             android:layout_width="@dimen/user_image"
             android:layout_height="@dimen/user_image"
             android:layout_marginStart="@dimen/margin_base_x2"
+            android:contentDescription="@null"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@drawable/ic_my_profile" />
+
+        <ImageView
+            android:id="@+id/imageItemTripMemberOwner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_owner"
+            app:layout_constraintBottom_toBottomOf="@id/imageItemTripMember"
+            app:layout_constraintEnd_toEndOf="@id/imageItemTripMember"
+            app:layout_constraintHorizontal_bias="1"
+            app:layout_constraintStart_toStartOf="@id/imageItemTripMember"
+            app:layout_constraintTop_toTopOf="@id/imageItemTripMember"
+            app:layout_constraintVertical_bias="1" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textItemTripMemberName"

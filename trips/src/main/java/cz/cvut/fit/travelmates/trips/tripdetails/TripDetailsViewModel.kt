@@ -15,6 +15,7 @@ import cz.cvut.fit.travelmates.trips.TripsRepository
 import cz.cvut.fit.travelmates.trips.tripdetails.images.AddImageItem
 import cz.cvut.fit.travelmates.trips.tripdetails.images.Image
 import cz.cvut.fit.travelmates.trips.tripdetails.images.UploadImageUseCase
+import cz.cvut.fit.travelmates.trips.tripdetails.members.TripParticipant
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.combine
@@ -46,7 +47,7 @@ class TripDetailsViewModel @Inject constructor(
         it.location
     }.asLiveData()
     val members = _detailedTrip.map {
-        listOf(it.owner) + it.members
+        listOf(TripParticipant(it.owner, true)) + it.members.map { TripParticipant(it, false) }
     }.asLiveData()
     val equipment = _detailedTrip.map {
         it.requirements

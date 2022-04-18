@@ -18,6 +18,7 @@ import com.github.dhaval2404.imagepicker.ImagePicker
 import cz.cvut.fit.travelmates.trips.TripRequirementsAdapter
 import cz.cvut.fit.travelmates.trips.databinding.FragmentTripDetailsBinding
 import cz.cvut.fit.travelmates.trips.tripdetails.images.ImagesAdapter
+import cz.cvut.fit.travelmates.trips.tripdetails.members.MembersAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
