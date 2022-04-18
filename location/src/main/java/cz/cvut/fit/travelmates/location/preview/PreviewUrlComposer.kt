@@ -8,7 +8,7 @@ object PreviewUrlComposer {
     private const val SIZE = 380
     private const val SIZE_BIG = 640
     private const val MAPS_KEY = "AIzaSyDNKU3Vuu0vGNATolq45SK9dAgCV5vzIc8"
-    private val URL_FORMAT =
+    private const val URL_FORMAT =
         "https://maps.googleapis.com/maps/api/staticmap?zoom=%d&size=%dx%d&markers=color:%s|%.6f,%.6f&key=%s"
 
 

@@ -28,9 +28,6 @@ class MyTripsViewModel @Inject constructor(
     val loadingVisible = viewState.map { it == ViewState.LOADING }.asLiveData()
     val errorVisible = viewState.map { it == ViewState.ERROR }.asLiveData()
 
-    private val _eventNavigateAdd = SingleLiveEvent<Unit>()
-    val eventNavigateAdd = _eventNavigateAdd.immutable()
-
     private val _eventNavigateDetails = SingleLiveEvent<Long>()
     val eventNavigateDetails = _eventNavigateDetails.immutable()
 
@@ -49,10 +46,6 @@ class MyTripsViewModel @Inject constructor(
         }, catch = {
             viewState.value = ViewState.ERROR
         })
-    }
-
-    fun onAddPressed() {
-        _eventNavigateAdd.call()
     }
 
     fun onTripPressed(trip: MyTrip) {

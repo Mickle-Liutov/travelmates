@@ -9,6 +9,7 @@ import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -77,6 +78,9 @@ class AddPostFragment : Fragment() {
             viewLifecycleOwner
         ) {
             viewModel.onLocationPicked(it)
+        }
+        viewModel.eventError.observe(viewLifecycleOwner) {
+            Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
         }
         viewModel.eventNavigateBack.observe(viewLifecycleOwner) {
             findNavController().popBackStack()

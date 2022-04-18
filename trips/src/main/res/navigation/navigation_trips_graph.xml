@@ -10,10 +10,6 @@
         android:name="cz.cvut.fit.travelmates.trips.mytrips.MyTripsFragment"
         tools:layout="@layout/fragment_my_trips">
         <action
-            android:id="@+id/action_to_add_trip"
-            app:destination="@id/navigation_add_trip" />
-
-        <action
             android:id="@+id/action_to_trip_details"
             app:destination="@id/trip_details_graph">
             <argument

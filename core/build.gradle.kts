@@ -4,6 +4,7 @@ import libs.Coil.coil
 import libs.Firebase.firebase
 import libs.Navigation.navigation
 import libs.Networking.networking
+import libs.Timber.timber
 import libs.UnitTest.unitTest
 
 plugins {
@@ -41,6 +42,7 @@ dependencies {
     navigation()
     firebase()
     coil()
+    timber()
 
     androidTest()
     unitTest()

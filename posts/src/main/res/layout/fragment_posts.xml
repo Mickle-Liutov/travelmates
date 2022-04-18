@@ -30,6 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/margin_base"
             android:background="?selectableItemBackgroundBorderless"
+            android:contentDescription="@null"
             android:onClick="@{()->vm.onAddPressed()}"
             android:padding="@dimen/margin_base"
             android:src="@drawable/ic_post_add"

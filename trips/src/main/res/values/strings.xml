@@ -5,7 +5,6 @@
     <string name="my_trips_subtitle_request">Pending Join Requests</string>
     <string name="my_trips_subtitle_member">Joined by Me</string>
 
-    <string name="trip_details_title">Trip details</string>
     <string name="trip_details_title_equipment">Equipment</string>
     <string name="trip_details_title_description">Description</string>
     <string name="trip_details_title_requests">Pending requests</string>

@@ -7,9 +7,9 @@ import java.time.ZoneId
 class PostsFormatter(post: Post) {
     val creatorIcon = post.creator.picture
     val creatorName = post.creator.name
-    val createdAt = DateUtils.getRelativeTimeSpanString(
+    val createdAt: String = DateUtils.getRelativeTimeSpanString(
         post.createdAt.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli()
-    )
+    )?.toString().orEmpty()
     val description = post.description
     val image = post.image
 }

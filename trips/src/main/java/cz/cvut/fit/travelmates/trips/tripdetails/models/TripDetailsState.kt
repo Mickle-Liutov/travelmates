@@ -3,7 +3,7 @@ package cz.cvut.fit.travelmates.trips.tripdetails.models
 /**
  * State of the trip details screen, based on trip state and user's membership
  */
-sealed class TripDetailsState() {
+sealed class TripDetailsState {
     open val finishGatheringVisible = false
     open val finishTripVisible = false
     open val joinRequestsVisible = false

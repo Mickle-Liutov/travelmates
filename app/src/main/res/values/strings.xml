@@ -1,11 +1,10 @@
 <resources>
     <string name="app_name">TravelMates</string>
 
-    <string name="tab_posts">Posts</string>
     <string name="tab_home">Discover</string>
     <string name="tab_my_trips">My trips</string>
-
     <string name="tab_profile">Profile</string>
+
     <string name="profile_hint_email">Email</string>
     <string name="profile_hint_name">Name</string>
     <string name="profile_error_save_failed">Couldn\'t save changes, please try again</string>
