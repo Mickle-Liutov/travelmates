@@ -8,11 +8,14 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import cz.cvut.fit.travelmates.core.bindings.setImageRef
+import cz.cvut.fit.travelmates.mainapi.trips.models.TripMember
 import cz.cvut.fit.travelmates.trips.R
 import cz.cvut.fit.travelmates.trips.databinding.ItemTripMemberBinding
 
 class MembersAdapter :
     ListAdapter<TripParticipant, MembersAdapter.MemberViewHolder>(TripParticipantDiff) {
+
+    var onMemberPressed: ((TripMember) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MemberViewHolder {
         val binding =
@@ -39,6 +42,9 @@ class MembersAdapter :
                     ContextCompat.getDrawable(root.context, R.drawable.ic_my_profile),
                     root.context.getString(R.string.transform_circle_crop)
                 )
+                root.setOnClickListener {
+                    onMemberPressed?.invoke(member)
+                }
             }
         }
     }

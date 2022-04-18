@@ -17,6 +17,9 @@
     <string name="trip_details_button_stop_gathering">Stop gathering</string>
     <string name="trip_details_button_finish">Finish trip</string>
 
+    <string name="trip_member_title">Trip member</string>
+    <string name="trip_member_title_contact">Contact at:</string>
+
     <string name="join_trip_title">Join trip</string>
     <string name="join_trip_title_equipment">How can you contribute?</string>
     <string name="join_trip_title_contact">Provide a way to contact you</string>

@@ -45,6 +45,7 @@
         <entry key="trips/src/main/res/layout/fragment_my_trips.xml" value="0.215625" />
         <entry key="trips/src/main/res/layout/fragment_request.xml" value="0.24322916666666666" />
         <entry key="trips/src/main/res/layout/fragment_trip_details.xml" value="0.24322916666666666" />
+        <entry key="trips/src/main/res/layout/fragment_trip_member.xml" value="0.24322916666666666" />
         <entry key="trips/src/main/res/layout/item_add_image.xml" value="0.24322916666666666" />
         <entry key="trips/src/main/res/layout/item_add_new_requirement.xml" value="0.24322916666666666" />
         <entry key="trips/src/main/res/layout/item_explore_trip.xml" value="0.24322916666666666" />

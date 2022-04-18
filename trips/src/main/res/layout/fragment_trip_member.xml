@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="cz.cvut.fit.travelmates.trips.member.TripMemberViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_base"
+            android:background="?selectableItemBackgroundBorderless"
+            android:contentDescription="@null"
+            android:onClick="@{()->vm.onBackPressed()}"
+            android:padding="@dimen/margin_base"
+            android:src="@drawable/ic_back"
+            app:layout_constraintBottom_toBottomOf="@id/textTripMemberTitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/textTripMemberTitle" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textTripMemberTitle"
+            style="?textAppearanceHeadline5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_base_x2"
+            android:text="@string/trip_member_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageTripMember"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_base_x4"
+            android:contentDescription="@null"
+            app:imageRef="@{vm.userImage}"
+            app:imageTransform="@{@string/transform_circle_crop}"
+            app:layout_constrainedHeight="true"
+            app:layout_constraintDimensionRatio="H, 1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textTripMemberTitle"
+            app:layout_constraintWidth_percent="0.5"
+            app:placeholder="@{@drawable/ic_my_profile}" />
+
+        <TextView
+            android:id="@+id/textTripMemberName"
+            style="?textAppearanceHeadline5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_base_x2"
+            android:layout_marginTop="@dimen/margin_base_x2"
+            android:text="@{vm.userName}"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imageTripMember"
+            tools:text="Jane Doe" />
+
+        <TextView
+            android:id="@+id/textTripMemberContactTitle"
+            style="?textAppearanceHeadline6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_base_x2"
+            android:layout_marginTop="@dimen/margin_base_x2"
+            android:text="@string/trip_member_title_contact"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textTripMemberName" />
+
+        <TextView
+            style="@style/TextAppearance.AppTheme.Body2.Black"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_base_x2"
+            android:layout_marginTop="@dimen/margin_base"
+            android:text="@{vm.userContact}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textTripMemberContactTitle"
+            tools:text="mail@mail.com" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

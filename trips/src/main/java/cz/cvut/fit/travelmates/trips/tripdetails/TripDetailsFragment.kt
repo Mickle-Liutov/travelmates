@@ -79,13 +79,18 @@ class TripDetailsFragment : Fragment() {
         viewModel.eventPickImage.observe(viewLifecycleOwner) {
             pickImage()
         }
+        viewModel.eventNavigateMember.observe(viewLifecycleOwner) {
+            findNavController().navigate(TripDetailsFragmentDirections.actionToTripMember(it))
+        }
         viewModel.eventNavigateBack.observe(viewLifecycleOwner) {
             findNavController().popBackStack()
         }
     }
 
     private fun setupMembers() {
-        val membersAdapter = MembersAdapter()
+        val membersAdapter = MembersAdapter().apply {
+            onMemberPressed = viewModel::onMemberPressed
+        }
         binding.recyclerTripDetailsMembers.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = membersAdapter

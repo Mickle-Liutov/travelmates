@@ -11,6 +11,7 @@ import cz.cvut.fit.travelmates.core.livedata.immutable
 import cz.cvut.fit.travelmates.core.views.ViewState
 import cz.cvut.fit.travelmates.mainapi.trips.models.Request
 import cz.cvut.fit.travelmates.mainapi.trips.models.Trip
+import cz.cvut.fit.travelmates.mainapi.trips.models.TripMember
 import cz.cvut.fit.travelmates.trips.TripsRepository
 import cz.cvut.fit.travelmates.trips.tripdetails.images.AddImageItem
 import cz.cvut.fit.travelmates.trips.tripdetails.images.Image
@@ -83,6 +84,9 @@ class TripDetailsViewModel @Inject constructor(
     private val _eventPickImage = SingleLiveEvent<Request>()
     val eventPickImage = _eventPickImage.immutable()
 
+    private val _eventNavigateMember = SingleLiveEvent<TripMember>()
+    val eventNavigateMember = _eventNavigateMember.immutable()
+
     private val _eventNavigateBack = SingleLiveEvent<Unit>()
     val eventNavigateBack = _eventNavigateBack.immutable()
 
@@ -142,6 +146,14 @@ class TripDetailsViewModel @Inject constructor(
         }, catch = {
             //TODO
         })
+    }
+
+    fun onMemberPressed(member: TripMember) {
+        val state = screenState.value ?: return
+        if (!state.canOpenMemberDetails) {
+            return
+        }
+        _eventNavigateMember.value = member
     }
 
     fun onBackPressed() {
