@@ -24,7 +24,7 @@ class PostsViewModel @Inject constructor(
     private val viewState = MutableStateFlow(ViewState.LOADING)
     val contentVisible = viewState.map { it == ViewState.CONTENT }.asLiveData()
     val loadingVisible = viewState.map { it == ViewState.LOADING }.asLiveData()
-    val errorVisible = viewState.map { it == ViewState.ERROR }.asLiveData() //TODO Observe
+    val errorVisible = viewState.map { it == ViewState.ERROR }.asLiveData()
 
     private val _posts = MutableLiveData<List<Post>>()
     val posts = _posts.immutable()

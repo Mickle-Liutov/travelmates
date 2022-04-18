@@ -42,6 +42,13 @@ class RequestFragment : Fragment() {
                 Toast.LENGTH_SHORT
             ).show()
         }
+        viewModel.eventAcceptError.observe(viewLifecycleOwner) {
+            Toast.makeText(
+                requireContext(),
+                getString(R.string.request_error_accept),
+                Toast.LENGTH_SHORT
+            ).show()
+        }
         viewModel.eventNavigateReject.observe(viewLifecycleOwner) {
             findNavController().navigate(RequestFragmentDirections.actionToReject(it))
         }

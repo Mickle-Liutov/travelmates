@@ -9,7 +9,6 @@ import cz.cvut.fit.travelmates.core.livedata.SingleLiveEvent
 import cz.cvut.fit.travelmates.core.livedata.immutable
 import cz.cvut.fit.travelmates.trips.request.RequestsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -27,6 +26,9 @@ class RequestViewModel @Inject constructor(
     private val _eventNavigateBack = SingleLiveEvent<Unit>()
     val eventNavigateBack = _eventNavigateBack.immutable()
 
+    private val _eventAcceptError = SingleLiveEvent<Unit>()
+    val eventAcceptError = _eventAcceptError.immutable()
+
     private val args = RequestFragmentArgs.fromSavedStateHandle(savedStateHandle)
     private val request = args.request
     val senderImage = liveData { emit(request.user.picture) }
@@ -39,8 +41,7 @@ class RequestViewModel @Inject constructor(
             _eventAccepted.call()
             _eventNavigateBack.call()
         }, catch = {
-            Timber.e(it)
-            //TODO
+            _eventAcceptError.call()
         })
     }
 

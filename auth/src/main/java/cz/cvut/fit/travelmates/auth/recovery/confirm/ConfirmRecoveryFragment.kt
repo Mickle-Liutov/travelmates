@@ -54,6 +54,9 @@ class ConfirmRecoveryFragment : Fragment() {
                 Toast.LENGTH_SHORT
             ).show()
         }
+        viewModel.eventError.observe(viewLifecycleOwner) {
+            Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+        }
         viewModel.eventNavigateBack.observe(viewLifecycleOwner) {
             findNavController().popBackStack()
         }

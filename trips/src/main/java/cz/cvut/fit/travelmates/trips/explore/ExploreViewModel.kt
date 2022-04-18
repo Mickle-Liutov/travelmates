@@ -33,11 +33,13 @@ class ExploreViewModel @Inject constructor(
     private val viewState = MutableStateFlow(ViewState.LOADING)
     val contentVisible = viewState.map { it == ViewState.CONTENT }.asLiveData()
     val loadingVisible = viewState.map { it == ViewState.LOADING }.asLiveData()
-    val errorVisible = viewState.map { it == ViewState.ERROR }.asLiveData() //TODO Observe
+    val errorVisible = viewState.map { it == ViewState.ERROR }.asLiveData()
 
     init {
         loadTrips()
     }
+
+    fun onRetryPressed() = loadTrips()
 
     private fun loadTrips() {
         viewState.value = ViewState.LOADING

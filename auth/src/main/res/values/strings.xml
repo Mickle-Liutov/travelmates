@@ -36,4 +36,5 @@
     <string name="confirm_recovery_hint_confirm_password">Confirm password</string>
     <string name="confirm_recovery_button_reset">Reset</string>
     <string name="confirm_recovery_message_pass_reset">Your password was changed successfully.</string>
+    <string name="confirm_recovery_error_recovery_failed">Couldn\'t change your password. Please, check your internet connection</string>
 </resources>

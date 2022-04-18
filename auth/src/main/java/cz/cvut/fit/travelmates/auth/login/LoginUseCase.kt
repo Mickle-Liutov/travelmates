@@ -9,7 +9,7 @@ class LoginUseCase(
     private val userService: UserService
 ) {
 
-    suspend fun login(email: String, password: String) {
+    suspend fun invoke(email: String, password: String) {
         authRepository.login(email, password)
         try {
             userService.loginUser().toBody()

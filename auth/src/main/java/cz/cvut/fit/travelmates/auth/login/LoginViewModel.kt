@@ -18,7 +18,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
-    private val loginUseCase: LoginUseCase,
+    private val login: LoginUseCase,
     private val resourcesProvider: ResourcesProvider
 ) : ViewModel() {
 
@@ -50,7 +50,7 @@ class LoginViewModel @Inject constructor(
         val password = typedPassword.value
         viewModelScope.launchCatching(execute = {
             viewState.value = ViewState.LOADING
-            loginUseCase.login(email, password)
+            login.invoke(email, password)
             _eventNavigateMain.call()
         }, catch = {
             when (it) {

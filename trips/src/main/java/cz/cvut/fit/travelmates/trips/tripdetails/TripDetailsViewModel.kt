@@ -47,9 +47,11 @@ class TripDetailsViewModel @Inject constructor(
     val location = _detailedTrip.map {
         it.location
     }.asLiveData()
+
     val members = _detailedTrip.map {
         listOf(TripParticipant(it.owner, true)) + it.members.map { TripParticipant(it, false) }
     }.asLiveData()
+
     val equipment = _detailedTrip.map {
         it.requirements
     }.asLiveData()
@@ -62,6 +64,7 @@ class TripDetailsViewModel @Inject constructor(
     val rejectedReason = _detailedTrip.map {
         it.currentUserRequest?.rejectionReason.orEmpty()
     }.asLiveData()
+
     val requestsTitleVisible = combine(screenStateFlow, requestsFlow) { state, requests ->
         state.joinRequestsVisible && requests.isNotEmpty()
     }.asLiveData()
@@ -73,7 +76,7 @@ class TripDetailsViewModel @Inject constructor(
     private val viewState = MutableStateFlow(ViewState.LOADING)
     val contentVisible = viewState.map { it == ViewState.CONTENT }.asLiveData()
     val loadingVisible = viewState.map { it == ViewState.LOADING }.asLiveData()
-    val errorVisible = viewState.map { it == ViewState.ERROR }.asLiveData() //TODO Observe
+    val errorVisible = viewState.map { it == ViewState.ERROR }.asLiveData()
 
     private val _eventNavigateJoin = SingleLiveEvent<Trip>()
     val eventNavigateJoin = _eventNavigateJoin.immutable()
@@ -87,12 +90,23 @@ class TripDetailsViewModel @Inject constructor(
     private val _eventNavigateMember = SingleLiveEvent<TripMember>()
     val eventNavigateMember = _eventNavigateMember.immutable()
 
+    private val _eventStopGatheringError = SingleLiveEvent<Unit>()
+    val eventStopGatheringError = _eventStopGatheringError.immutable()
+
+    private val _eventFinishTripError = SingleLiveEvent<Unit>()
+    val eventFinishTripError = _eventFinishTripError.immutable()
+
+    private val _eventUploadImageError = SingleLiveEvent<Unit>()
+    val eventUploadImageError = _eventUploadImageError.immutable()
+
     private val _eventNavigateBack = SingleLiveEvent<Unit>()
     val eventNavigateBack = _eventNavigateBack.immutable()
 
     init {
         loadTrip()
     }
+
+    fun onRetryPressed() = loadTrip()
 
     private fun loadTrip() {
         viewModelScope.launchCatching(execute = {
@@ -120,7 +134,7 @@ class TripDetailsViewModel @Inject constructor(
             tripsRepository.stopGatheringTrip(trip.id)
             loadTrip()
         }, catch = {
-            //TODO
+            _eventStopGatheringError.call()
         })
     }
 
@@ -130,7 +144,7 @@ class TripDetailsViewModel @Inject constructor(
             tripsRepository.finishTrip(trip.id)
             loadTrip()
         }, catch = {
-            //TODO
+            _eventFinishTripError.call()
         })
     }
 
@@ -144,7 +158,7 @@ class TripDetailsViewModel @Inject constructor(
             uploadImage.invoke(image, trip.id)
             loadTrip()
         }, catch = {
-            //TODO
+            _eventUploadImageError.call()
         })
     }
 

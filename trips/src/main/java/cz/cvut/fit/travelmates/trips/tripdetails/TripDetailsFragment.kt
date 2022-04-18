@@ -9,12 +9,15 @@ import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.dhaval2404.imagepicker.ImagePicker
+import cz.cvut.fit.travelmates.trips.R
 import cz.cvut.fit.travelmates.trips.TripRequirementsAdapter
 import cz.cvut.fit.travelmates.trips.databinding.FragmentTripDetailsBinding
 import cz.cvut.fit.travelmates.trips.tripdetails.images.ImagesAdapter
@@ -82,9 +85,22 @@ class TripDetailsFragment : Fragment() {
         viewModel.eventNavigateMember.observe(viewLifecycleOwner) {
             findNavController().navigate(TripDetailsFragmentDirections.actionToTripMember(it))
         }
+        viewModel.eventStopGatheringError.observe(viewLifecycleOwner) {
+            showToast(R.string.trip_details_error_stop_gathering)
+        }
+        viewModel.eventFinishTripError.observe(viewLifecycleOwner) {
+            showToast(R.string.trip_details_error_finish_trip)
+        }
+        viewModel.eventUploadImageError.observe(viewLifecycleOwner) {
+            showToast(R.string.trip_details_error_upload_image)
+        }
         viewModel.eventNavigateBack.observe(viewLifecycleOwner) {
             findNavController().popBackStack()
         }
+    }
+
+    private fun showToast(@StringRes messageRes: Int) {
+        Toast.makeText(requireContext(), messageRes, Toast.LENGTH_SHORT).show()
     }
 
     private fun setupMembers() {

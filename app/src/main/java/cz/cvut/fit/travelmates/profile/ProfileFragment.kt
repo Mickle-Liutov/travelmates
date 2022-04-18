@@ -75,6 +75,20 @@ class ProfileFragment : Fragment() {
                 Toast.LENGTH_SHORT
             ).show()
         }
+        viewModel.eventChangeImageError.observe(viewLifecycleOwner) {
+            Toast.makeText(
+                requireContext(),
+                getString(R.string.profile_error_image_upload_failed),
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+        viewModel.eventLogoutError.observe(viewLifecycleOwner) {
+            Toast.makeText(
+                requireContext(),
+                getString(R.string.profile_error_logout_failed),
+                Toast.LENGTH_SHORT
+            ).show()
+        }
         viewModel.eventNavigateBack.observe(viewLifecycleOwner) {
             findNavController().popBackStack()
         }

@@ -15,7 +15,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.launch
 import java.util.*
 import javax.inject.Inject
 
@@ -54,6 +53,12 @@ class ProfileViewModel @Inject constructor(
 
     private val _eventSaveError = SingleLiveEvent<Unit>()
     val eventSaveError = _eventSaveError.immutable()
+
+    private val _eventChangeImageError = SingleLiveEvent<Unit>()
+    val eventChangeImageError = _eventChangeImageError.immutable()
+
+    private val _eventLogoutError = SingleLiveEvent<Unit>()
+    val eventLogoutError = _eventLogoutError.immutable()
 
     private val _eventNavigateBack = SingleLiveEvent<Unit>()
     val eventNavigateBack = _eventNavigateBack.immutable()
@@ -105,16 +110,16 @@ class ProfileViewModel @Inject constructor(
     fun onProfileImagePicked(newImage: Bitmap) {
         val oldUser = user.value
         oldUser?.let {
-            viewModelScope.launch {
-                //TODO Add loader
+            viewModelScope.launchCatching(execute = {
                 val imageLocation = USER_PICTURE_FORMAT.format("${it.email}-${UUID.randomUUID()}")
                 val imageRef = imagesRepository.uploadImage(newImage, imageLocation)
                 val newUser = it.copy(picture = imageRef)
                 val updatedUser = userRepository.updateUser(newUser)
                 user.value = updatedUser
-            }
+            }, catch = {
+                _eventChangeImageError.call()
+            })
         }
-
     }
 
     fun onLogoutPressed() {
@@ -122,7 +127,7 @@ class ProfileViewModel @Inject constructor(
             authRepository.logout()
             _eventNavigateMain.call()
         }, catch = {
-            //TODO Handle
+            _eventLogoutError.call()
         })
     }
 

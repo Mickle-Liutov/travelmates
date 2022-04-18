@@ -16,6 +16,9 @@
     <string name="trip_details_request_rejected_format">Unfortunately, your request was rejected. The reason is:\n%1$s</string>
     <string name="trip_details_button_stop_gathering">Stop gathering</string>
     <string name="trip_details_button_finish">Finish trip</string>
+    <string name="trip_details_error_stop_gathering">That didn\'t work, please try again</string>
+    <string name="trip_details_error_finish_trip">That didn\'t work, please try again</string>
+    <string name="trip_details_error_upload_image">Couldn\'t upload the image, please try again</string>
 
     <string name="trip_member_title">Trip member</string>
     <string name="trip_member_title_contact">Contact at:</string>
@@ -35,6 +38,7 @@
     <string name="request_button_reject">Reject</string>
     <string name="request_message_accepted">Request was accepted.</string>
     <string name="request_message_rejected">Request was rejected.</string>
+    <string name="request_error_accept">Couldn\'t accept the request, please try again</string>
 
     <string name="reject_title">Reject request</string>
     <string name="reject_hint_reason">Reason</string>
