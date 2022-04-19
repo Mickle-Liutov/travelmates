@@ -5,6 +5,9 @@ import kotlinx.coroutines.runBlocking
 import okhttp3.Interceptor
 import okhttp3.Response
 
+/**
+ * Interceptor that adds authorization to requests
+ */
 class AuthInterceptor(
     private val authRepository: AuthRepository
 ) : Interceptor {
@@ -12,7 +15,9 @@ class AuthInterceptor(
     override fun intercept(chain: Interceptor.Chain): Response = runBlocking {
         if (authRepository.hasValidSession()) {
             try {
+                //Get auth token
                 val authHeader = authRepository.getIdToken()
+                //Add token to request
                 val newRequest = chain.request().newBuilder()
                     .addHeader(
                         AUTH_HEADER, BEARER_FORMAT.format(authHeader)

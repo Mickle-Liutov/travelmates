@@ -9,10 +9,16 @@ class PostsRepository(
     private val postsService: PostsService
 ) {
 
+    /**
+     * Creates a new post
+     */
     suspend fun createPost(newPost: NewPost) {
         postsService.createPost(newPost).toBody()
     }
 
+    /**
+     * Gets a list of all posts
+     */
     suspend fun getPosts(): List<Post> {
         return postsService.getPosts().toBody()
     }

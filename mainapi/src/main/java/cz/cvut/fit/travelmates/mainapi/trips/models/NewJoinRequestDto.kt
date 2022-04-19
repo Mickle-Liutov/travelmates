@@ -3,6 +3,9 @@ package cz.cvut.fit.travelmates.mainapi.trips.models
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
+/**
+ * DTO for creating join requests
+ */
 @JsonClass(generateAdapter = true)
 data class NewJoinRequestDto(
     @Json(name = "message")

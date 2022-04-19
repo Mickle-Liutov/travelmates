@@ -13,6 +13,13 @@ import cz.cvut.fit.travelmates.core.R
 import io.github.rosariopfernandes.firecoil.load
 import kotlinx.coroutines.runBlocking
 
+/**
+ * Adapter for setting image reference to ImageView
+ *
+ * @param imageRef image's reference
+ * @param placeholder placeholder to be shown while loading
+ * @param imageTransform transform to apply to image
+ */
 @BindingAdapter(value = ["imageRef", "placeholder", "imageTransform"], requireAll = false)
 fun ImageView.setImageRef(imageRef: String?, placeholder: Drawable?, imageTransform: String?) =
     runBlocking {
@@ -31,6 +38,11 @@ fun ImageView.setImageRef(imageRef: String?, placeholder: Drawable?, imageTransf
         }
     }
 
+/**
+ * Adapter for setting image bitmap to ImageView
+ *
+ * @param imageBitmap bitmap to set
+ */
 @BindingAdapter("imageBitmap")
 fun ImageView.setImageRef(imageBitmap: Bitmap?) {
     imageBitmap?.let {

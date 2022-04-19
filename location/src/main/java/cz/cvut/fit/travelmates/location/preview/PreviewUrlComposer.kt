@@ -2,6 +2,9 @@ package cz.cvut.fit.travelmates.location.preview
 
 import cz.cvut.fit.travelmates.location.Location
 
+/**
+ * Helper class for composing url for location preview
+ */
 object PreviewUrlComposer {
     private const val ZOOM = 8
     private const val COLOR = "red"
@@ -12,6 +15,13 @@ object PreviewUrlComposer {
         "https://maps.googleapis.com/maps/api/staticmap?zoom=%d&size=%dx%d&markers=color:%s|%.6f,%.6f&key=%s"
 
 
+    /**
+     * Composes url of location preview image
+     *
+     * @param location location, for which preview should be created
+     * @param form form of requested image
+     * @return url of the preview
+     */
     fun composeUrl(location: Location, form: PreviewForm): String {
         val horizontalSize = when (form) {
             PreviewForm.SQUARE -> SIZE

@@ -5,6 +5,9 @@ import retrofit2.http.Body
 import retrofit2.http.POST
 import retrofit2.http.Path
 
+/**
+ * API for requests
+ */
 interface RequestsService {
 
     @POST("requests/{$PATH_REQUEST_ID}/accept")

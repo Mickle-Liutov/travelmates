@@ -7,7 +7,9 @@ import com.squareup.moshi.JsonClass
 import cz.cvut.fit.travelmates.location.Location
 import kotlinx.parcelize.Parcelize
 import java.time.LocalDate
-
+/**
+ * DTO for creating trips
+ */
 @JsonClass(generateAdapter = true)
 data class NewTripDto(
     @Json(name = "title")
@@ -24,6 +26,9 @@ data class NewTripDto(
     val suggestedDate: LocalDate
 )
 
+/**
+ * Requirement of a new trip
+ */
 @Keep
 @Parcelize
 @JsonClass(generateAdapter = true)

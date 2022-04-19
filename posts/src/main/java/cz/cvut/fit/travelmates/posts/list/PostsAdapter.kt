@@ -8,6 +8,9 @@ import cz.cvut.fit.travelmates.mainapi.posts.Post
 import cz.cvut.fit.travelmates.mainapi.posts.PostDiff
 import cz.cvut.fit.travelmates.posts.databinding.ItemPostBinding
 
+/**
+ * Adapter for displaying posts
+ */
 class PostsAdapter : ListAdapter<Post, PostsAdapter.PostViewHolder>(PostDiff) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {

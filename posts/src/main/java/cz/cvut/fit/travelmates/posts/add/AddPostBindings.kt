@@ -6,6 +6,9 @@ import cz.cvut.fit.travelmates.location.Location
 import cz.cvut.fit.travelmates.location.LocationFormatter
 import cz.cvut.fit.travelmates.posts.R
 
+/**
+ * Adapter for formatting location name for AddPost screen
+ */
 @BindingAdapter("addPostLocation")
 fun TextView.setAddPostLocation(location: Location?) {
     val locationText = location?.let {

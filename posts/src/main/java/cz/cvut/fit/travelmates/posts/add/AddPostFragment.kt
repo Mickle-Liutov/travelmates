@@ -34,9 +34,12 @@ class AddPostFragment : Fragment() {
             val resultCode = result.resultCode
             val data = result.data
             if (resultCode != Activity.RESULT_OK) {
+                //Getting image didn't succeed
                 return@registerForActivityResult
             }
+            //Safe to assert not-null since result is RESULT_OK
             val fileUri = data?.data!!
+            //Getting bitmap based on SDK version
             val bitmap = if (Build.VERSION.SDK_INT < 28) {
                 @Suppress("DEPRECATION")
                 MediaStore.Images.Media.getBitmap(
@@ -47,6 +50,7 @@ class AddPostFragment : Fragment() {
                 val source = ImageDecoder.createSource(requireActivity().contentResolver, fileUri)
                 ImageDecoder.decodeBitmap(source)
             }
+            //Convert to software bitmap to avoid problems with hardware bitmaps
             val softwareBitmap = bitmap.copy(Bitmap.Config.ARGB_8888, false)
             viewModel.onImagePicked(softwareBitmap)
         }

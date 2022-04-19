@@ -6,6 +6,9 @@ import androidx.databinding.BindingAdapter
 import coil.load
 import cz.cvut.fit.travelmates.location.preview.PreviewUrlComposer
 
+/**
+ * Adapter for setting formatted location name to TextView
+ */
 @BindingAdapter("tripLocation")
 fun TextView.setTripLocation(location: Location?) {
     location?.let {
@@ -14,6 +17,11 @@ fun TextView.setTripLocation(location: Location?) {
     }
 }
 
+/**
+ * Adapter for setting location preview to ImageView
+ * @param location location, for which preview needs to be set
+ * @param previewForm form of requested preview
+ */
 @BindingAdapter(value = ["locationPreview", "previewForm"], requireAll = false)
 fun ImageView.setLocationPreview(location: Location?, previewForm: String? = null) {
     location?.let {

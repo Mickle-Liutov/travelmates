@@ -7,6 +7,9 @@ import cz.cvut.fit.travelmates.mainapi.trips.models.UploadImageDto
 import retrofit2.Response
 import retrofit2.http.*
 
+/**
+ * API for trips
+ */
 interface TripsService {
 
     @GET(PATH_TRIPS)

@@ -20,14 +20,17 @@ class PostsViewModel @Inject constructor(
     private val postsRepository: PostsRepository
 ) : ViewModel() {
 
+    //ViewState for load posts action
     private val viewState = MutableStateFlow(ViewState.LOADING)
     val contentVisible = viewState.map { it == ViewState.CONTENT }.asLiveData()
     val loadingVisible = viewState.map { it == ViewState.LOADING }.asLiveData()
     val errorVisible = viewState.map { it == ViewState.ERROR }.asLiveData()
 
+    //Loaded posts
     private val _posts = MutableLiveData<List<Post>>()
     val posts = _posts.immutable()
 
+    //Navigate to Add post screen
     private val _eventNavigateAddPost = SingleLiveEvent<Unit>()
     val eventNavigateAddPost = _eventNavigateAddPost.immutable()
 

@@ -7,7 +7,6 @@ import cz.cvut.fit.travelmates.location.Location
 import cz.cvut.fit.travelmates.mainapi.user.PublicUser
 import java.time.LocalDateTime
 
-
 @JsonClass(generateAdapter = true)
 data class Post(
     @Json(name = "createdAt")
@@ -24,6 +23,9 @@ data class Post(
     val location: Location
 )
 
+/**
+ * ItemCallback for Post, user in ListAdapters to display lists of posts
+ */
 object PostDiff : DiffUtil.ItemCallback<Post>() {
     override fun areItemsTheSame(oldItem: Post, newItem: Post): Boolean {
         return oldItem.id == newItem.id

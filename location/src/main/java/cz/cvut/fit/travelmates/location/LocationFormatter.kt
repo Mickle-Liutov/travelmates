@@ -3,8 +3,12 @@ package cz.cvut.fit.travelmates.location
 import android.content.Context
 import android.location.Geocoder
 
+/**
+ * Formatter for location's name
+ */
 class LocationFormatter(private val location: Location, private val context: Context) {
 
+    //Geocoder allows to get address from GPS coordinates
     private val geoCoder = Geocoder(context)
 
     fun formatLocationName(): String {
@@ -13,6 +17,7 @@ class LocationFormatter(private val location: Location, private val context: Con
         } catch (e: Exception) {
             emptyList()
         }
+        //Return just country name as formatted location name
         return locations.firstOrNull()?.countryName ?: context.getString(R.string.location_unknown)
     }
 

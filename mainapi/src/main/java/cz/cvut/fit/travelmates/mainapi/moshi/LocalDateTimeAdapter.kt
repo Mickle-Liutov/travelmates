@@ -6,6 +6,9 @@ import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
+/**
+ * Moshi adapter for converting LocalDate and LocalDateTime
+ */
 object LocalDateTimeAdapter {
 
     private val FORMATTER = DateTimeFormatter.ISO_LOCAL_DATE_TIME

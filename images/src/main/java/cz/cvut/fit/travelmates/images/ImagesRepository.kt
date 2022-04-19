@@ -11,6 +11,10 @@ class ImagesRepository {
 
     private val storage = Firebase.storage
 
+    /**
+     * Upload image to remote storage
+     * @return reference to uploaded image
+     */
     @Suppress("BlockingMethodInNonBlockingContext")
     suspend fun uploadImage(image: Bitmap, location: String): String {
         val stream = ByteArrayOutputStream()

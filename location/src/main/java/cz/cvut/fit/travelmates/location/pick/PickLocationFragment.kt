@@ -50,6 +50,7 @@ class PickLocationFragment : Fragment() {
     private fun setupMap() {
         lifecycleScope.launch {
             val map = mapFragment.awaitMap()
+            //Synchronize camera's position with viewModel
             map.cameraMoveEvents().collect {
                 viewModel.onCameraMoved(map.cameraPosition.target)
             }
