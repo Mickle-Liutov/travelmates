@@ -22,5 +22,4 @@ class ImagesRepository {
         return URLDecoder.decode(ref.toString(), Charsets.UTF_8.name())
     }
 
-
 }
