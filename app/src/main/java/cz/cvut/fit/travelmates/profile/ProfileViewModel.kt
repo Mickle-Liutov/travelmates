@@ -73,9 +73,7 @@ class ProfileViewModel @Inject constructor(
         loadUser()
     }
 
-    fun onRetryPressed() {
-        loadUser()
-    }
+    fun onRetryPressed() = loadUser()
 
     fun onEditPressed() {
         screenState.value = ScreenState.EDIT
