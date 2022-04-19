@@ -14,7 +14,7 @@ class TripMemberViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val args = TripMemberFragmentArgs.fromSavedStateHandle(savedStateHandle)
-    val member = args.tripMember
+    private val member = args.tripMember
     val userImage = liveData { emit(member.picture) }
     val userName = liveData { emit(member.name) }
     val userContact = liveData { emit(member.contact) }

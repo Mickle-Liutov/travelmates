@@ -18,10 +18,8 @@ import cz.cvut.fit.travelmates.trips.tripdetails.images.Image
 import cz.cvut.fit.travelmates.trips.tripdetails.images.UploadImageUseCase
 import cz.cvut.fit.travelmates.trips.tripdetails.members.TripParticipant
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.filterNotNull
-import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -84,7 +82,7 @@ class TripDetailsViewModel @Inject constructor(
     private val _eventNavigateRequest = SingleLiveEvent<Request>()
     val eventNavigateRequest = _eventNavigateRequest.immutable()
 
-    private val _eventPickImage = SingleLiveEvent<Request>()
+    private val _eventPickImage = SingleLiveEvent<Unit>()
     val eventPickImage = _eventPickImage.immutable()
 
     private val _eventNavigateMember = SingleLiveEvent<TripMember>()
@@ -163,11 +161,13 @@ class TripDetailsViewModel @Inject constructor(
     }
 
     fun onMemberPressed(member: TripMember) {
-        val state = screenState.value ?: return
-        if (!state.canOpenMemberDetails) {
-            return
+        viewModelScope.launch {
+            val state = screenStateFlow.firstOrNull() ?: return@launch
+            if (!state.canOpenMemberDetails) {
+                return@launch
+            }
+            _eventNavigateMember.value = member
         }
-        _eventNavigateMember.value = member
     }
 
     fun onBackPressed() {

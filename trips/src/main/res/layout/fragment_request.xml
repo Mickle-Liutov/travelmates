@@ -97,7 +97,17 @@
             android:text="@string/request_button_accept"
             app:layout_constraintBottom_toTopOf="@id/buttonRequestReject"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:visibleOrInvisible="@{vm.contentVisible}" />
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/buttonRequestAccept"
+            app:layout_constraintEnd_toEndOf="@id/buttonRequestAccept"
+            app:layout_constraintStart_toStartOf="@id/buttonRequestAccept"
+            app:layout_constraintTop_toTopOf="@id/buttonRequestAccept"
+            app:visible="@{vm.loadingVisible}" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonRequestReject"
