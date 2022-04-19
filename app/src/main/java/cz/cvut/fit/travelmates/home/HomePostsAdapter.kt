@@ -8,6 +8,9 @@ import cz.cvut.fit.travelmates.databinding.ItemHomePostBinding
 import cz.cvut.fit.travelmates.mainapi.posts.Post
 import cz.cvut.fit.travelmates.mainapi.posts.PostDiff
 
+/**
+ * Adapter for displaying posts on home screen
+ */
 class HomePostsAdapter : ListAdapter<Post, HomePostsAdapter.HomePostViewHolder>(PostDiff) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomePostViewHolder {

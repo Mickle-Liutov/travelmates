@@ -9,6 +9,9 @@ import timber.log.Timber
 
 class AuthRepository {
 
+    /**
+     * Register a new user
+     */
     suspend fun register(email: String, password: String, name: String) {
         val options =
             AuthSignUpOptions.builder()
@@ -21,6 +24,9 @@ class AuthRepository {
         }
     }
 
+    /**
+     * Login an existing user
+     */
     suspend fun login(email: String, password: String) {
         val result = Amplify.Auth.signIn(email, password)
         if (!result.isSignInComplete) {
@@ -28,10 +34,16 @@ class AuthRepository {
         }
     }
 
+    /**
+     * Log user out
+     */
     suspend fun logout() {
         Amplify.Auth.signOut()
     }
 
+    /**
+     * Start user's password recovery
+     */
     suspend fun startPasswordRecovery(email: String) {
         val result = Amplify.Auth.resetPassword(email)
         if (!result.isPasswordReset) {
@@ -39,15 +51,28 @@ class AuthRepository {
         }
     }
 
+    /**
+     * Confirm user's password recovery
+     */
     suspend fun confirmPasswordRecovery(newPassword: String, securityCode: String) {
         Amplify.Auth.confirmResetPassword(newPassword, securityCode)
     }
 
+    /**
+     * Checks if user has a valid session
+     *
+     * @return whether user has a valida session
+     */
     suspend fun hasValidSession(): Boolean {
         val session = Amplify.Auth.fetchAuthSession()
         return session.isSignedIn
     }
 
+    /**
+     * Gets id token of current user
+     *
+     * @return id token of user
+     */
     suspend fun getIdToken(): String {
         val session = Amplify.Auth.fetchAuthSession() as AWSCognitoAuthSession
         return session.userPoolTokens.value?.idToken ?: throw UnauthorizedException("")

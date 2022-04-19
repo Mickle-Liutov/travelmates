@@ -9,9 +9,11 @@ import javax.inject.Inject
 @HiltViewModel
 class WelcomeViewModel @Inject constructor() : ViewModel() {
 
+    //Navigate to login
     private val _eventNavigateLogin = SingleLiveEvent<Unit>()
     val eventNavigateLogin = _eventNavigateLogin.immutable()
 
+    //Navigate to register
     private val _eventNavigateRegister = SingleLiveEvent<Unit>()
     val eventNavigateRegister = _eventNavigateRegister.immutable()
 

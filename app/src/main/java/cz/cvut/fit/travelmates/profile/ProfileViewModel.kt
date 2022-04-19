@@ -25,16 +25,23 @@ class ProfileViewModel @Inject constructor(
     private val authRepository: AuthRepository
 ) : ViewModel() {
 
+    //Current state of the screen
     private val screenState = MutableStateFlow(ScreenState.SHOW)
 
     val isEditMode = screenState.map { it == ScreenState.EDIT }.asLiveData()
 
     private val user = MutableStateFlow<User?>(null)
 
+    //Name of user, synchronized with input field
     val typedName = MutableStateFlow("")
+
+    //Email of user
     val email = user.map { it?.email.orEmpty() }.asLiveData()
+
+    //Profile image of user
     val userImage = user.map { it?.picture }.asLiveData()
 
+    //ViewState for loading user's data
     private val loadUserViewState = MutableStateFlow(ViewState.LOADING)
     val loadUserLoadingVisible = loadUserViewState.map { it == ViewState.LOADING }.asLiveData()
     val loadUserContentVisible = loadUserViewState.map {
@@ -42,30 +49,39 @@ class ProfileViewModel @Inject constructor(
     }.asLiveData()
     val loadUserErrorVisible = loadUserViewState.map { it == ViewState.ERROR }.asLiveData()
 
+    //ViewState for saving changes to user's data
     private val saveViewState = MutableStateFlow(ViewState.CONTENT)
     val saveLoadingVisible = saveViewState.map { it == ViewState.LOADING }.asLiveData()
     val saveButtonsVisible = combine(screenState, saveViewState) { screenState, saveState ->
         screenState == ScreenState.EDIT && saveState == ViewState.CONTENT
     }.asLiveData()
+
+    //Whether edit button is visible or not
     val editVisible = combine(screenState, loadUserViewState) { screenState, loadState ->
         screenState == ScreenState.SHOW && loadState == ViewState.CONTENT
     }.asLiveData()
 
+    //Shows error while saving changes
     private val _eventSaveError = SingleLiveEvent<Unit>()
     val eventSaveError = _eventSaveError.immutable()
 
+    //Shows error while changing image
     private val _eventChangeImageError = SingleLiveEvent<Unit>()
     val eventChangeImageError = _eventChangeImageError.immutable()
 
+    //Shows error while logging out
     private val _eventLogoutError = SingleLiveEvent<Unit>()
     val eventLogoutError = _eventLogoutError.immutable()
 
+    //Navigates back
     private val _eventNavigateBack = SingleLiveEvent<Unit>()
     val eventNavigateBack = _eventNavigateBack.immutable()
 
+    //Shows image picker
     private val _eventPickImage = SingleLiveEvent<Unit>()
     val eventPickImage = _eventPickImage.immutable()
 
+    //Navigates to main screen
     private val _eventNavigateMain = SingleLiveEvent<Unit>()
     val eventNavigateMain = _eventNavigateMain.immutable()
 
@@ -105,6 +121,9 @@ class ProfileViewModel @Inject constructor(
         _eventPickImage.call()
     }
 
+    /**
+     * Should be called when user selected profile picture
+     */
     fun onProfileImagePicked(newImage: Bitmap) {
         val oldUser = user.value
         oldUser?.let {
@@ -137,6 +156,9 @@ class ProfileViewModel @Inject constructor(
         _eventNavigateBack.call()
     }
 
+    /**
+     * Loads user's profile
+     */
     private fun loadUser() {
         viewModelScope.launchCatching(execute = {
             loadUserViewState.value = ViewState.LOADING
@@ -149,11 +171,15 @@ class ProfileViewModel @Inject constructor(
         })
     }
 
+    /**
+     * Represents possible states of Profile screen
+     */
     enum class ScreenState {
         SHOW, EDIT
     }
 
     companion object {
+        //Format for uploading profile images
         private const val USER_PICTURE_FORMAT = "profilePics/%s"
     }
 }

@@ -22,25 +22,34 @@ class LoginViewModel @Inject constructor(
     private val resourcesProvider: ResourcesProvider
 ) : ViewModel() {
 
+    //Navigates to main
     private val _eventNavigateMain = SingleLiveEvent<Unit>()
     val eventNavigateMain = _eventNavigateMain.immutable()
 
+    //Navigates to recovery
     private val _eventNavigateRecovery = SingleLiveEvent<Unit>()
     val eventNavigateRecovery = _eventNavigateRecovery.immutable()
 
+    //Shows any error string
     private val _eventError = SingleLiveEvent<String>()
     val eventError = _eventError.immutable()
 
+    //Navigates back
     private val _eventNavigateBack = SingleLiveEvent<Unit>()
     val eventNavigateBack = _eventNavigateBack.immutable()
 
+    //User's email, synchronized with input field
     val typedEmail = MutableStateFlow("")
+
+    //User's password, synchronized with input field
     val typedPassword = MutableStateFlow("")
 
+    //Whether Continue button is active
     val isContinueActive = combine(typedEmail, typedPassword) { email, password ->
         email.isNotBlank() && password.isNotBlank()
     }.asLiveData()
 
+    //ViewState for login action
     private val viewState = MutableStateFlow(ViewState.CONTENT)
     val contentVisible = viewState.map { it == ViewState.CONTENT }.asLiveData()
     val loadingVisible = viewState.map { it == ViewState.LOADING }.asLiveData()
@@ -51,6 +60,7 @@ class LoginViewModel @Inject constructor(
         viewModelScope.launchCatching(execute = {
             viewState.value = ViewState.LOADING
             login.invoke(email, password)
+            //Navigate to main if login was successful
             _eventNavigateMain.call()
         }, catch = {
             when (it) {

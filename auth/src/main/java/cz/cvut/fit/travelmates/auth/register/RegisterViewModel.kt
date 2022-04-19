@@ -30,33 +30,47 @@ class RegisterViewModel @Inject constructor(
     private val resourcesProvider: ResourcesProvider
 ) : ViewModel() {
 
+    //Shows error that password don't match each other
     private val _eventPasswordMismatch = SingleLiveEvent<Unit>()
     val eventPasswordMismatch = _eventPasswordMismatch.immutable()
 
+    //Shows message that user was registered
     private val _eventRegistered = SingleLiveEvent<Unit>()
     val eventRegistered = _eventRegistered.immutable()
 
+    //Shows generic string error
     private val _eventError = SingleLiveEvent<String>()
     val eventError = _eventError.immutable()
 
+    //Navigates back
     private val _eventNavigateBack = SingleLiveEvent<Unit>()
     val eventNavigateBack = _eventNavigateBack.immutable()
 
+    //Email of user, synchronized with input field
     val typedEmail = MutableStateFlow("")
+
+    //Validation error of email
     private val _emailError = MutableLiveData<ValidationError?>()
     val emailErrorVisible = _emailError.immutable()
 
+    //Name of user, synchronized with input field
     val typedName = MutableStateFlow("")
 
+    //Password of user, synchronized with input field
     val typedPassword = MutableStateFlow("")
+
+    //Validation error of password
     private val _passwordError = MutableLiveData<ValidationError?>()
     val passwordError = _passwordError.immutable()
 
+    //Confirm password of user, synchronized with input field
     val typedConfirmPassword = MutableStateFlow("")
 
+    //Whether continue button is active or not
     private val _isContinueActive = MutableStateFlow(false)
     val isContinueActive = _isContinueActive.asLiveData()
 
+    //ViewState for register action
     private val viewState = MutableStateFlow(ViewState.CONTENT)
     val contentVisible = viewState.map { it == ViewState.CONTENT }.asLiveData()
     val loadingVisible = viewState.map { it == ViewState.LOADING }.asLiveData()
@@ -70,6 +84,7 @@ class RegisterViewModel @Inject constructor(
         val name = typedName.value
         val password = typedPassword.value
         val confirmedPassword = typedConfirmPassword.value
+        //Check that password match each other
         if (password != confirmedPassword) {
             _eventPasswordMismatch.call()
             return
@@ -77,6 +92,7 @@ class RegisterViewModel @Inject constructor(
         viewModelScope.launchCatching(execute = {
             viewState.value = ViewState.LOADING
             authRepository.register(email, password, name)
+            //Show message and navigate back is registration was successful
             _eventRegistered.call()
             _eventNavigateBack.call()
         }, catch = {
@@ -93,10 +109,15 @@ class RegisterViewModel @Inject constructor(
         _eventNavigateBack.call()
     }
 
+    /**
+     * Setup validations of input fields
+     */
     private fun setupValidations() {
         viewModelScope.launch {
             formValidator.combineValidations(
-                formValidator.getFieldValidation(typedEmail,
+                //Regex pattern validation for email
+                formValidator.getFieldValidation(
+                    typedEmail,
                     { _emailError.value = it },
                     {
                         when {
@@ -105,27 +126,34 @@ class RegisterViewModel @Inject constructor(
                             else -> null
                         }
                     }),
+                //No validation for name
                 formValidator.getFieldValidation(
                     typedName,
                     {},
                     { null }
                 ),
+                //Password validation for password
                 formValidator.getFieldValidation(
                     typedPassword,
                     { _passwordError.value = it },
                     this@RegisterViewModel::passwordValidation
                 ),
+                //No validation for confirm password
                 formValidator.getFieldValidation(
                     typedConfirmPassword,
                     {},
                     { null }
                 )
             ) { areAllValid ->
+                //Continue button is active when all fields are valid
                 _isContinueActive.value = areAllValid
             }
         }
     }
 
+    /**
+     * Validates a password
+     */
     private fun passwordValidation(password: String): ValidationError? {
         return when {
             password.length < PASSWORD_MIN_LENGTH -> ValidationError.TOO_SHORT
@@ -137,6 +165,7 @@ class RegisterViewModel @Inject constructor(
     }
 
     companion object {
+        //Minimal required length of a password
         private const val PASSWORD_MIN_LENGTH = 8
     }
 }

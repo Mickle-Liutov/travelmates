@@ -8,6 +8,9 @@ import cz.cvut.fit.travelmates.databinding.ItemHomeTripBinding
 import cz.cvut.fit.travelmates.mainapi.trips.models.Trip
 import cz.cvut.fit.travelmates.mainapi.trips.models.TripDiff
 
+/**
+ * Adapter for displaying trips on home screen
+ */
 class HomeTripsAdapter : ListAdapter<Trip, HomeTripsAdapter.HomeTripViewHolder>(TripDiff) {
 
     var onTripPressed: ((Trip) -> Unit)? = null

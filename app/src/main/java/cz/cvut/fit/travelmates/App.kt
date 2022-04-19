@@ -13,6 +13,7 @@ class App : Application() {
         super.onCreate()
 
         try {
+            //Configure Amplify
             Amplify.addPlugin(AWSCognitoAuthPlugin())
             Amplify.configure(applicationContext)
         } catch (ignored: AmplifyException) {

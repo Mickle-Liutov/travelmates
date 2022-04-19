@@ -24,24 +24,31 @@ class HomeViewModel @Inject constructor(
     private val postsRepository: PostsRepository
 ) : ViewModel(), DefaultLifecycleObserver {
 
+    //Navigates to Explore screen
     private val _eventNavigateTrips = SingleLiveEvent<Unit>()
     val eventNavigateTrips = _eventNavigateTrips.immutable()
 
+    //Navigates to Posts screen
     private val _eventNavigatePosts = SingleLiveEvent<Unit>()
     val eventNavigatePosts = _eventNavigatePosts.immutable()
 
+    //Navigates to Create trip screen
     private val _eventNavigateOrganize = SingleLiveEvent<Unit>()
     val eventNavigateOrganize = _eventNavigateOrganize.immutable()
 
+    //Navigates to Welcome screen
     private val _eventNavigateAuth = SingleLiveEvent<Unit>()
     val eventNavigateAuth = _eventNavigateAuth.immutable()
 
+    //Navigates to Trip details screen
     private val _eventNavigateTripDetails = SingleLiveEvent<Long>()
     val eventNavigateTripDetails = _eventNavigateTripDetails.immutable()
 
+    //Trips which should be displayed
     private val _trips = MutableLiveData<List<Trip>>()
     val trips = _trips.immutable()
 
+    //Posts which should be displayed
     private val _posts = MutableLiveData<List<Post>>()
     val posts = _posts.immutable()
 
@@ -50,11 +57,17 @@ class HomeViewModel @Inject constructor(
     val loadingVisible = viewState.map { it == ViewState.LOADING }.asLiveData()
     val errorVisible = viewState.map { it == ViewState.ERROR }.asLiveData()
 
+    /**
+     * Check session when app comes into foreground
+     */
     override fun onResume(owner: LifecycleOwner) {
         super.onResume(owner)
         checkSession()
     }
 
+    /**
+     * Checks is user has session, navigates to auth of not, loads data if yes
+     */
     private fun checkSession() {
         viewModelScope.launch {
             val hasSession = authRepository.hasValidSession()
@@ -84,9 +97,13 @@ class HomeViewModel @Inject constructor(
 
     fun onRetryPressed() = loadData()
 
+    /**
+     * Loads data of the screen, both trips and posts
+     */
     private fun loadData() {
         viewModelScope.launchCatching(execute = {
             viewState.value = ViewState.LOADING
+            //Using async to load posts and trips in parallel
             val trips = viewModelScope.async {
                 tripsRepository.getExploreTrips()
             }

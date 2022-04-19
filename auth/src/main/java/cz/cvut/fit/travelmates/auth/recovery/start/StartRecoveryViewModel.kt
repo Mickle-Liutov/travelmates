@@ -22,21 +22,27 @@ class StartRecoveryViewModel @Inject constructor(
     private val resourcesProvider: ResourcesProvider
 ) : ViewModel() {
 
+    //Navigates to Confirm recovery screen
     private val _eventNavigateConfirm = SingleLiveEvent<Unit>()
     val eventNavigateConfirm = _eventNavigateConfirm.immutable()
 
+    //Navigates back
     private val _eventNavigateBack = SingleLiveEvent<Unit>()
     val eventNavigateBack = _eventNavigateBack.immutable()
 
+    //Shows generic string error
     private val _eventError = SingleLiveEvent<String>()
     val eventError = _eventError.immutable()
 
+    //User's email, synchronized with input field
     val typedEmail = MutableStateFlow("")
 
+    //Whether continue button is active or not
     val isContinueActive = typedEmail.map {
         it.isNotBlank()
     }.asLiveData()
 
+    //ViewState for start recovery action
     private val viewState = MutableStateFlow(ViewState.CONTENT)
     val contentVisible = viewState.map { it == ViewState.CONTENT }.asLiveData()
     val loadingVisible = viewState.map { it == ViewState.LOADING }.asLiveData()
@@ -46,6 +52,7 @@ class StartRecoveryViewModel @Inject constructor(
         viewModelScope.launchCatching(execute = {
             viewState.value = ViewState.LOADING
             authRepository.startPasswordRecovery(email)
+            //Navigate to next step if start recovery was successful
             _eventNavigateConfirm.call()
         }, catch = {
             when (it) {

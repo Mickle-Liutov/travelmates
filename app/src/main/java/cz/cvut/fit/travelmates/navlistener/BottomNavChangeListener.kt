@@ -7,10 +7,15 @@ import androidx.navigation.NavDestination
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import cz.cvut.fit.travelmates.R
 
+/**
+ * Navigation listener that hides or shows the bottom navigation view
+ * based on current destination
+ */
 class BottomNavChangeListener(
     private val bottomNavigationView: BottomNavigationView
 ) : NavController.OnDestinationChangedListener {
 
+    //Destinations where bottom navigation should be visible
     private val destinationsWithBottomNav = listOf(
         R.id.navigation_my_trips,
         R.id.navigation_profile,
