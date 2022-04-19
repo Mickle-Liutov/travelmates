@@ -17,24 +17,32 @@ class RequestViewModel @Inject constructor(
     private val requestsRepository: RequestsRepository
 ) : ViewModel() {
 
+    //Show message that request was accepted
     private val _eventAccepted = SingleLiveEvent<Unit>()
     val eventAccepted = _eventAccepted.immutable()
 
+    //Navigate to reject request screen
     private val _eventNavigateReject = SingleLiveEvent<Long>()
     val eventNavigateReject = _eventNavigateReject.immutable()
 
+    //Navigate back
     private val _eventNavigateBack = SingleLiveEvent<Unit>()
     val eventNavigateBack = _eventNavigateBack.immutable()
 
+    //Show error while accepting the request
     private val _eventAcceptError = SingleLiveEvent<Unit>()
     val eventAcceptError = _eventAcceptError.immutable()
 
     private val args = RequestFragmentArgs.fromSavedStateHandle(savedStateHandle)
+
     private val request = args.request
+
+    //Request details exposed as LiveData
     val senderImage = liveData { emit(request.user.picture) }
     val senderName = liveData { emit(request.user.name) }
     val message = liveData { emit(request.message) }
 
+    //ViewState for accepting join request
     private val viewState = MutableStateFlow(ViewState.CONTENT)
     val contentVisible = viewState.map { it == ViewState.CONTENT }.asLiveData()
     val loadingVisible = viewState.map { it == ViewState.LOADING }.asLiveData()
@@ -43,6 +51,7 @@ class RequestViewModel @Inject constructor(
         viewModelScope.launchCatching(execute = {
             viewState.value = ViewState.LOADING
             requestsRepository.acceptRequest(args.request.id)
+            //Show message and navigate back if successfull
             _eventAccepted.call()
             _eventNavigateBack.call()
         }, catch = {

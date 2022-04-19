@@ -7,6 +7,9 @@ import cz.cvut.fit.travelmates.mainapi.trips.models.Requirement
 import kotlinx.parcelize.Parcelize
 import java.time.LocalDate
 
+/**
+ * Represents a partially created trip, without owner contact
+ */
 @Keep
 @Parcelize
 data class PartialTrip(

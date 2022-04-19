@@ -7,6 +7,9 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import cz.cvut.fit.travelmates.trips.databinding.ItemProvidedRequirementBinding
 
+/**
+ * Adapter for showing requirements which user may provide
+ */
 class ProvidedRequirementsAdapter :
     ListAdapter<ProvidedRequirement, ProvidedRequirementsAdapter.ProvidedRequirementViewHolder>(
         ProvidedRequirementDiff

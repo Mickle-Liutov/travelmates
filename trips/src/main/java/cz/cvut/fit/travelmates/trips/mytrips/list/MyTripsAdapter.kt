@@ -13,6 +13,9 @@ import cz.cvut.fit.travelmates.trips.databinding.ItemMyTripSubtitleBinding
 import cz.cvut.fit.travelmates.trips.databinding.ItemTripBinding
 import java.time.format.DateTimeFormatter
 
+/**
+ * Adapter for showing my trips
+ */
 class MyTripsAdapter :
     ListAdapter<MyTripsItem, MyTripsAdapter.MyTripItemViewHolder>(MyTripItemDiff) {
 

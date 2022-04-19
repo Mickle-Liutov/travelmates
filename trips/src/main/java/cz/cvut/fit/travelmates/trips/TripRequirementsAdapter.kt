@@ -10,6 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 import cz.cvut.fit.travelmates.mainapi.trips.models.TripRequirement
 import cz.cvut.fit.travelmates.trips.databinding.ItemTripRequirementBinding
 
+/**
+ * Adapter for displaying trip requirements
+ */
 class TripRequirementsAdapter :
     ListAdapter<TripRequirement, TripRequirementsAdapter.TripRequirementViewHolder>(
         TripRequirementDiff

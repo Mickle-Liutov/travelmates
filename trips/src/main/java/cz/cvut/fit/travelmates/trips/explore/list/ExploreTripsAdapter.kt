@@ -12,6 +12,9 @@ import cz.cvut.fit.travelmates.trips.TripRequirementsAdapter
 import cz.cvut.fit.travelmates.trips.databinding.ItemTripBinding
 import java.time.format.DateTimeFormatter
 
+/**
+ * Adapter for showing explore trips
+ */
 class ExploreTripsAdapter : ListAdapter<Trip, ExploreTripsAdapter.ExploreTripViewHolder>(TripDiff) {
 
     var onTripPressed: ((Long) -> Unit)? = null

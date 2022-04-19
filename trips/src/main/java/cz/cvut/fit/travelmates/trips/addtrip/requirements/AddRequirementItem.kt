@@ -1,5 +1,8 @@
 package cz.cvut.fit.travelmates.trips.addtrip.requirements
 
+/**
+ * List item for requirements list
+ */
 sealed class AddRequirementItem {
 
     abstract fun isItemSame(other: AddRequirementItem): Boolean
@@ -12,6 +15,9 @@ sealed class AddRequirementItem {
     }
 }
 
+/**
+ * Represents existing requirement item in the list
+ */
 data class RequirementItem(val id: String, val name: String) : AddRequirementItem() {
     override fun isItemSame(other: AddRequirementItem): Boolean {
         return other is RequirementItem && id == other.id
@@ -24,6 +30,9 @@ data class RequirementItem(val id: String, val name: String) : AddRequirementIte
     override val itemType = TYPE_ITEM
 }
 
+/**
+ * Represents add new button item in the list
+ */
 object AddItem : AddRequirementItem() {
     override fun isItemSame(other: AddRequirementItem): Boolean {
         return this == other

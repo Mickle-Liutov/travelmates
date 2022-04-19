@@ -80,9 +80,11 @@ class AddTripFragment : Fragment() {
             requirementsAdapter.submitList(it)
         }
         viewModel.eventPickDate.observe(viewLifecycleOwner) {
+            //Show date picker
             DatePickerDialog(
                 requireContext(),
                 { _, year, month, dayOfMonth ->
+                    //Convert to LocalDate month ordering
                     val localDateMonth = month + 1
                     viewModel.onDateSet(LocalDate.of(year, localDateMonth, dayOfMonth))
                 }, it.year, it.month.ordinal, it.dayOfMonth

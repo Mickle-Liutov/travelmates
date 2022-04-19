@@ -12,14 +12,18 @@ import javax.inject.Inject
 @HiltViewModel
 class AddRequirementDialogViewModel @Inject constructor() : ViewModel() {
 
+    //Set argument that will be returned as result
     private val _eventSetArgument = SingleLiveEvent<String>()
     val eventSetArgument = _eventSetArgument.immutable()
 
+    //Navigate back
     private val _eventNavigateBack = SingleLiveEvent<Unit>()
     val eventNavigateBack = _eventNavigateBack.immutable()
 
+    //Name, synchronized with input field
     val typedName = MutableStateFlow("")
 
+    //Whether add button is enabled or not
     val isAddEnabled = typedName.map { it.isNotBlank() }.asLiveData()
 
     fun onAddPressed() {

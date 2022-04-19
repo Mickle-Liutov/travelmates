@@ -23,28 +23,37 @@ class ContactViewModel @Inject constructor(
 
     private val args = ContactFragmentArgs.fromSavedStateHandle(savedStateHandle)
 
+    //Show message that trip was created
     private val _eventShowTripCreated = SingleLiveEvent<Unit>()
     val eventShowTripCreated = _eventShowTripCreated.immutable()
 
+    //Navigate back
     private val _eventNavigateBack = SingleLiveEvent<Unit>()
     val eventNavigateBack = _eventNavigateBack.immutable()
 
+    //Navigate to main
     private val _eventNavigateMain = SingleLiveEvent<Unit>()
     val eventNavigateMain = _eventNavigateMain.immutable()
 
+    //Show error while creating trip
     private val _eventError = SingleLiveEvent<Unit>()
     val eventError = _eventError.immutable()
 
+    //Contact, synchronized with input field
     val typedContact = MutableStateFlow("")
+
+    //Whether create button is enabled or not
     val isCreateEnabled = typedContact.map {
         it.isNotBlank()
     }.asLiveData()
 
+    //ViewState for create trip action
     private val viewState = MutableStateFlow(ViewState.CONTENT)
     val contentVisible = viewState.map { it == ViewState.CONTENT }.asLiveData()
     val loadingVisible = viewState.map { it == ViewState.LOADING }.asLiveData()
 
     fun onCreatePressed() {
+        //Create new trip object
         val newTrip = with(args.partialTrip) {
             NewTripDto(
                 title,
@@ -58,6 +67,7 @@ class ContactViewModel @Inject constructor(
         viewModelScope.launchCatching(execute = {
             viewState.value = ViewState.LOADING
             tripsRepository.createTrip(newTrip)
+            //Show message and navigate to main if created successfully
             _eventShowTripCreated.call()
             _eventNavigateMain.call()
         }, catch = {

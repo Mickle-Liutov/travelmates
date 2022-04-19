@@ -21,15 +21,22 @@ class ExploreViewModel @Inject constructor(
     private val searchTrips: SearchTripsUseCase
 ) : ViewModel() {
 
+    //Navigate to trip details screen
     private val _eventNavigateTripDetails = SingleLiveEvent<Long>()
     val eventNavigateTripDetails = _eventNavigateTripDetails.immutable()
 
+    //All explore trips
     private val exploreTrips = MutableStateFlow<List<Trip>>(emptyList())
+
+    //Search term that user typed
     val searchTerm = MutableStateFlow("")
+
+    //Filtered trips, which should be displayed
     val filteredTrips = combine(exploreTrips, searchTerm) { trips, term ->
         searchTrips.invoke(trips, term)
     }.asLiveData()
 
+    //ViewState for loading explore trips
     private val viewState = MutableStateFlow(ViewState.LOADING)
     val contentVisible = viewState.map { it == ViewState.CONTENT }.asLiveData()
     val loadingVisible = viewState.map { it == ViewState.LOADING }.asLiveData()

@@ -11,6 +11,9 @@ import cz.cvut.fit.travelmates.mainapi.trips.models.Request
 import cz.cvut.fit.travelmates.trips.R
 import cz.cvut.fit.travelmates.trips.databinding.ItemRequestBinding
 
+/**
+ * Adapter for displaying incoming join requests on trip details screen
+ */
 class RequestsAdapter : ListAdapter<Request, RequestsAdapter.RequestViewHolder>(RequestDiff) {
 
     var onReviewPressed: ((Request) -> Unit)? = null

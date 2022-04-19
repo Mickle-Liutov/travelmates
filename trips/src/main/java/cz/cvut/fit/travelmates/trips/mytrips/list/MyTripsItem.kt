@@ -6,6 +6,9 @@ import cz.cvut.fit.travelmates.mainapi.trips.models.TripRequirement
 import cz.cvut.fit.travelmates.mainapi.trips.models.TripState
 import java.time.LocalDate
 
+/**
+ * Item in a list of my trips
+ */
 sealed class MyTripsItem {
     abstract fun areItemsSame(other: MyTripsItem): Boolean
     abstract fun areContentsSame(other: MyTripsItem): Boolean
@@ -17,6 +20,9 @@ sealed class MyTripsItem {
     }
 }
 
+/**
+ * Trip item in list of my trips
+ */
 data class MyTrip(
     val description: String,
     val id: Long,
@@ -38,6 +44,9 @@ data class MyTrip(
     override val viewType = TYPE_ITEM
 }
 
+/**
+ * Section subtitle item in list of my trips
+ */
 data class MyTripsSubtitle(val type: MyTripsSubtitleType) : MyTripsItem() {
     override fun areItemsSame(other: MyTripsItem): Boolean {
         return this == other

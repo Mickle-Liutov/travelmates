@@ -12,6 +12,9 @@ import cz.cvut.fit.travelmates.trips.R
 import cz.cvut.fit.travelmates.trips.databinding.ItemAddImageBinding
 import cz.cvut.fit.travelmates.trips.databinding.ItemImageBinding
 
+/**
+ * Adapter for displaying images of a trip
+ */
 class ImagesAdapter : ListAdapter<ImageUiItem, ImagesAdapter.ImageUiViewHolder>(ImageDiff) {
 
     var onAddPressed: (() -> Unit)? = null

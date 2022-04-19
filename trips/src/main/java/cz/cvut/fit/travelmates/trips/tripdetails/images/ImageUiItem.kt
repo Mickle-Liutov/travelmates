@@ -1,5 +1,8 @@
 package cz.cvut.fit.travelmates.trips.tripdetails.images
 
+/**
+ * Item of images list in trip details
+ */
 sealed class ImageUiItem {
     abstract fun isItemSame(other: ImageUiItem): Boolean
     abstract fun areContentsSame(other: ImageUiItem): Boolean
@@ -11,12 +14,18 @@ sealed class ImageUiItem {
     }
 }
 
+/**
+ * Image item
+ */
 data class Image(val imageRef: String) : ImageUiItem() {
     override fun isItemSame(other: ImageUiItem) = this == other
     override fun areContentsSame(other: ImageUiItem) = this == other
     override val viewType = TYPE_ITEM
 }
 
+/**
+ * Button for adding images inside the list
+ */
 object AddImageItem : ImageUiItem() {
     override fun isItemSame(other: ImageUiItem) = this == other
     override fun areContentsSame(other: ImageUiItem) = this == other

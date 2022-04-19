@@ -15,10 +15,13 @@ class TripMemberViewModel @Inject constructor(
 
     private val args = TripMemberFragmentArgs.fromSavedStateHandle(savedStateHandle)
     private val member = args.tripMember
+
+    //Expose details of member as LiveData
     val userImage = liveData { emit(member.picture) }
     val userName = liveData { emit(member.name) }
     val userContact = liveData { emit(member.contact) }
 
+    //Navigate back
     private val _eventNavigateBack = SingleLiveEvent<Unit>()
     val eventNavigateBack = _eventNavigateBack.immutable()
 

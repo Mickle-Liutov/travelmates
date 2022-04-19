@@ -6,6 +6,9 @@ import cz.cvut.fit.travelmates.trips.R
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
+/**
+ * Adapter for setting formatted suggested date to TextView
+ */
 @BindingAdapter("suggestedDate")
 fun TextView.setSuggestedDate(date: LocalDate?) {
     date?.let {

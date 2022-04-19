@@ -7,14 +7,21 @@ import cz.cvut.fit.travelmates.mainapi.trips.models.UserType
 import cz.cvut.fit.travelmates.trips.tripdetails.models.JoinRequestState
 import cz.cvut.fit.travelmates.trips.tripdetails.models.TripDetailsState
 
+/**
+ * Maps trip into its state for Trip details screen
+ */
 class TripDetailsStateMapper {
 
+    /**
+     * Get trip state of a given trip
+     */
     fun getTripState(trip: Trip): TripDetailsState {
         if (trip.state == TripState.FINISHED) {
             return TripDetailsState.Finished
         }
         return when (trip.userType) {
             UserType.GUEST -> TripDetailsState.Guest(
+                //Choose correct state of join request
                 when (trip.currentUserRequest?.state) {
                     RequestState.PENDING -> JoinRequestState.SENT
                     RequestState.REJECTED_ALLOW_RESEND -> JoinRequestState.REJECTED_CAN_RESEND

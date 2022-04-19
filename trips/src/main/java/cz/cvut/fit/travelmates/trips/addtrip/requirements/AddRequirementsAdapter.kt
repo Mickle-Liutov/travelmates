@@ -9,6 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import cz.cvut.fit.travelmates.trips.databinding.ItemAddNewRequirementBinding
 import cz.cvut.fit.travelmates.trips.databinding.ItemNewRequirementBinding
 
+/**
+ * Adapter for displaying list of created requirements and add button
+ */
 class AddRequirementsAdapter :
     ListAdapter<AddRequirementItem, AddRequirementsAdapter.AddRequirementsViewHolder>(
         AddRequirementItemDiff

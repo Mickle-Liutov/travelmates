@@ -20,14 +20,17 @@ class MyTripsViewModel @Inject constructor(
     private val composeMyTrips: ComposeMyTripsUseCase
 ) : ViewModel() {
 
+    //My trips items to show
     private val _trips = MutableLiveData<List<MyTripsItem>>()
     val trips = _trips.immutable()
 
+    //ViewState for loading list of my trips
     private val viewState = MutableStateFlow(ViewState.LOADING)
     val contentVisible = viewState.map { it == ViewState.CONTENT }.asLiveData()
     val loadingVisible = viewState.map { it == ViewState.LOADING }.asLiveData()
     val errorVisible = viewState.map { it == ViewState.ERROR }.asLiveData()
 
+    //Navigate to trip details
     private val _eventNavigateDetails = SingleLiveEvent<Long>()
     val eventNavigateDetails = _eventNavigateDetails.immutable()
 

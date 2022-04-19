@@ -12,6 +12,9 @@ import cz.cvut.fit.travelmates.mainapi.trips.models.TripMember
 import cz.cvut.fit.travelmates.trips.R
 import cz.cvut.fit.travelmates.trips.databinding.ItemTripMemberBinding
 
+/**
+ * Adapter for displaying members of a trip
+ */
 class MembersAdapter :
     ListAdapter<TripParticipant, MembersAdapter.MemberViewHolder>(TripParticipantDiff) {
 
