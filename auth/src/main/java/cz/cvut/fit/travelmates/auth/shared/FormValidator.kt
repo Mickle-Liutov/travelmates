@@ -6,14 +6,14 @@ import kotlinx.coroutines.flow.*
 import kotlin.coroutines.coroutineContext
 
 @FlowPreview
-class FormValidator {
+class FormValidator(val debounce: Long = VALIDATION_DEBOUNCE) {
 
     suspend fun getFieldValidation(
         inputFlow: Flow<String>,
         errorAction: (ValidationError?) -> Unit,
         validation: (String) -> ValidationError?
     ): Flow<Boolean> {
-        inputFlow.debounce(VALIDATION_DEBOUNCE)
+        inputFlow.debounce(debounce)
             .map {
                 when {
                     it.isBlank() -> null
