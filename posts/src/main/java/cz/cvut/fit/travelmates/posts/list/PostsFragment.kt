@@ -25,6 +25,7 @@ class PostsFragment : Fragment() {
         binding = FragmentPostsBinding.inflate(inflater, container, false)
         binding.vm = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
+        lifecycle.addObserver(viewModel)
         return binding.root
     }
 

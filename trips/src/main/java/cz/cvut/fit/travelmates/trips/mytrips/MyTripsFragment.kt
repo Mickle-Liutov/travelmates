@@ -26,6 +26,7 @@ class MyTripsFragment : Fragment() {
         binding = FragmentMyTripsBinding.inflate(inflater, container, false)
         binding.vm = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
+        lifecycle.addObserver(viewModel)
         return binding.root
     }
 

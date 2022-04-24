@@ -1,6 +1,7 @@
 package cz.cvut.fit.travelmates.posts.list
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import cz.cvut.fit.travelmates.location.Location
 import cz.cvut.fit.travelmates.mainapi.posts.Post
@@ -50,12 +51,16 @@ class PostsViewModelTest {
     @MockK
     private lateinit var postsObserver: Observer<List<Post>>
 
+    @MockK
+    private lateinit var lifecycleOwner: LifecycleOwner
+
     @Before
     fun setup() {
         Dispatchers.setMain(testDispatcher)
         MockKAnnotations.init(this, relaxUnitFun = true)
         coEvery { postsRepository.getPosts() } returns emptyList()
         viewModel = PostsViewModel(postsRepository)
+        viewModel.onResume(lifecycleOwner)
 
         viewModel.eventNavigateAddPost.observeForever(navigateAddPostObserver)
         viewModel.contentVisible.observeForever(contentVisibleObserver)

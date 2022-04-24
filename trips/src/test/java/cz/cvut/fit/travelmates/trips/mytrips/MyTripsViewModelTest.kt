@@ -1,6 +1,7 @@
 package cz.cvut.fit.travelmates.trips.mytrips
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import cz.cvut.fit.travelmates.location.Location
 import cz.cvut.fit.travelmates.mainapi.trips.models.TripMember
@@ -52,6 +53,8 @@ class MyTripsViewModelTest {
     @MockK
     private lateinit var errorObserver: Observer<Boolean>
 
+    @MockK
+    private lateinit var lifecycleOwner: LifecycleOwner
 
     @Before
     fun setup() {
@@ -59,6 +62,7 @@ class MyTripsViewModelTest {
         MockKAnnotations.init(this, relaxUnitFun = true)
 
         viewModel = MyTripsViewModel(composeMyTripsUseCase)
+        viewModel.onResume(lifecycleOwner)
 
         viewModel.eventNavigateDetails.observeForever(navigateTripDetailsObserver)
         viewModel.trips.observeForever(tripsObserver)

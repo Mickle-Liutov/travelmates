@@ -1,9 +1,6 @@
 package cz.cvut.fit.travelmates.trips.mytrips
 
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import cz.cvut.fit.travelmates.core.coroutines.launchCatching
 import cz.cvut.fit.travelmates.core.livedata.SingleLiveEvent
 import cz.cvut.fit.travelmates.core.livedata.immutable
@@ -18,7 +15,7 @@ import javax.inject.Inject
 @HiltViewModel
 class MyTripsViewModel @Inject constructor(
     private val composeMyTrips: ComposeMyTripsUseCase
-) : ViewModel() {
+) : ViewModel(), DefaultLifecycleObserver {
 
     //My trips items to show
     private val _trips = MutableLiveData<List<MyTripsItem>>()
@@ -34,7 +31,7 @@ class MyTripsViewModel @Inject constructor(
     private val _eventNavigateDetails = SingleLiveEvent<Long>()
     val eventNavigateDetails = _eventNavigateDetails.immutable()
 
-    init {
+    override fun onResume(owner: LifecycleOwner) {
         loadTrips()
     }
 

@@ -1,10 +1,7 @@
 package cz.cvut.fit.travelmates.trips.tripdetails
 
 import android.graphics.Bitmap
-import androidx.lifecycle.SavedStateHandle
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import cz.cvut.fit.travelmates.core.coroutines.launchCatching
 import cz.cvut.fit.travelmates.core.livedata.SingleLiveEvent
 import cz.cvut.fit.travelmates.core.livedata.immutable
@@ -28,7 +25,7 @@ class TripDetailsViewModel @Inject constructor(
     private val tripsRepository: TripsRepository,
     private val tripDetailsStateMapper: TripDetailsStateMapper,
     private val uploadImage: UploadImageUseCase
-) : ViewModel() {
+) : ViewModel(), DefaultLifecycleObserver {
 
     private val args = TripDetailsFragmentArgs.fromSavedStateHandle(savedStateHandle)
     private val tripId = args.tripId
@@ -119,7 +116,7 @@ class TripDetailsViewModel @Inject constructor(
     private val _eventNavigateBack = SingleLiveEvent<Unit>()
     val eventNavigateBack = _eventNavigateBack.immutable()
 
-    init {
+    override fun onResume(owner: LifecycleOwner) {
         loadTrip()
     }
 

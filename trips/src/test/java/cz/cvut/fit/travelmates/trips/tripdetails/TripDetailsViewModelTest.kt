@@ -2,6 +2,7 @@ package cz.cvut.fit.travelmates.trips.tripdetails
 
 import android.graphics.Bitmap
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.SavedStateHandle
 import cz.cvut.fit.travelmates.location.Location
@@ -72,6 +73,9 @@ class TripDetailsViewModelTest {
     @MockK
     lateinit var mockedBitmap: Bitmap
 
+    @MockK
+    lateinit var lifecycleOwner: LifecycleOwner
+
     @Before
     fun setup() {
         Dispatchers.setMain(testDispatcher)
@@ -94,6 +98,8 @@ class TripDetailsViewModelTest {
         viewModel.eventFinishTripError.observeForever(finishTripErrorObserver)
         viewModel.eventUploadImageError.observeForever(uploadImageErrorObserver)
         viewModel.eventNavigateBack.observeForever(navigateBackObserver)
+
+        viewModel.onResume(lifecycleOwner)
     }
 
     @After

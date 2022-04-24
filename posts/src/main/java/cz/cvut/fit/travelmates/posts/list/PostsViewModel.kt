@@ -1,9 +1,6 @@
 package cz.cvut.fit.travelmates.posts.list
 
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import cz.cvut.fit.travelmates.core.coroutines.launchCatching
 import cz.cvut.fit.travelmates.core.livedata.SingleLiveEvent
 import cz.cvut.fit.travelmates.core.livedata.immutable
@@ -18,7 +15,7 @@ import javax.inject.Inject
 @HiltViewModel
 class PostsViewModel @Inject constructor(
     private val postsRepository: PostsRepository
-) : ViewModel() {
+) : ViewModel(), DefaultLifecycleObserver {
 
     //ViewState for load posts action
     private val viewState = MutableStateFlow(ViewState.LOADING)
@@ -34,7 +31,7 @@ class PostsViewModel @Inject constructor(
     private val _eventNavigateAddPost = SingleLiveEvent<Unit>()
     val eventNavigateAddPost = _eventNavigateAddPost.immutable()
 
-    init {
+    override fun onResume(owner: LifecycleOwner) {
         loadPosts()
     }
 
