@@ -20,6 +20,7 @@ plugins {
     id("dagger.hilt.android.plugin")
     id("androidx.navigation.safeargs.kotlin")
     id("com.google.gms.google-services")
+    id("org.ajoberstar.grgit") version "5.0.0"
 }
 
 android {
@@ -29,8 +30,9 @@ android {
         applicationId = "cz.cvut.fit.travelmates"
         minSdk = Config.MIN_SDK
         targetSdk = Config.TARGET_SDK
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = grgit.log().size
+        versionName = "0.9"
+        setProperty("archivesBaseName", "TravelMates-v${versionName}(${versionCode})")
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
