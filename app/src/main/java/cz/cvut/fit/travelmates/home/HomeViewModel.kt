@@ -1,5 +1,6 @@
 package cz.cvut.fit.travelmates.home
 
+import android.annotation.SuppressLint
 import androidx.lifecycle.*
 import cz.cvut.fit.travelmates.authapi.AuthRepository
 import cz.cvut.fit.travelmates.core.coroutines.launchCatching
@@ -110,7 +111,10 @@ class HomeViewModel @Inject constructor(
             val posts = viewModelScope.async {
                 postsRepository.getPosts()
             }
+            //False positive lint issues below
+            @SuppressLint("NullSafeMutableLiveData")
             _trips.value = trips.await()
+            @SuppressLint("NullSafeMutableLiveData")
             _posts.value = posts.await()
             viewState.value = ViewState.CONTENT
         }, catch = {

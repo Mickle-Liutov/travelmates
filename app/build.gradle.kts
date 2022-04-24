@@ -26,6 +26,15 @@ plugins {
 android {
     compileSdk = Config.COMPILE_SDK
 
+    signingConfigs {
+        create("release") {
+            storeFile = file("../keystore/travelmates-keys.jks")
+            storePassword = "-92U&~MUs>r~a@j]"
+            keyAlias = "travelmates"
+            keyPassword = "-92U&~MUs>r~a@j]"
+        }
+    }
+
     defaultConfig {
         applicationId = "cz.cvut.fit.travelmates"
         minSdk = Config.MIN_SDK
@@ -39,11 +48,13 @@ android {
 
     buildTypes {
         release {
+            isShrinkResources = true
             isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            signingConfig = signingConfigs.getByName("release")
         }
     }
     compileOptions {
