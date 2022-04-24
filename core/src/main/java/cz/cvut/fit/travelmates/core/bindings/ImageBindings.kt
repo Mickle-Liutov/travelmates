@@ -31,10 +31,14 @@ fun ImageView.setImageRef(imageRef: String?, placeholder: Drawable?, imageTransf
             val ref = Firebase.storage.getReferenceFromUrl(imageRef)
             load(ref) {
                 placeholder(placeholder)
+                error(placeholder)
                 transformation?.let {
                     transformations(it)
                 }
             }
+        }
+        if (imageRef == null) {
+            load(placeholder)
         }
     }
 
