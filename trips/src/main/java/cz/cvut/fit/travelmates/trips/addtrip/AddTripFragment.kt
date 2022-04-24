@@ -57,13 +57,14 @@ class AddTripFragment : Fragment() {
             findNavController().popBackStack()
         }
         val backstackEntry = findNavController().getBackStackEntry(R.id.navigation_add_trip)
-        backstackEntry.savedStateHandle.getLiveData<String>(
+        backstackEntry.savedStateHandle.getLiveData<String?>(
             KEY_NEW_REQUIREMENT
         ).observe(viewLifecycleOwner) { newRequirement ->
-            viewModel.onRequirementAdded(newRequirement)
-            backstackEntry.savedStateHandle.remove<String>(KEY_NEW_REQUIREMENT)
+            newRequirement?.let {
+                viewModel.onRequirementAdded(it)
+                backstackEntry.savedStateHandle.set(KEY_NEW_REQUIREMENT, null)
+            }
         }
-
     }
 
     private fun setupRequirements() {
