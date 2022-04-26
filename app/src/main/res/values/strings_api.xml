@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="base_url">http://travelmates-env.eba-p95pbqct.us-east-2.elasticbeanstalk.com/api/v1/</string>
+    <string name="base_url">https://travelmates.online/api/v1/</string>
     <string name="maps_api_key">AIzaSyDNKU3Vuu0vGNATolq45SK9dAgCV5vzIc8</string>
 </resources>
