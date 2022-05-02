@@ -41,6 +41,7 @@ class RequestViewModel @Inject constructor(
     val senderImage = liveData { emit(request.user.picture) }
     val senderName = liveData { emit(request.user.name) }
     val message = liveData { emit(request.message) }
+    val equipment = liveData { emit(request.providedEquipment) }
 
     //ViewState for accepting join request
     private val viewState = MutableStateFlow(ViewState.CONTENT)

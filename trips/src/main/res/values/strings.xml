@@ -38,6 +38,8 @@
     <string name="request_message_accepted">Request was accepted.</string>
     <string name="request_message_rejected">Request was rejected.</string>
     <string name="request_error_accept">Couldn\'t accept the request, please try again</string>
+    <string name="request_requirements_format">Provided equipment:\n%s</string>
+    <string name="request_requirements_empty">Provided equipment:\nNone</string>
 
     <string name="reject_title">Reject request</string>
     <string name="reject_hint_reason">Reason</string>

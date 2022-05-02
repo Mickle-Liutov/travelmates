@@ -43,28 +43,28 @@ class TripsRepository(
      * Send a join request to a trip
      */
     suspend fun sendJoinRequest(tripId: Long, newJoinRequestDto: NewJoinRequestDto) {
-        tripsService.sendJoinRequest(tripId, newJoinRequestDto)
+        tripsService.sendJoinRequest(tripId, newJoinRequestDto).toBody()
     }
 
     /**
      * Stop gathering a trip
      */
     suspend fun stopGatheringTrip(tripId: Long) {
-        tripsService.stopGatheringTrip(tripId)
+        tripsService.stopGatheringTrip(tripId).toBody()
     }
 
     /**
      * Finish a trip
      */
     suspend fun finishTrip(tripId: Long) {
-        tripsService.finishTrip(tripId)
+        tripsService.finishTrip(tripId).toBody()
     }
 
     /**
      * Upload an image for a trip
      */
     suspend fun uploadTripImage(tripId: Long, imageRef: String) {
-        tripsService.uploadTripImage(tripId, UploadImageDto(imageRef))
+        tripsService.uploadTripImage(tripId, UploadImageDto(imageRef)).toBody()
     }
 
 }

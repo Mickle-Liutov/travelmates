@@ -24,9 +24,12 @@ class JoinTripViewModel @Inject constructor(
     private val args = JoinTripFragmentArgs.fromSavedStateHandle(savedStateHandle)
 
     //Equipment items, which user may provide
-    private val _equipment = MutableStateFlow(args.trip.requirements.map {
-        ProvidedRequirement(it.id, it.name, false)
-    })
+    private val _equipment =
+        MutableStateFlow(args.trip.requirements
+            .filter { !it.isFulfilled } //Only show unfulfilled requirements
+            .map {
+                ProvidedRequirement(it.id, it.name, false)
+            })
     val equipment = _equipment.asLiveData()
 
     //Contact, synchronized with input field

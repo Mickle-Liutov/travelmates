@@ -76,15 +76,36 @@
             app:layout_constraintBottom_toTopOf="@id/buttonRequestAccept"
             app:layout_constraintTop_toBottomOf="@id/textRequestSender">
 
-            <TextView
-                android:id="@+id/textRequestMessage"
-                style="@style/TextAppearance.AppTheme.Body2.Black"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@{vm.message}"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:text="Request message" />
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/textRequestRequirements"
+                    style="@style/TextAppearance.AppTheme.Headline6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_base"
+                    android:textAlignment="center"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:providedEquipment="@{vm.equipment}"
+                    tools:text="Provided equipment:\nBoat\nCar" />
+
+                <TextView
+                    android:id="@+id/textRequestMessage"
+                    style="@style/TextAppearance.AppTheme.Body2.Black"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_base_x2"
+                    android:text="@{vm.message}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textRequestRequirements"
+                    tools:text="Request message" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
 
         <com.google.android.material.button.MaterialButton
