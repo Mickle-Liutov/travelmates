@@ -16,6 +16,7 @@
     <include app:graph="@navigation/navigation_posts" />
     <include app:graph="@navigation/add_trip_navigation" />
     <include app:graph="@navigation/explore_navigation" />
+    <include app:graph="@navigation/add_post_navigation" />
     <fragment
         android:id="@+id/navigation_home"
         android:name="cz.cvut.fit.travelmates.home.HomeFragment"
@@ -39,6 +40,9 @@
         <action
             android:id="@+id/action_home_to_add_trip"
             app:destination="@id/add_trip_graph" />
+        <action
+            android:id="@+id/action_home_to_add_post"
+            app:destination="@id/add_post_graph" />
     </fragment>
 
 </navigation>

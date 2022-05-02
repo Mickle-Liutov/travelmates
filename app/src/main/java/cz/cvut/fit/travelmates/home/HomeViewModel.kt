@@ -7,6 +7,8 @@ import cz.cvut.fit.travelmates.core.coroutines.launchCatching
 import cz.cvut.fit.travelmates.core.livedata.SingleLiveEvent
 import cz.cvut.fit.travelmates.core.livedata.immutable
 import cz.cvut.fit.travelmates.core.views.ViewState
+import cz.cvut.fit.travelmates.home.posts.HomeAddPost
+import cz.cvut.fit.travelmates.home.posts.HomePost
 import cz.cvut.fit.travelmates.mainapi.posts.Post
 import cz.cvut.fit.travelmates.mainapi.trips.models.Trip
 import cz.cvut.fit.travelmates.posts.PostsRepository
@@ -45,13 +47,21 @@ class HomeViewModel @Inject constructor(
     private val _eventNavigateTripDetails = SingleLiveEvent<Long>()
     val eventNavigateTripDetails = _eventNavigateTripDetails.immutable()
 
+    //Navigates to add post screen
+    private val _eventNavigateAddPost = SingleLiveEvent<Unit>()
+    val eventNavigateAddPost = _eventNavigateAddPost.immutable()
+
     //Trips which should be displayed
     private val _trips = MutableLiveData<List<Trip>>()
     val trips = _trips.immutable()
 
-    //Posts which should be displayed
+    //Posts which should be displayed, including the "Add" button
     private val _posts = MutableLiveData<List<Post>>()
-    val posts = _posts.immutable()
+    val posts = _posts.map {
+        listOf(HomeAddPost) + it.map {
+            HomePost(it)
+        }
+    }
 
     private val viewState = MutableStateFlow(ViewState.LOADING)
     val contentVisible = viewState.map { it == ViewState.CONTENT }.asLiveData()
@@ -94,6 +104,10 @@ class HomeViewModel @Inject constructor(
 
     fun onTripPressed(trip: Trip) {
         _eventNavigateTripDetails.value = trip.id
+    }
+
+    fun onAddPostPressed() {
+        _eventNavigateAddPost.call()
     }
 
     fun onRetryPressed() = loadData()

@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import cz.cvut.fit.travelmates.databinding.FragmentHomeBinding
+import cz.cvut.fit.travelmates.home.posts.HomePostsAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -54,6 +55,9 @@ class HomeFragment : Fragment() {
         viewModel.eventNavigateTripDetails.observe(viewLifecycleOwner) { tripId ->
             findNavController().navigate(HomeFragmentDirections.actionHomeToDetails(tripId))
         }
+        viewModel.eventNavigateAddPost.observe(viewLifecycleOwner) {
+            findNavController().navigate(HomeFragmentDirections.actionHomeToAddPost())
+        }
     }
 
     private fun setupTripsList() {
@@ -71,7 +75,9 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupPostsList() {
-        val postsAdapter = HomePostsAdapter()
+        val postsAdapter = HomePostsAdapter().apply {
+            onAddPostPressed = viewModel::onAddPostPressed
+        }
         binding.recyclerHomePosts.apply {
             layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)

@@ -11,16 +11,7 @@
         tools:layout="@layout/fragment_posts">
         <action
             android:id="@+id/action_to_add_post"
-            app:destination="@id/navigation_add_post" />
+            app:destination="@id/add_post_graph" />
     </fragment>
-    <fragment
-        android:id="@+id/navigation_add_post"
-        android:name="cz.cvut.fit.travelmates.posts.add.AddPostFragment"
-        tools:layout="@layout/fragment_add_post">
 
-        <action
-            android:id="@+id/action_post_to_pick_location"
-            app:destination="@id/locations_graph" />
-
-    </fragment>
 </navigation>

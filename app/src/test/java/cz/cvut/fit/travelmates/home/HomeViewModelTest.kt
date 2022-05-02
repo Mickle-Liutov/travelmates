@@ -4,6 +4,9 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import cz.cvut.fit.travelmates.authapi.AuthRepository
+import cz.cvut.fit.travelmates.home.posts.HomeAddPost
+import cz.cvut.fit.travelmates.home.posts.HomePost
+import cz.cvut.fit.travelmates.home.posts.HomePostItem
 import cz.cvut.fit.travelmates.location.Location
 import cz.cvut.fit.travelmates.mainapi.posts.Post
 import cz.cvut.fit.travelmates.mainapi.trips.models.*
@@ -50,7 +53,7 @@ class HomeViewModelTest {
     lateinit var tripsObserver: Observer<List<Trip>>
 
     @MockK
-    lateinit var postsObserver: Observer<List<Post>>
+    lateinit var postsObserver: Observer<List<HomePostItem>>
 
     @MockK
     lateinit var navigateTripsObserver: Observer<Unit>
@@ -66,6 +69,9 @@ class HomeViewModelTest {
 
     @MockK
     lateinit var navigateTripDetailsObserver: Observer<Long>
+
+    @MockK
+    lateinit var navigateAddPostObserver: Observer<Unit>
 
     @MockK
     private lateinit var contentObserver: Observer<Boolean>
@@ -91,6 +97,7 @@ class HomeViewModelTest {
         viewModel.eventNavigateOrganize.observeForever(navigateOrganizeObserver)
         viewModel.eventNavigateAuth.observeForever(navigateAuthObserver)
         viewModel.eventNavigateTripDetails.observeForever(navigateTripDetailsObserver)
+        viewModel.eventNavigateAddPost.observeForever(navigateAddPostObserver)
         viewModel.contentVisible.observeForever(contentObserver)
         viewModel.loadingVisible.observeForever(loadingObserver)
         viewModel.errorVisible.observeForever(errorObserver)
@@ -121,7 +128,7 @@ class HomeViewModelTest {
 
         viewModel.onResume(lifecycleOwner)
 
-        verify { postsObserver.onChanged(listOf(POST)) }
+        verify { postsObserver.onChanged(listOf(HomeAddPost, HomePost(POST))) }
         verify { tripsObserver.onChanged(listOf(TRIP)) }
         verifySequence {
             loadingObserver.onChanged(true)
@@ -173,6 +180,13 @@ class HomeViewModelTest {
         viewModel.onTripPressed(TRIP)
 
         verify { navigateTripDetailsObserver.onChanged(TRIP.id) }
+    }
+
+    @Test
+    fun `when add post is pressed, correct event is triggered`() {
+        viewModel.onAddPostPressed()
+
+        verify { navigateAddPostObserver.onChanged(null) }
     }
 
     companion object {
