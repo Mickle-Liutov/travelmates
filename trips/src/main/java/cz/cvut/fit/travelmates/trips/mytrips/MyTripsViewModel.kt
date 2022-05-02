@@ -31,11 +31,19 @@ class MyTripsViewModel @Inject constructor(
     private val _eventNavigateDetails = SingleLiveEvent<Long>()
     val eventNavigateDetails = _eventNavigateDetails.immutable()
 
+    //Navigate to create trip screen
+    private val _eventNavigateCreateTrip = SingleLiveEvent<Unit>()
+    val eventNavigateCreateTrip = _eventNavigateCreateTrip.immutable()
+
     override fun onResume(owner: LifecycleOwner) {
         loadTrips()
     }
 
     fun onRetryPressed() = loadTrips()
+
+    fun onAddTripPressed() {
+        _eventNavigateCreateTrip.call()
+    }
 
     private fun loadTrips() {
         viewState.value = ViewState.LOADING

@@ -40,6 +40,9 @@ class MyTripsFragment : Fragment() {
         viewModel.eventNavigateDetails.observe(viewLifecycleOwner) {
             findNavController().navigate(MyTripsFragmentDirections.actionToTripDetails(it))
         }
+        viewModel.eventNavigateCreateTrip.observe(viewLifecycleOwner) {
+            findNavController().navigate(MyTripsFragmentDirections.actionToCreateTrip())
+        }
     }
 
     private fun setupList() {

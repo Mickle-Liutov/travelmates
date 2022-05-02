@@ -16,7 +16,9 @@
                 android:name="tripId"
                 app:argType="long" />
         </action>
+        <action
+            android:id="@+id/action_to_create_trip"
+            app:destination="@id/add_trip_graph" />
     </fragment>
-
 
 </navigation>

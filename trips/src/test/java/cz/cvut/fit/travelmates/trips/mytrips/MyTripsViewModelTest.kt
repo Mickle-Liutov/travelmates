@@ -42,6 +42,9 @@ class MyTripsViewModelTest {
     private lateinit var navigateTripDetailsObserver: Observer<Long>
 
     @MockK
+    private lateinit var navigateAddTripObserver: Observer<Unit>
+
+    @MockK
     private lateinit var tripsObserver: Observer<List<MyTripsItem>>
 
     @MockK
@@ -65,6 +68,7 @@ class MyTripsViewModelTest {
         viewModel.onResume(lifecycleOwner)
 
         viewModel.eventNavigateDetails.observeForever(navigateTripDetailsObserver)
+        viewModel.eventNavigateCreateTrip.observeForever(navigateAddTripObserver)
         viewModel.trips.observeForever(tripsObserver)
         viewModel.contentVisible.observeForever(contentObserver)
         viewModel.loadingVisible.observeForever(loadingObserver)
@@ -82,6 +86,13 @@ class MyTripsViewModelTest {
         viewModel.onTripPressed(TEST_MY_TRIP)
 
         verify { navigateTripDetailsObserver.onChanged(TEST_MY_TRIP.id) }
+    }
+
+    @Test
+    fun `when add trip is pressed, correct event is triggered`() {
+        viewModel.onAddTripPressed()
+
+        verify { navigateAddTripObserver.onChanged(null) }
     }
 
     @Test
