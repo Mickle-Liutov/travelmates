@@ -40,7 +40,7 @@ android {
         minSdk = Config.MIN_SDK
         targetSdk = Config.TARGET_SDK
         versionCode = grgit.log().size
-        versionName = "0.9"
+        versionName = "1.0"
         setProperty("archivesBaseName", "TravelMates-v${versionName}(${versionCode})")
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
