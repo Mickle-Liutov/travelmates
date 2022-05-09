@@ -11,11 +11,11 @@ class PostsFormatter(post: Post) {
     val creatorIcon = post.creator.picture
     val creatorName = post.creator.name
 
-    //TODO Check correctness
     //Get string of how long ago post was created
     val createdAt: String = DateUtils.getRelativeTimeSpanString(
         post.createdAt.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli()
     )?.toString().orEmpty()
     val description = post.description
     val image = post.image
+    val location = post.location
 }

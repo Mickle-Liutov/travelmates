@@ -39,6 +39,29 @@
             app:layout_constraintTop_toTopOf="@id/imagePostItemCreatorIcon"
             tools:text="Jane Doe" />
 
+        <ImageView
+            android:id="@+id/imageTripDetailsLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_base_x3"
+            android:layout_marginEnd="@dimen/margin_base"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_location"
+            app:layout_constraintBottom_toBottomOf="@id/textPostItemCreatorName"
+            app:layout_constraintEnd_toStartOf="@id/textTripDetailsLocation"
+            app:layout_constraintTop_toTopOf="@id/textPostItemCreatorName" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textTripDetailsLocation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_base"
+            android:layout_marginEnd="@dimen/margin_base"
+            app:layout_constraintBottom_toBottomOf="@id/textPostItemCreatorName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:tripLocation="@{formatter.location}"
+            tools:text="Sicily, Italy" />
+
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textPostItemCreatedAt"
             android:layout_width="wrap_content"

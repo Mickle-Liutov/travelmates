@@ -33,6 +33,7 @@
         <entry key="core/src/main/res/drawable/ic_back.xml" value="0.1755" />
         <entry key="core/src/main/res/drawable/ic_my_profile.xml" value="0.192" />
         <entry key="core/src/main/res/drawable/ic_post_add.xml" value="0.2005" />
+        <entry key="location/src/main/res/drawable/ic_location.xml" value="0.2005" />
         <entry key="location/src/main/res/layout/fragment_pick_location.xml" value="0.24322916666666666" />
         <entry key="posts/src/main/res/drawable/ic_post_add.xml" value="0.192" />
         <entry key="posts/src/main/res/layout/fragment_add_post.xml" value="0.24322916666666666" />
