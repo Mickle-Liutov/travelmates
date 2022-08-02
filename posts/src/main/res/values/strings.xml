@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="posts_title">Posts</string>
+
+    <string name="add_post_title">New Post</string>
+    <string name="add_post_button_post">Post</string>
+    <string name="add_post_button_set_location">Set location</string>
+    <string name="add_post_button_set_image">Set image</string>
+    <string name="add_post_hint_description">Description</string>
+    <string name="add_post_location_format">Location: %1$s</string>
+    <string name="add_post_location_not_set">Not set</string>
+    <string name="add_post_error_generic">Something went wrong, please try again</string>
+</resources>

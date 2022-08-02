@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="margin_base_half">4dp</dimen>
+    <dimen name="margin_base">8dp</dimen>
+    <dimen name="margin_base_x2">16dp</dimen>
+    <dimen name="margin_base_x3">24dp</dimen>
+    <dimen name="margin_base_x4">32dp</dimen>
+
+    <dimen name="rounded_corners_small">12dp</dimen>
+    <dimen name="rounded_corners_medium">16dp</dimen>
+    <dimen name="rounded_corners_big">32dp</dimen>
+
+    <dimen name="text_size_headline1">96sp</dimen>
+    <dimen name="text_size_headline2">60sp</dimen>
+    <dimen name="text_size_headline3">48sp</dimen>
+    <dimen name="text_size_headline4">34sp</dimen>
+    <dimen name="text_size_headline5">24sp</dimen>
+    <dimen name="text_size_headline6">18sp</dimen>
+
+    <dimen name="text_size_body1">16sp</dimen>
+    <dimen name="text_size_body2">14sp</dimen>
+
+    <dimen name="text_size_subtitle1">14sp</dimen>
+    <dimen name="text_size_subtitle2">12sp</dimen>
+
+    <dimen name="text_size_button">14sp</dimen>
+</resources>

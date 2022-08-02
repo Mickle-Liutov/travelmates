@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_base_x2"
+        android:layout_marginVertical="@dimen/margin_base_x2"
+        android:padding="@dimen/margin_base_x2">
+
+        <ImageView
+            android:id="@+id/imageTripItem"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:contentDescription="@null"
+            android:src="@color/gray"
+            app:layout_constraintDimensionRatio="H,1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.5" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textTripItemTitle"
+            style="@style/TextAppearance.AppTheme.Subtitle2.Black.Bold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_base"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imageTripItem"
+            app:layout_constraintTop_toTopOf="@id/imageTripItem"
+            tools:text="Hiking in Sicily" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textTripsItemDateLocation"
+            style="?textAppearanceSubtitle1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_base"
+            android:layout_marginTop="@dimen/margin_base_half"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imageTripItem"
+            app:layout_constraintTop_toBottomOf="@id/textTripItemTitle"
+            tools:text="Sep 24 ● Italy" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerTripItemEquipment"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_base"
+            android:layout_marginTop="@dimen/margin_base"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imageTripItem"
+            app:layout_constraintTop_toBottomOf="@id/textTripsItemDateLocation"
+            tools:itemCount="1" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textTripItemDescription"
+            style="?textAppearanceSubtitle2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_base"
+            android:layout_marginTop="@dimen/margin_base"
+            android:ellipsize="end"
+            android:maxLines="2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imageTripItem"
+            app:layout_constraintTop_toBottomOf="@id/recyclerTripItemEquipment"
+            tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tempor felis interdum" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

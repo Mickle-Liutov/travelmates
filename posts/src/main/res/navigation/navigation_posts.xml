@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_posts_graph"
+    app:startDestination="@id/navigation_posts_list">
+
+    <fragment
+        android:id="@+id/navigation_posts_list"
+        android:name="cz.cvut.fit.travelmates.posts.list.PostsFragment"
+        tools:layout="@layout/fragment_posts">
+        <action
+            android:id="@+id/action_to_add_post"
+            app:destination="@id/add_post_graph" />
+    </fragment>
+
+</navigation>

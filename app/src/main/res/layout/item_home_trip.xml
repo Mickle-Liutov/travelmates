@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="cz.cvut.fit.travelmates.mainapi.trips.models.Trip" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_base"
+        android:background="?selectableItemBackground">
+
+        <ImageView
+            android:id="@+id/imageHomeTrip"
+            android:layout_width="250dp"
+            android:layout_height="150dp"
+            android:contentDescription="@null"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:locationPreview="@{item.location}"
+            app:previewForm="@{@string/location_preview_rectangle}" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textHomeTripTitle"
+            style="?textAppearanceHeadline6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_base_half"
+            android:text="@{item.title}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imageHomeTrip"
+            tools:text="Hiking in Sicily" />
+
+        <com.google.android.material.textview.MaterialTextView
+            style="?textAppearanceSubtitle2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_base"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="@{item.description}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textHomeTripTitle"
+            tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tempor felis interdum" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="cz.cvut.fit.travelmates.trips.addtrip.AddTripViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_base"
+            android:background="?selectableItemBackground"
+            android:contentDescription="@null"
+            android:onClick="@{()->vm.onBackPressed()}"
+            android:padding="@dimen/margin_base"
+            android:src="@drawable/ic_back"
+            app:layout_constraintBottom_toBottomOf="@id/textAddTripTitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/textAddTripTitle" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textAddTripTitle"
+            style="?textAppearanceHeadline5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_base_x2"
+            android:text="@string/add_trip_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/margin_base_x2"
+            android:fillViewport="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textAddTripTitle">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/mapAddTrip"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@null"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/bg_placeholder"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:locationPreview="@{vm.location}"
+                    app:previewForm="@{@string/location_preview_rectangle}" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/buttonAddTripSetLocation"
+                    style="@style/Widget.AppTheme.Button.Outline"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/margin_base_x2"
+                    android:layout_marginTop="@dimen/margin_base_x2"
+                    android:onClick="@{()->vm.onPickLocationPressed()}"
+                    android:text="@string/add_trip_button_set_location"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/mapAddTrip" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputCreateTripTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/margin_base_x2"
+                    android:layout_marginTop="@dimen/margin_base"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/buttonAddTripSetLocation">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/add_trip_hint_title"
+                        android:inputType="textCapSentences"
+                        android:text="@={vm.typedTitle}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputCreateTripDescription"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/margin_base_x2"
+                    android:layout_marginTop="@dimen/margin_base"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textInputCreateTripTitle">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="top"
+                        android:hint="@string/add_trip_hint_description"
+                        android:inputType="textCapSentences|textMultiLine"
+                        android:minLines="3"
+                        android:text="@={vm.typedDescription}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/textCreateTripSuggestedDate"
+                    style="?textAppearanceSubtitle1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_base_x2"
+                    android:layout_marginTop="@dimen/margin_base_x2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textInputCreateTripDescription"
+                    app:suggestedDate="@{vm.suggestedDate}"
+                    tools:text="Suggested date: 4 July, 2022" />
+
+                <TextView
+                    android:id="@+id/textCreateTripChangeDate"
+                    style="@style/TextAppearance.AppTheme.Subtitle2.Bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?selectableItemBackgroundBorderless"
+                    android:onClick="@{()->vm.onChangeDatePressed()}"
+                    android:padding="@dimen/margin_base"
+                    android:text="@string/add_trip_button_change_date"
+                    app:layout_constraintBottom_toBottomOf="@id/textCreateTripSuggestedDate"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/textCreateTripSuggestedDate"
+                    app:layout_constraintTop_toTopOf="@id/textCreateTripSuggestedDate" />
+
+                <TextView
+                    android:id="@+id/textCreateTripRequirementsTitle"
+                    style="?textAppearanceHeadline6"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/margin_base_x2"
+                    android:layout_marginTop="@dimen/margin_base_x2"
+                    android:text="@string/add_trip_title_requirements"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textCreateTripSuggestedDate" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerCreateTripRequirements"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_base"
+                    android:clipToPadding="false"
+                    android:paddingHorizontal="@dimen/margin_base_x2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textCreateTripRequirementsTitle"
+                    tools:itemCount="1"
+                    tools:listitem="@layout/item_add_new_requirement" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/margin_base_x2"
+                    android:layout_marginVertical="@dimen/margin_base_x2"
+                    android:enabled="@{vm.isCreateEnabled()}"
+                    android:onClick="@{()->vm.onCreatePressed()}"
+                    android:text="@string/add_trip_button_create"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/recyclerCreateTripRequirements" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="pick_location_button_select">Pick</string>
+
+    <string name="location_unknown">Unknown</string>
+
+    <string name="location_preview_square">square</string>
+    <string name="location_preview_rectangle">rectangle</string>
+</resources>

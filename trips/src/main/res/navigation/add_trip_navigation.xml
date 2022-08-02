@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/add_trip_graph"
+    app:startDestination="@id/navigation_add_trip">
+
+    <fragment
+        android:id="@+id/navigation_add_trip"
+        android:name="cz.cvut.fit.travelmates.trips.addtrip.AddTripFragment"
+        tools:layout="@layout/fragment_add_trip">
+        <action
+            android:id="@+id/action_to_add_requirement"
+            app:destination="@id/navigation_add_requirement" />
+        <action
+            android:id="@+id/action_to_pick_location"
+            app:destination="@id/locations_graph" />
+        <action
+            android:id="@+id/action_to_contact"
+            app:destination="@id/navigation_contact" />
+    </fragment>
+    <dialog
+        android:id="@+id/navigation_add_requirement"
+        android:name="cz.cvut.fit.travelmates.trips.addtrip.requirements.AddRequirementDialog"
+        tools:layout="@layout/dialog_add_requirement" />
+    <fragment
+        android:id="@+id/navigation_contact"
+        android:name="cz.cvut.fit.travelmates.trips.addtrip.contact.ContactFragment"
+        tools:layout="@layout/fragment_contact">
+        <argument
+            android:name="partialTrip"
+            app:argType="cz.cvut.fit.travelmates.trips.addtrip.PartialTrip" />
+    </fragment>
+
+</navigation>

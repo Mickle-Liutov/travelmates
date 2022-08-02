@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="my_trips_title">My trips</string>
+    <string name="my_trips_subtitle_owner">Organized by Me</string>
+    <string name="my_trips_subtitle_request">Pending Join Requests</string>
+    <string name="my_trips_subtitle_member">Joined by Me</string>
+
+    <string name="trip_details_title_equipment">Equipment</string>
+    <string name="trip_details_title_description">Description</string>
+    <string name="trip_details_title_requests">Pending requests</string>
+    <string name="trip_details_title_images">Pictures from trip</string>
+    <string name="trip_details_button_join">Join</string>
+    <string name="trip_details_button_review">Review</string>
+    <string name="trip_details_request_sent">Join request sent</string>
+    <string name="trip_details_request_rejected_format">Unfortunately, your request was rejected. The reason is:\n%1$s</string>
+    <string name="trip_details_button_stop_gathering">Stop gathering</string>
+    <string name="trip_details_button_finish">Finish trip</string>
+    <string name="trip_details_error_stop_gathering">That didn\'t work, please try again</string>
+    <string name="trip_details_error_finish_trip">That didn\'t work, please try again</string>
+    <string name="trip_details_error_upload_image">Couldn\'t upload the image, please try again</string>
+
+    <string name="trip_member_title">Trip member</string>
+    <string name="trip_member_title_contact">Contact at:</string>
+
+    <string name="join_trip_title">Join trip</string>
+    <string name="join_trip_title_equipment">How can you contribute?</string>
+    <string name="join_trip_title_contact">Provide a way to contact you</string>
+    <string name="join_trip_title_message">Introduce yourself</string>
+    <string name="join_trip_hint_contact">Contact</string>
+    <string name="join_trip_hint_message">Message</string>
+    <string name="join_trip_button_send">Send</string>
+    <string name="join_trip_message_sent">Request was sent.</string>
+    <string name="join_trip_error">Couldn\'t send your request, please try again</string>
+
+    <string name="request_title">Review request</string>
+    <string name="request_button_accept">Accept</string>
+    <string name="request_button_reject">Reject</string>
+    <string name="request_message_accepted">Request was accepted.</string>
+    <string name="request_message_rejected">Request was rejected.</string>
+    <string name="request_error_accept">Couldn\'t accept the request, please try again</string>
+    <string name="request_requirements_format">Provided equipment:\n%s</string>
+    <string name="request_requirements_empty">Provided equipment:\nNone</string>
+
+    <string name="reject_title">Reject request</string>
+    <string name="reject_hint_reason">Reason</string>
+    <string name="reject_block_resend">Block resending request</string>
+    <string name="reject_button_cancel">Cancel</string>
+    <string name="reject_button_reject">Reject</string>
+    <string name="reject_error">Couldn\'t reject the request, please try again</string>
+
+    <string name="explore_title">Discover trips</string>
+    <string name="explore_hint_search">Search</string>
+
+    <string name="add_trip_title">Create trip</string>
+    <string name="add_trip_button_set_location">Set location</string>
+    <string name="add_trip_hint_title">Title</string>
+    <string name="add_trip_hint_description">Description</string>
+    <string name="add_trip_button_create">Next</string>
+    <string name="add_trip_button_add_new_requirement">Add</string>
+    <string name="add_trip_title_add_requirement">Add requirement</string>
+    <string name="add_trip_hint_requirement_name">Name</string>
+    <string name="add_trip_button_add_requirement">Add</string>
+    <string name="add_trip_title_requirements">Trip requirements</string>
+    <string name="add_trip_suggested_date_format">Suggested date: %1$s</string>
+    <string name="add_trip_button_change_date">Change</string>
+
+    <string name="contact_title">Create trip</string>
+    <string name="contact_message_created">Trip was created</string>
+    <string name="contact_instructions">Almost there, one more thing you need to provide is a way for trip members to contact you (e.g. social media, email). This info is only shared with people who you accept into your trip.</string>
+    <string name="contact_button_create">Create</string>
+    <string name="contact_hint_contact">Contact</string>
+    <string name="contact_error">Couldn\'t create a trip, please, try again</string>
+</resources>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="cz.cvut.fit.travelmates.trips.request.reject.RejectDialogViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/margin_base_x2">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textRejectTitle"
+            style="?textAppearanceHeadline6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_base_x2"
+            android:text="@string/reject_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputRejectReason"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="@dimen/margin_base_x2"
+            android:layout_marginTop="@dimen/margin_base_x2"
+            android:minWidth="250dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textRejectTitle">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/reject_hint_reason"
+                android:inputType="textCapSentences"
+                android:text="@={vm.typedReason}" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <CheckBox
+            android:id="@+id/checkRejectBlockResend"
+            style="@style/TextAppearance.AppTheme.Body2.Black"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_base_x2"
+            android:checked="@={vm.blockResend}"
+            android:text="@string/reject_block_resend"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textInputRejectReason" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonRejectCancel"
+            style="@style/Widget.AppTheme.Button.Outline"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_base"
+            android:layout_marginTop="@dimen/margin_base_x2"
+            android:onClick="@{()->vm.onCancelPressed()}"
+            android:text="@string/reject_button_cancel"
+            app:layout_constraintEnd_toStartOf="@id/buttonRejectReject"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/checkRejectBlockResend" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonRejectReject"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_base"
+            android:onClick="@{()->vm.onRejectPressed()}"
+            android:text="@string/reject_button_reject"
+            app:layout_constraintBottom_toBottomOf="@id/buttonRejectCancel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/buttonRejectCancel"
+            app:layout_constraintTop_toTopOf="@id/buttonRejectCancel"
+            app:visibleOrInvisible="@{vm.contentVisible}" />
+
+        <ProgressBar
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            app:layout_constraintBottom_toBottomOf="@id/buttonRejectReject"
+            app:layout_constraintEnd_toEndOf="@id/buttonRejectReject"
+            app:layout_constraintStart_toStartOf="@id/buttonRejectReject"
+            app:layout_constraintTop_toTopOf="@id/buttonRejectReject"
+            app:visibleOrInvisible="@{vm.loadingVisible}" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

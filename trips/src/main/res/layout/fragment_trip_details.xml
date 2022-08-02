@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="cz.cvut.fit.travelmates.trips.tripdetails.TripDetailsViewModel" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:contentDescription="@null"
+                android:scaleType="centerCrop"
+                android:src="@color/gray"
+                app:layout_constraintBottom_toTopOf="@id/viewTripDetailsGuide"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:locationPreview="@{vm.location}"
+                app:previewForm="@{@string/location_preview_rectangle}" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_base"
+                android:layout_marginTop="@dimen/margin_base"
+                android:background="?selectableItemBackgroundBorderless"
+                android:contentDescription="@null"
+                android:onClick="@{()->vm.onBackPressed()}"
+                android:padding="@dimen/margin_base"
+                android:src="@drawable/ic_back"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/viewTripDetailsGuide"
+                android:layout_width="1dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/rounded_corners_big"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/scrollTripDetailsContent" />
+
+            <androidx.core.widget.NestedScrollView
+                android:id="@+id/scrollTripDetailsContent"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@drawable/bg_detailed_trip"
+                android:fillViewport="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHeight_percent="0.7"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:visible="@{vm.contentVisible}">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/textTripDetailsTitle"
+                        style="?textAppearanceHeadline4"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/margin_base_x3"
+                        android:layout_marginTop="@dimen/margin_base_x4"
+                        android:text="@{vm.detailedTrip.title}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="Hiking in Sicily" />
+
+                    <ImageView
+                        android:id="@+id/imageTripDetailsLocation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_base_x3"
+                        android:layout_marginTop="@dimen/margin_base"
+                        android:importantForAccessibility="no"
+                        android:src="@drawable/ic_location"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/textTripDetailsTitle" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/textTripDetailsLocation"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_base"
+                        app:layout_constraintBottom_toBottomOf="@id/imageTripDetailsLocation"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/imageTripDetailsLocation"
+                        app:layout_constraintTop_toTopOf="@id/imageTripDetailsLocation"
+                        app:tripLocation="@{vm.location}"
+                        tools:text="Sicily, Italy" />
+
+                    <ImageView
+                        android:id="@+id/imageTripDetailsDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_base_x3"
+                        android:layout_marginTop="@dimen/margin_base_x2"
+                        android:importantForAccessibility="no"
+                        android:src="@drawable/ic_date"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/imageTripDetailsLocation" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/textTripDetailsDate"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_base"
+                        app:layout_constraintBottom_toBottomOf="@id/imageTripDetailsDate"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/imageTripDetailsDate"
+                        app:layout_constraintTop_toTopOf="@id/imageTripDetailsDate"
+                        app:tripDate="@{vm.detailedTrip.suggestedDate}"
+                        tools:text="Sep 24" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerTripDetailsMembers"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_base_x2"
+                        android:nestedScrollingEnabled="false"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/textTripDetailsDate"
+                        tools:itemCount="2"
+                        tools:listitem="@layout/item_trip_member" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/textTripDetailsRequestsTitle"
+                        style="?textAppearanceHeadline6"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/margin_base_x3"
+                        android:layout_marginTop="@dimen/margin_base_x2"
+                        android:text="@string/trip_details_title_requests"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/recyclerTripDetailsMembers"
+                        app:visible="@{vm.requestsTitleVisible}" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerTripDetailsRequests"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_base"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/textTripDetailsRequestsTitle"
+                        app:visible="@{vm.screenState.joinRequestsVisible}"
+                        tools:itemCount="1"
+                        tools:listitem="@layout/item_request" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/textTripDetailsEquipmentTitle"
+                        style="?textAppearanceHeadline6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/margin_base_x3"
+                        android:layout_marginTop="@dimen/margin_base_x2"
+                        android:text="@string/trip_details_title_equipment"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/recyclerTripDetailsRequests" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerTripDetailsEquipment"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_base"
+                        app:layout_constraintBottom_toBottomOf="@id/textTripDetailsEquipmentTitle"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/textTripDetailsEquipmentTitle"
+                        app:layout_constraintTop_toTopOf="@id/textTripDetailsEquipmentTitle"
+                        tools:itemCount="1"
+                        tools:listitem="@layout/item_trip_requirement" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/textTripDetailsDescriptionTitle"
+                        style="?textAppearanceHeadline6"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/margin_base_x3"
+                        android:layout_marginTop="@dimen/margin_base_x2"
+                        android:text="@string/trip_details_title_description"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/textTripDetailsEquipmentTitle" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/textTripDetailsDescription"
+                        style="@style/TextAppearance.AppTheme.Body2.Black"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/margin_base_x3"
+                        android:layout_marginTop="@dimen/margin_base"
+                        android:text="@{vm.detailedTrip.description}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/textTripDetailsDescriptionTitle" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/buttonTripDetailsStopGathering"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/margin_base_x2"
+                        android:layout_marginVertical="@dimen/margin_base_x2"
+                        android:onClick="@{()->vm.onStopGatheringPressed()}"
+                        android:text="@string/trip_details_button_stop_gathering"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/textTripDetailsDescription"
+                        app:visible="@{vm.screenState.finishGatheringVisible}" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/buttonTripDetailsFinish"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/margin_base_x2"
+                        android:layout_marginVertical="@dimen/margin_base_x2"
+                        android:onClick="@{()->vm.onFinishTripPressed()}"
+                        android:text="@string/trip_details_button_finish"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/textTripDetailsDescription"
+                        app:visible="@{vm.screenState.finishTripVisible}" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/margin_base_x3"
+                        android:onClick="@{()->vm.onJoinPressed()}"
+                        android:text="@string/trip_details_button_join"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/textTripDetailsRejected"
+                        app:visible="@{vm.screenState.requestToJoinVisible}" />
+
+                    <TextView
+                        android:id="@+id/textTripDetailsImages"
+                        style="?textAppearanceHeadline6"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/margin_base_x3"
+                        android:layout_marginTop="@dimen/margin_base_x2"
+                        android:text="@string/trip_details_title_images"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/textTripDetailsRejected"
+                        app:visible="@{vm.screenState.imagesSectionVisible}" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerTripDetailsImages"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="@dimen/margin_base"
+                        android:clipToPadding="false"
+                        android:paddingHorizontal="@dimen/margin_base_x2"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/textTripDetailsImages"
+                        app:visible="@{vm.screenState.imagesSectionVisible}" />
+
+                    <TextView
+                        android:id="@+id/textTripDetailsRequestSent"
+                        style="?textAppearanceHeadline6"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/margin_base_x2"
+                        android:layout_marginVertical="@dimen/margin_base_x4"
+                        android:text="@string/trip_details_request_sent"
+                        android:textAlignment="center"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/textTripDetailsDescription"
+                        app:visible="@{vm.screenState.requestSentVisible}" />
+
+                    <TextView
+                        android:id="@+id/textTripDetailsRejected"
+                        style="@style/TextAppearance.AppTheme.Body2.Black"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/margin_base_x3"
+                        android:layout_marginTop="@dimen/margin_base_x2"
+                        android:text="@{@string/trip_details_request_rejected_format(vm.rejectedReason)}"
+                        android:textAlignment="center"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/textTripDetailsDescription"
+                        app:visible="@{vm.screenState.requestRejected}" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.core.widget.NestedScrollView>
+
+            <ProgressBar
+                visible="@{vm.loadingVisible}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/scrollTripDetailsContent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/scrollTripDetailsContent" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/scrollTripDetailsContent"
+                app:visible="@{vm.errorVisible}"
+                tools:visibility="gone">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textTripDetailsError"
+                    style="@style/TextAppearance.AppTheme.Headline6.Gray"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/error_generic"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_percent="0.7" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_base_x2"
+                    android:onClick="@{()->vm.onRetryPressed()}"
+                    android:text="@string/error_generic_retry"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textTripDetailsError"
+                    app:layout_constraintWidth_percent="0.7" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

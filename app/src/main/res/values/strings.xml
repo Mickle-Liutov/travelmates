@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">TravelMates</string>
+
+    <string name="tab_home">Discover</string>
+    <string name="tab_my_trips">My trips</string>
+    <string name="tab_profile">Profile</string>
+
+    <string name="profile_hint_email">Email</string>
+    <string name="profile_hint_name">Name</string>
+    <string name="profile_error_save_failed">Couldn\'t save changes, please try again</string>
+    <string name="profile_error_image_upload_failed">Couldn\'t change your picture, please try again</string>
+    <string name="profile_error_logout_failed">Couldn\'t log you out, please try again</string>
+
+    <string name="home_title">Discover</string>
+    <string name="home_title_trips">Open Trips</string>
+    <string name="home_title_posts">Recent Posts</string>
+    <string name="home_title_organize">Get Proactive</string>
+    <string name="home_button_see_all">See all ></string>
+    <string name="home_button_organize">Organize a Trip</string>
 </resources>

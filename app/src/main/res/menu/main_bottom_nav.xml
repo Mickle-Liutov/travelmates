@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@id/navigation_home"
+        android:icon="@drawable/ic_explore"
+        android:title="@string/tab_home" />
+
+    <item
+        android:id="@id/navigation_trips_graph"
+        android:icon="@drawable/ic_my_trips"
+        android:title="@string/tab_my_trips" />
+
+    <item
+        android:id="@id/navigation_profile"
+        android:icon="@drawable/ic_my_profile"
+        android:title="@string/tab_profile" />
+</menu>

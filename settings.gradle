@@ -3,8 +3,17 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven { url 'https://jitpack.io' }
         jcenter() // Warning: this repository is going to shut down soon
     }
 }
 rootProject.name = "TravelMates"
 include ':app'
+include ':core'
+include ':authapi'
+include ':auth'
+include ':mainapi'
+include ':trips'
+include ':location'
+include ':images'
+include ':posts'

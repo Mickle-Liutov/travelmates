@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/margin_base">
+
+        <ImageView
+            android:id="@+id/imageItemRequest"
+            android:layout_width="@dimen/user_image"
+            android:layout_height="@dimen/user_image"
+            android:layout_marginStart="@dimen/margin_base_x2"
+            android:contentDescription="@null"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_my_profile" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textItemRequestName"
+            style="@style/TextAppearance.AppTheme.Body2.Black"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_base"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/buttonItemRequestReview"
+            app:layout_constraintStart_toEndOf="@id/imageItemRequest"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Jessica Travels" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonItemRequestReview"
+            style="@style/Widget.AppTheme.Button.Outline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_base_x2"
+            android:text="@string/trip_details_button_review"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
